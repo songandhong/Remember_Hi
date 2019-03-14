@@ -111,7 +111,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_up"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/main"
+                />
 
         </LinearLayout>
 
