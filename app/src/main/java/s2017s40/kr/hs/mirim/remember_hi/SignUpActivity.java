@@ -1,9 +1,7 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Patterns;
@@ -11,12 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,13 +20,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 
-public class SignInActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
     // 비밀번호 정규식
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^[a-zA-Z0-9!@.#$%^&*?_~]{4,16}$");
 
@@ -58,10 +52,10 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_sign_up);
         // 파이어베이스 인증 객체 선언
         firebaseAuth = FirebaseAuth.getInstance();
-        signin = (Button)findViewById(R.id.sign_in_button);
+        signin = (Button)findViewById(R.id.sign_up_button);
         editTextEmail = findViewById(R.id.sign_up_email_edit);
         editTextPassword = findViewById(R.id.sign_up_password_edit);
         editTextPasswordHak = findViewById(R.id.sign_up_password_hak);
@@ -104,7 +98,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!ra_man.isChecked() && !ra_woman.isChecked()){
-                    Toast.makeText(SignInActivity.this, "성별을 선택해 주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "성별을 선택해 주세요", Toast.LENGTH_SHORT).show();
                 }
                 singUp(view);
             }
@@ -120,14 +114,14 @@ public class SignInActivity extends AppCompatActivity {
             createUser(email, password, name);
         }else{
             Log.e("전체","전체 에러");
-            Toast.makeText(SignInActivity.this, "실패", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "실패", Toast.LENGTH_SHORT).show();
         }
     }
     //이름 검사
     private boolean isValidName(){
         if(name.isEmpty()){
             Log.e("이름","이름 에러");
-            Toast.makeText(SignInActivity.this, "이름을 작성해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "이름을 작성해주세요", Toast.LENGTH_SHORT).show();
             return false;
         }else{
             return true;
@@ -138,7 +132,7 @@ public class SignInActivity extends AppCompatActivity {
         if (email.isEmpty()) {
             // 이메일 공백
             Log.e("이메일","이메일 에러");
-            Toast.makeText(SignInActivity.this, "이메일을 작성해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "이메일을 작성해주세요", Toast.LENGTH_SHORT).show();
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             // 이메일 형식 불일치
@@ -153,7 +147,7 @@ public class SignInActivity extends AppCompatActivity {
         if (password.isEmpty()) {
             // 비밀번호 공백
             Log.e("비밀번호 공백","비밀번호 공백 에러");
-            Toast.makeText(SignInActivity.this, "비밀번호를 작성해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "비밀번호를 작성해주세요", Toast.LENGTH_SHORT).show();
             return false;
         } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
             // 비밀번호 형식 불일치
@@ -165,7 +159,7 @@ public class SignInActivity extends AppCompatActivity {
     // 비밀번호 확인 검사
     private boolean isValidPasswdHak(){
         if (password_hak.isEmpty()) {
-            Toast.makeText(SignInActivity.this, "비밀번호를 확인해 주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "비밀번호를 확인해 주세요", Toast.LENGTH_SHORT).show();
             // 비밀번호 확인 공백
             Log.e("비밀번호 확인","비밀번호 확인 에러");
             return false;
@@ -184,12 +178,12 @@ public class SignInActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 회원가입 성공
-                            Toast.makeText(SignInActivity.this, "성공", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "성공", Toast.LENGTH_SHORT).show();
 
                             finish();
                         } else {
                             // 회원가입 실패
-                            Toast.makeText(SignInActivity.this, "실패", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "실패", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
