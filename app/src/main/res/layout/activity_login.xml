@@ -68,6 +68,16 @@
             android:layout_marginTop="16dp"
             android:text="@string/action_sign_in"
             android:textStyle="bold" />
+        <Button
+            android:id="@+id/login_enter_button"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/action_sign_up"
+            android:textStyle="bold"
+            android:textColor="@color/main"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_margin="20dp"
@@ -94,30 +104,8 @@
             android:layout_height="wrap_content"
             android:text="비밀번호찾기"/>
     </LinearLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             >
-            <Button
-                android:id="@+id/login_enter_button"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_sign_up"
-                android:textStyle="bold"
-                android:textColor="@color/main"
-                />
+
 
         </LinearLayout>
-
-    </FrameLayout>
-
-
-</LinearLayout>

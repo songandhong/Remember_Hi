@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -50,7 +51,10 @@ public class LoginActivity extends AppCompatActivity {
         signin_b.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn(view);
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(i);
+//                signIn(view);
+                // 테스트중이라 주석처리 합니다,,
             }
         });
         signup.setOnClickListener(new Button.OnClickListener() {
