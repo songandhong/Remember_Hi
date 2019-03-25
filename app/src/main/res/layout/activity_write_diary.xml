@@ -8,13 +8,42 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00년 "
+            android:id="@+id/writeDiary_Year_text"
+            />
+        <TextView
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00월 "
+            android:id="@+id/writeDiary_Month_text"
+            />
+        <TextView
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00일"
+            android:id="@+id/writeDiary_Date_text"
+            />
+
+    </LinearLayout>
+
 
     <TextView
         android:textSize="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0000년 00월 00일 오늘의 일기"
-        android:id="@+id/writeDiary_titleDay_text"
+        android:text="오늘의 일기"
+        android:id="@+id/writeDiary_title_text"
         />
 
     <LinearLayout
@@ -60,7 +89,7 @@
                 />
             <Spinner
                 android:id="@+id/writeDiary_emotion_spinner"
-                android:layout_width="150dp"
+                android:layout_width="190dp"
                 android:layout_height="35dp"
                 android:entries="@array/emotion"
                 />

@@ -16,6 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
+
 public class Menu1Activity extends AppCompatActivity {
     //recyclerview 연결 위한 준비
     private RecyclerView mRecyclerView;
@@ -40,7 +42,7 @@ public class Menu1Activity extends AppCompatActivity {
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Menu1Activity.this, ViewDiaryActivity.class);
+                Intent intent = new Intent(Menu1Activity.this, WriteDiaryActivity.class);
                 startActivity(intent);
             }
         });
