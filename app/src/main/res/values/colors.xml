@@ -8,4 +8,7 @@
     <color name = "base">#F2F2F2</color>
     <color name = "pointer"> #00CAAD</color>
     <color name = "dark_gray">#8B8B8C</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_500">#9E9E9E</color>
 </resources>
