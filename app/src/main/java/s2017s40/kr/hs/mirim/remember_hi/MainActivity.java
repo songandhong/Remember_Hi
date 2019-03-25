@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
@@ -19,7 +18,6 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mRecyclerView.setHasFixedSize(true);
-
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -37,7 +35,6 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-
         mRecyclerView.setAdapter(mAdapter);
 
         myDataList.add("메뉴 1 - 아마 일기");
