@@ -15,14 +15,21 @@
         android:layout_height="wrap_content"
         android:text="미션 추가하기"
         android:textSize="30sp" />
-
-    <EditText
+    <TimePicker
+        android:id="@+id/addMission_time_timepicker"
+        android:timePickerMode="spinner"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+        <EditText
         android:id="@+id/addMission_missionTitle_editText"
         android:layout_marginTop="30dp"
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:hint="미션을 입력하세요"
         />
+
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
