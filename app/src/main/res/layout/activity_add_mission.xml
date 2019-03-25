@@ -16,6 +16,7 @@
         android:text="미션 추가하기"
         android:textSize="30sp" />
     <TimePicker
+        android:layout_margin="10dp"
         android:id="@+id/addMission_time_timepicker"
         android:timePickerMode="spinner"
         android:orientation="horizontal"
@@ -33,17 +34,18 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
         <Button
             android:id="@+id/addMission_confirm_btn"
-            android:layout_marginTop="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="미션추가"
             />
         <Button
             android:id="@+id/addMission_cancel_btn"
-            android:layout_marginTop="25dp"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="취소"

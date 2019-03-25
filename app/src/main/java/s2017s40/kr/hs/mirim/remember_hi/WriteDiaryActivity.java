@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,6 +23,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
     Button writeBtn;
     TextView yearTitle, monthTitle, dateTitle;
     String nowTimeStr;
+    ToggleButton keyword1, keyword2, keyword3;
 
     //파이어베이스 연결 위한 준비
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -31,6 +33,14 @@ public class WriteDiaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_diary);
+
+        //toggleButton
+        //isChecked 로 boolean 타입 반환(상태 저장)
+        keyword1 = findViewById(R.id.writeDiary_keyword1_toggle);
+        keyword2 = findViewById(R.id.writeDiary_keyword2_toggle);
+        keyword3 = findViewById(R.id.writeDiary_keyword3_toggle);
+
+
 
         //일기 맨 상단의 제목
         yearTitle = findViewById(R.id.writeDiary_Year_text);
@@ -65,14 +75,25 @@ public class WriteDiaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //글쓰기 버튼을 누르면 스피너의 값을
                 //가져와서 String에 저장
+                String keyword1Str = keyword1.getTextOn().toString();
+                String keyword2Str = keyword2.getTextOn().toString();
+                String keyword3Str = keyword3.getTextOn().toString();
+
                 String weatherStr = "오늘의 날씨는 " + weatherSpinner.getSelectedItem().toString();
                 String emotionStr = "내 기분은 " + emotionSpinner.getSelectedItem().toString();
                 String editContents = writeDiaryEdit.getText().toString();
 
-                DiaryDTO drDto = new DiaryDTO(editContents, nowTimeStr, emotionStr,
-                        "key?", "key2", "key3", weatherStr);
+                if(!(keyword1.isChecked()))
+                    keyword1Str = null;
+                if(!(keyword2.isChecked()))
+                    keyword2Str = null;
+                if(!(keyword3.isChecked()))
+                    keyword3Str = null;
 
-                //drDto 요거 디비에 보내면 됨
+                DiaryDTO drDto = new DiaryDTO(editContents, nowTimeStr, emotionStr,
+                       keyword1Str, keyword2Str, keyword3Str, weatherStr);
+
+                //drDto 객체 디비에 보내면 됨
 
                 finish();
 
