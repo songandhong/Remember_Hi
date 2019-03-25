@@ -8,16 +8,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class writeDiaryActivity extends AppCompatActivity {
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+public class WriteDiaryActivity extends AppCompatActivity {
     Spinner weatherSpinner, emotionSpinner;
     EditText writeDiaryEdit;
+    Button writeBtn;
+    //승연아 이거 다 연결해줘~ 그냥 String 선언해서 하나한 하면 될 거 같다! -> 내가 DiaryDTO추가해 놓았으니까 참고 ㄱㄱ
+    //파이어베이스 연결 위한 준비
+    FirebaseDatabase database  = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getInstance().getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_diary);
 
         //글쓰기 버튼
-        Button writeBtn = findViewById(R.id.writeDiary_write_btn);
+        writeBtn = findViewById(R.id.writeDiary_write_btn);
 
         //일기 입력하는 EditText
         writeDiaryEdit = findViewById(R.id.writeDiary_content_edit);
@@ -36,8 +45,5 @@ public class writeDiaryActivity extends AppCompatActivity {
                 String emotionStr = emotionSpinner.getSelectedItem().toString();
             }
         });
-
-
     }
-
-    }
+}

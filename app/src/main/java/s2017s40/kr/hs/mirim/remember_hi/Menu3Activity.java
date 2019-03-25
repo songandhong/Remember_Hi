@@ -1,9 +1,12 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +22,8 @@ public class Menu3Activity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> myDataList;
 
+    Button writeBtn;
+
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
 
@@ -26,6 +31,17 @@ public class Menu3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu3);
+
+        writeBtn = findViewById(R.id.menu3_recycler_write_btn);
+        writeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //미션 보기 페이지 연결
+                //Intent intent = new Intent(Menu3Activity.this, .class);
+                //startActivity(intent);
+            }
+        });
+
 
         mRecyclerView = (RecyclerView) findViewById(R.id.menu3_recycler_view);
         mRecyclerView.setHasFixedSize(true);

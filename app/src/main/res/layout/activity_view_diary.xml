@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DiaryViewActivity"
+    tools:context=".ViewDiaryActivity"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:background="#E0E3DA"
@@ -28,6 +28,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
-
 </LinearLayout>
+<!--ID 연결해서 자바랑 연결하기-->
+<!--텍스트 분리하기 -> 분리 안해도 되는데 디자인??을 위해서라면 좋ㅇ을 듯?? 맘대로 해-->
