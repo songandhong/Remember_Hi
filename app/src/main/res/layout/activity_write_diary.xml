@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".writeDiaryActivity"
+        tools:context=".WriteDiaryActivity"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     >
@@ -84,3 +84,6 @@
         android:text="글쓰기"
         />
 </LinearLayout>
+<!--1. 키워드 3개 클릭 토클로 추가하기-->
+<!--2. 날짜 텍스트 분리하기-->
+<!--3. 날짜만 따로 분리!!1-->
