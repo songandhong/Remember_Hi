@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="s2017s40.kr.hs.mirim.remember_hi">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,11 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
+        <activity android:name=".Menu3Activity"></activity>
+        <activity android:name=".Menu2Activity" />
+        <activity android:name=".Menu1Activity" />
+        <activity android:name=".CheckActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".MainActivity">
+=======
         <activity android:name=".DiaryViewActivity"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".writeDiaryActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity">
+>>>>>>> d85d3832053e0dd89f1773b9e27dc6759e57c377
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
