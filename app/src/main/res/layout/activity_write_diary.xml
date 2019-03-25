@@ -17,15 +17,68 @@
         android:id="@+id/writeDiary_titleDay_text"
         />
 
+    <LinearLayout
+        android:gravity="left"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- 오늘의 날씨 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/writeDiary_weather_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="23sp"
+                android:text="오늘의 날씨는"
+                android:layout_marginRight="15dp"
+                />
+
+            <Spinner
+                android:id="@+id/writeDiary_weather_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:entries="@array/weather" />
+        </LinearLayout>
+
+        <!-- 오늘의 기분 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/writeDiary_emotion_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="23sp"
+                android:text="오늘의 기분은"
+                android:layout_marginRight="15dp"
+                />
+            <Spinner
+                android:id="@+id/writeDiary_emotion_spinner"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:entries="@array/emotion"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
     <EditText
+        android:textSize="23sp"
         android:gravity="start"
         android:hint="오늘의 일기를 써보세요"
-        android:lines="10"
+        android:lines="12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/writeDiary_content_edit"
         />
     <Button
+        android:id="@+id/writeDiary_write_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="글쓰기"

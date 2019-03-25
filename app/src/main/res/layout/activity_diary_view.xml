@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DiaryViewActivity"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#E0E3DA"
+    >
+    <TextView
+        android:layout_marginTop="30dp"
+        android:textSize="30sp"
+        android:text="0000년 00월 00일의 일기"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:background="#ffffff"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+        <TextView
+            android:textSize="23sp"
+            android:text="오늘은 어저구 저쩌구 그랫다 암튼 그랫다 오키"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</LinearLayout>
