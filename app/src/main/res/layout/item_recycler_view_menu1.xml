@@ -10,7 +10,7 @@
             <TextView
                 android:id="@+id/item_menu1_list_text"
                 android:gravity="center|left"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:text="ddd"
                 android:layout_width="match_parent"
                 android:layout_height= "70dp"

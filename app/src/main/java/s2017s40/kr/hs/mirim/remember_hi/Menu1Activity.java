@@ -1,6 +1,8 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,17 +32,23 @@ public class Menu1Activity extends AppCompatActivity {
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
 
+    String Number = "";
+    ArrayList<String> arr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu1);
+
+        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+        Number = auto.getString("Number",null);
+        myRef = database.getInstance().getReference("User/"+Number+"/Diary");
 
         writeBtn = findViewById(R.id.menu1_recycler_write_btn);
 
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Menu1Activity.this, ViewDiaryActivity.class);
+                Intent intent = new Intent(Menu1Activity.this, WriteDiaryActivity.class);
                 startActivity(intent);
             }
         });
@@ -57,28 +65,32 @@ public class Menu1Activity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 //클릭 이벤트 처리 -> DB연동할꺼!!~
+                Intent intent = new Intent(Menu1Activity.this, ViewDiaryActivity.class);
+                intent.putExtra("Date",arr.get(position));
+                startActivity(intent);
             }
         });
-        //어댑터와 recyclerview 연결
-        mRecyclerView.setAdapter(mAdapter);
+
         //DB연동
-        myRef.child("CheckList").addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
-                    //아이템 추가
-                    myDataList.add(fileSnapshot.getValue(String.class));
+                if(dataSnapshot.exists()){
+                    arr = new ArrayList<>();
+                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+                        //아이템 추가
+                        DiaryDTO diaryDTO = fileSnapshot.getValue(DiaryDTO.class);
+                        arr.add(diaryDTO.getDiaryDate());
+                        myDataList.add(diaryDTO.getDiaryDate());
+                    }
+                    mAdapter.notifyDataSetChanged();
                 }
-                mAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(DatabaseError error) {
             }
         });
-
-    }
-    private void writeNewPost() {
-        DiaryDTO diaryDTO = new DiaryDTO();
-        myRef.setValue(diaryDTO);
+        //어댑터와 recyclerview 연결
+        mRecyclerView.setAdapter(mAdapter);
     }
 }

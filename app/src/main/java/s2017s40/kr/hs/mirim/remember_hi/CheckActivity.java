@@ -34,7 +34,7 @@ public class CheckActivity extends AppCompatActivity {
 
         listview.setAdapter(adapter);
 
-        myRef.child("CheckList").addValueEventListener(new ValueEventListener() {
+        myRef.child("checklist").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
