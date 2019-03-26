@@ -81,6 +81,7 @@ public class Menu1Activity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(DatabaseError error) {
+                //ㅇㅇ
             }
         });
 
