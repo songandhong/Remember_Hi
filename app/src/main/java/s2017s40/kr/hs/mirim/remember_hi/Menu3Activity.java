@@ -1,6 +1,8 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,11 +28,14 @@ public class Menu3Activity extends AppCompatActivity {
 
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
-
+    String Number = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu3);
+
+        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+        Number = auto.getString("Number",null);
 
         writeBtn = findViewById(R.id.menu3_recycler_write_btn);
         writeBtn.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +47,7 @@ public class Menu3Activity extends AppCompatActivity {
             }
         });
 
+        myRef.child(Number);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.menu3_recycler_view);
         mRecyclerView.setHasFixedSize(true);
