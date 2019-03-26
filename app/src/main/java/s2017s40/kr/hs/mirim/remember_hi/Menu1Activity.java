@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,6 +40,8 @@ public class Menu1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu1);
 
+        arr = new ArrayList<>();
+
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
         myRef = database.getInstance().getReference("User/"+Number+"/Diary");
@@ -60,23 +63,13 @@ public class Menu1Activity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         //리스트뷰 생성
         myDataList = new ArrayList<>();
-        //어탭터
-        mAdapter = new MainAdapter(myDataList, new MainAdapter.ClickCallback() {
-            @Override
-            public void onItemClick(int position) {
-                //클릭 이벤트 처리 -> DB연동할꺼!!~
-                Intent intent = new Intent(Menu1Activity.this, ViewDiaryActivity.class);
-                intent.putExtra("Date",arr.get(position));
-                startActivity(intent);
-            }
-        });
 
         //DB연동
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    arr = new ArrayList<>();
+                    arr.clear();
                     for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
                         //아이템 추가
                         DiaryDTO diaryDTO = fileSnapshot.getValue(DiaryDTO.class);
@@ -88,9 +81,23 @@ public class Menu1Activity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(DatabaseError error) {
+                //ㅇㅇ
+            }
+        });
+
+        //어탭터
+        mAdapter = new Menu1Adapter(myDataList, new Menu1Adapter.ClickCallback() {
+            @Override
+            public void onItemClick(int position) {
+                Log.e("arr", String.valueOf(arr.get(position)));
+                Intent intent = new Intent(Menu1Activity.this, ViewDiaryActivity.class);
+                intent.putExtra("Date",arr.get(position));
+                startActivity(intent);
             }
         });
         //어댑터와 recyclerview 연결
         mRecyclerView.setAdapter(mAdapter);
+
+
     }
 }

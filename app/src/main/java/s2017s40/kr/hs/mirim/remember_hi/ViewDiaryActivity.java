@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,25 +36,26 @@ public class ViewDiaryActivity extends AppCompatActivity {
         Title = findViewById(R.id.viewDiary_dateTitle_textView);
         contents = findViewById(R.id.viewDiary_contents_textView);
 
-        Intent intent = new Intent();
-        Date = intent.getStringExtra("Date");
+        Intent intent = getIntent();
+        Date = intent.getExtras().getString("Date");
+
+        Log.e("date" , Date);
 
         myRef.child(Date).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                   diaryDTO =  dataSnapshot.getValue(DiaryDTO.class);
-                }
+                diaryDTO =  dataSnapshot.getValue(DiaryDTO.class);
+                Title.setText(diaryDTO.getDiaryDate());
+                contents.setText("오늘의 날씨는 " + diaryDTO.getDiaryWeather() +
+                        "오늘의 기분은 " + diaryDTO.getDiaryFeel()+
+                        "오늘의 키워드 3개는 " + diaryDTO.getDiaryKey1() + ", "+ diaryDTO.getDiaryKey2() + ", "+ diaryDTO.getDiaryKey3() + "이고, "
+                        + "오늘의 메모는 "+ diaryDTO.getDiaryContent() + "이다.");
             }
             @Override
             public void onCancelled(DatabaseError error) {
             }
         });
-        Title.setText(diaryDTO.getDiaryDate());
-        contents.setText("오늘의 날씨는 " + diaryDTO.getDiaryWeather() +
-                            "오늘의 기분은 " + diaryDTO.getDiaryFeel()+
-                            "오늘의 키워드 3개는 " + diaryDTO.getDiaryKey1() + ", "+ diaryDTO.getDiaryKey2() + ", "+ diaryDTO.getDiaryKey3() + "이고, "
-                            + "오늘의 메모는 "+ diaryDTO.getDiaryContent() + "이다.");
+
 
     }
 }
