@@ -42,10 +42,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="미션추가"
+            android:layout_marginRight="15dp"
             />
         <Button
             android:id="@+id/addMission_cancel_btn"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="취소"
