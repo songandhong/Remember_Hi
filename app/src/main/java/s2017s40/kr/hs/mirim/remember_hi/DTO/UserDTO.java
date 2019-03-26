@@ -1,4 +1,4 @@
-package s2017s40.kr.hs.mirim.remember_hi;
+package s2017s40.kr.hs.mirim.remember_hi.DTO;
 
 public class UserDTO {
     private String name;

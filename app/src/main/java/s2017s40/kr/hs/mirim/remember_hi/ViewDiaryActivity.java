@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ViewDiaryActivity extends AppCompatActivity {
-    TextView Title, contents;
+    TextView yearTitle, monthTitle, dateTitle, contents;
 
     //파이어베이스 연결 위한 준비
     FirebaseDatabase database  = FirebaseDatabase.getInstance();

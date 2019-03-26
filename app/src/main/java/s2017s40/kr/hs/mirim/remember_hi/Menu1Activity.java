@@ -19,6 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
+
 public class Menu1Activity extends AppCompatActivity {
     //recyclerview 연결 위한 준비
     private RecyclerView mRecyclerView;

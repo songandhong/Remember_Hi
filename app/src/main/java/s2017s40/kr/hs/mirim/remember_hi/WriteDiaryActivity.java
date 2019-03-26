@@ -5,14 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,15 +23,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
+
 public class WriteDiaryActivity extends AppCompatActivity {
     Spinner weatherSpinner, emotionSpinner;
     EditText writeDiaryEdit;
     Button writeBtn;
-    TextView dateTitle;
+    TextView yearTitle, monthTitle, dateTitle;
     String nowTimeStr;
+    ToggleButton keyword1, keyword2, keyword3;
 
     //파이어베이스 연결 위한 준비
-    FirebaseDatabase database  = FirebaseDatabase.getInstance();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
 
     String Number = "";
@@ -45,9 +47,19 @@ public class WriteDiaryActivity extends AppCompatActivity {
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
         myRef = database.getInstance().getReference("User/"+Number+"/Diary");
+      
+        //toggleButton
+        //isChecked 로 boolean 타입 반환(상태 저장)
+        keyword1 = findViewById(R.id.writeDiary_keyword1_toggle);
+        keyword2 = findViewById(R.id.writeDiary_keyword2_toggle);
+        keyword3 = findViewById(R.id.writeDiary_keyword3_toggle);
+
+
 
         //일기 맨 상단의 제목
-        dateTitle = findViewById(R.id.writeDiary_titleDay_text);
+        yearTitle = findViewById(R.id.writeDiary_Year_text);
+        monthTitle = findViewById(R.id.writeDiary_Month_text);
+        dateTitle = findViewById(R.id.writeDiary_Date_text);
 
         //글쓰기 버튼
         writeBtn = findViewById(R.id.writeDiary_write_btn);
@@ -65,8 +77,12 @@ public class WriteDiaryActivity extends AppCompatActivity {
         SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd");
         nowTimeStr = formatTime.format(date);
 
-        dateTitle.setText(nowTimeStr);
+        // 일단 날짜 형식 "yyyy-MM-dd로 줄게,,
+        // 타입이 스트링이길래  ㅜㅜ ㅜ 형식이나 타입 바꿔야하면 얘기해조
 
+        yearTitle.setText(nowTimeStr.substring(0,4) + "년 ");
+        monthTitle.setText(nowTimeStr.substring(5,7) + "월 ");
+        dateTitle.setText(nowTimeStr.substring(nowTimeStr.length()-2, nowTimeStr.length())+ "일");
 
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +92,18 @@ public class WriteDiaryActivity extends AppCompatActivity {
                 String weatherStr = weatherSpinner.getSelectedItem().toString();
                 String emotionStr =  emotionSpinner.getSelectedItem().toString();
                 String editContents = writeDiaryEdit.getText().toString();
-                DiaryDTO diarydto = new DiaryDTO(editContents, nowTimeStr, emotionStr, "key?", "key2", "key3", weatherStr);
+                String keyword1Str = keyword1.getTextOn().toString();
+                String keyword2Str = keyword2.getTextOn().toString();
+                String keyword3Str = keyword3.getTextOn().toString();
+              
+                if(!(keyword1.isChecked()))
+                    keyword1Str = null;
+                if(!(keyword2.isChecked()))
+                    keyword2Str = null;
+                if(!(keyword3.isChecked()))
+                    keyword3Str = null;  
+              
+                DiaryDTO diarydto = new DiaryDTO(editContents, nowTimeStr, emotionStr, keyword1Str, keyword2Str, keyword3Str, weatherStr);
                 myRef.child(nowTimeStr).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -96,6 +123,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
                 myRef.child(nowTimeStr).setValue(diarydto);
                 Toast.makeText(getApplicationContext(), nowTimeStr +"일기가 작성 되었습니다.", Toast.LENGTH_LONG).show();
                 finish();
+
             }
         });
     }
