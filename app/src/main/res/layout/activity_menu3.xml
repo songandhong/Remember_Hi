@@ -11,7 +11,7 @@
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
     <Button
         android:id="@+id/menu3_recycler_write_btn"
         android:text= "작성하러 가기"

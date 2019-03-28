@@ -8,23 +8,25 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
 import s2017s40.kr.hs.mirim.remember_hi.R;
 
 public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> {
-    private ArrayList<String> mDataset;
+    private ArrayList<MissionDTO> mDataset;
     private Menu3Adapter.ClickCallback callback;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public TextView mTextView;
+        public TextView TitleText, TimeText;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mTextView = (TextView)view.findViewById(R.id.item_menu3_list_text);
+            TitleText = (TextView)view.findViewById(R.id.item_menu3_title_text);
+            TimeText = (TextView)view.findViewById(R.id.item_menu3_time_text);
         }
     }
-    public Menu3Adapter(ArrayList<String> myDataset, Menu3Adapter.ClickCallback clickCallback) {
+    public Menu3Adapter(ArrayList<MissionDTO> myDataset, Menu3Adapter.ClickCallback clickCallback) {
         mDataset = myDataset;
         this.callback = clickCallback;
     }
@@ -36,7 +38,8 @@ public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> 
     }
     @Override
     public void onBindViewHolder(Menu3Adapter.ViewHolder holder, final int position) {
-        holder.mTextView.setText(mDataset.get(position));
+        holder.TitleText.setText(mDataset.get(position).getMissionTitle());
+        holder.TimeText.setText(mDataset.get(position).getmissionAlarm());
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
