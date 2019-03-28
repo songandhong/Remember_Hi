@@ -35,7 +35,7 @@ public class AddMissionActivity extends AppCompatActivity {
                 String missionMinute = Minute + "";
 
                 MissionDTO mDTO = new MissionDTO(missionTitle, missionHour, missionMinute, 0);
-                
+
             }
         });
         cancelBtn.setOnClickListener(new View.OnClickListener() {
