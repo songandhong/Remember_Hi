@@ -1,4 +1,4 @@
-package s2017s40.kr.hs.mirim.remember_hi.DTO;
+package s2017s40.kr.hs.mirim.remember_hi;
 
 public class MissionDTO {
     private String missionAlarm_H;          // 미션 알람 시간

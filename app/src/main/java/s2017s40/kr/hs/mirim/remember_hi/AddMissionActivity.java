@@ -7,8 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
-import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
-
 public class AddMissionActivity extends AppCompatActivity {
     String missionTitle;
     int Hour, Minute;
