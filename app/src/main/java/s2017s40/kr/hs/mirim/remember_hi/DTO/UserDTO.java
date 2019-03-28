@@ -1,16 +1,18 @@
-package s2017s40.kr.hs.mirim.remember_hi;
+package s2017s40.kr.hs.mirim.remember_hi.DTO;
 
 public class UserDTO {
     private String name;
     private String email;
     private int age;
     private  String gender;
+    String phoneNum;
     UserDTO(){ }
-    UserDTO(String name, String email, int age, String gender){
+    UserDTO(String name, String email, int age, String gender, String phoneNum){
         this.age = age;
         this.email = email;
         this.gender = gender;
         this.name = name;
+        this.phoneNum = phoneNum;
     }
 
     public void setGender(String gender) {

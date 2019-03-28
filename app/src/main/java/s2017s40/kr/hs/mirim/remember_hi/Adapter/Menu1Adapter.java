@@ -1,4 +1,4 @@
-package s2017s40.kr.hs.mirim.remember_hi;
+package s2017s40.kr.hs.mirim.remember_hi.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import s2017s40.kr.hs.mirim.remember_hi.R;
 
 public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ViewHolder> {
     private ArrayList<String> mDataset;

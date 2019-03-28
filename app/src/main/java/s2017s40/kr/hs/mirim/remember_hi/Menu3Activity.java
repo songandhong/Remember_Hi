@@ -1,7 +1,6 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +16,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import s2017s40.kr.hs.mirim.remember_hi.Adapter.MainAdapter;
 
 public class Menu3Activity extends AppCompatActivity {
     private RecyclerView mRecyclerView;

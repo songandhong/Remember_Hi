@@ -9,13 +9,42 @@
     android:gravity="center_horizontal"
     android:background="#E0E3DA"
     >
-    <TextView
-        android:id="@+id/viewDiary_dateTitle_textView"
-        android:layout_marginTop="30dp"
-        android:textSize="30sp"
-        android:text="0000년 00월 00일의 일기"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/viewDiary_yearTitle_textView"
+            android:layout_marginTop="30dp"
+            android:textSize="30sp"
+            android:text="0000년"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            />
+        <TextView
+            android:id="@+id/viewDiary_monthTitle_textView"
+            android:layout_marginTop="30dp"
+            android:textSize="30sp"
+            android:text="00월"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            />
+        <TextView
+            android:id="@+id/viewDiary_dateTitle_textView"
+            android:layout_marginTop="30dp"
+            android:textSize="30sp"
+            android:text="00일"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            />
+
+    </LinearLayout>
+
+
+
 
     <LinearLayout
         android:id="@+id/viewDiary_textArea_Linear"
@@ -32,5 +61,4 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>
-<!--ID 연결해서 자바랑 연결하기-->
 <!--텍스트 분리하기 -> 분리 안해도 되는데 디자인??을 위해서라면 좋ㅇ을 듯?? 맘대로 해-->

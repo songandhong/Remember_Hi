@@ -64,7 +64,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     private EditText mVerificationField;
     private Button mStartButton;
     private Button mVerifyButton;
-    private Button mResendButton;
+    private Button mResendButton, SignupBtn;
 
 
     @Override
@@ -98,6 +98,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         mVerifyButton.setOnClickListener(this);
         mResendButton.setOnClickListener(this);
 
+
         mAuth = FirebaseAuth.getInstance();
 
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -113,7 +114,22 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                 mVerificationInProgress = false;
                 updateUI(STATE_VERIFY_SUCCESS, credential);
                 signInWithPhoneAuthCredential(credential);
+
+
+
+                SignupBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
+                        startActivity(i);
+                    }
+                });
+
+
             }
+
+
+
 
             @Override
             public void onVerificationFailed(FirebaseException e) {
