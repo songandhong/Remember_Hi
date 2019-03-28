@@ -3,6 +3,7 @@ package s2017s40.kr.hs.mirim.remember_hi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity{
                     case 0: intent = new Intent(MainActivity.this, Menu1Activity.class);  break;
                     case 1: intent = new Intent(MainActivity.this, Menu2Activity.class);  break;
                     case 2: intent = new Intent(MainActivity.this, Menu3Activity.class);  break;
-                    case 3:  break;
+                    case 3: intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.nid.or.kr/main/main.aspx"));
                 }
                 startActivity(intent);
             }

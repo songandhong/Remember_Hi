@@ -18,7 +18,6 @@ public class BroadcastD extends BroadcastReceiver {
         builder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark).setTicker("HETT").setWhen(System.currentTimeMillis())
                 .setNumber(1).setContentTitle("푸쉬 제목").setContentText("푸쉬내용")
                 .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE).setContentIntent(pendingIntent).setAutoCancel(true);
-
         notificationmanager.notify(1, builder.build());
     }
 }

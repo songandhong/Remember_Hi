@@ -54,6 +54,7 @@ public class AddMissionActivity extends AppCompatActivity {
                 missionTitle = EditTitle.getText().toString();
                 Hour = timePicker.getCurrentHour(); //timepicker로 선택한 시간
                 Minute = timePicker.getCurrentMinute();//timepicker로 선택한 분
+
                 String missionHour = Hour + ":" +  Minute;
                 //미션 DB연동
                 myRef.child(missionTitle).setValue( new MissionDTO(missionTitle, missionHour,  false));
