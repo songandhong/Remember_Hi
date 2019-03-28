@@ -47,7 +47,7 @@ public class AddMissionActivity extends AppCompatActivity {
                 missionTitle = EditTitle.getText().toString();
                 Hour = timePicker.getCurrentHour(); //timepicker로 선택한 시간
                 Minute = timePicker.getCurrentMinute();//timepicker로 선택한 분
-                String missionHour = Hour + Minute + "";
+                String missionHour = Hour + ":" +  Minute;
                 myRef.child(missionTitle).setValue( new MissionDTO(missionTitle, missionHour,  0));
                 Toast.makeText(AddMissionActivity.this, "미션이 추가되었습니다.", Toast.LENGTH_SHORT).show();
                 finish();

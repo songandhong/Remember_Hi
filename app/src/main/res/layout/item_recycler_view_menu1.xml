@@ -10,10 +10,10 @@
             <TextView
                 android:id="@+id/item_menu1_list_text"
                 android:gravity="center|left"
-                android:textSize="18sp"
-                android:text=""
+                android:textSize="15sp"
+                android:text="ddd"
                 android:layout_width="match_parent"
-                android:layout_height= "wrap_content"
+                android:layout_height= "70dp"
                 android:padding="10dp"/>
         </LinearLayout>
 </RelativeLayout>
