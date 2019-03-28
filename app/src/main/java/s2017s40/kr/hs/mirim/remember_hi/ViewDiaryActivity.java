@@ -15,10 +15,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
 
 public class ViewDiaryActivity extends AppCompatActivity {
-    TextView Title, contents;
+    TextView Title, contents,yearTitle,monthTitle,dateTitle;
 
     //파이어베이스 연결 위한 준비
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
