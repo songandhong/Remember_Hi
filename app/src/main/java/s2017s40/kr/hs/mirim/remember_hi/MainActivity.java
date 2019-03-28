@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import s2017s40.kr.hs.mirim.remember_hi.Adapter.MainAdapter;
 public class MainActivity extends AppCompatActivity{
     private RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private GridLayoutManager mLayoutManager;
     private ArrayList<String> myDataList;
     String Number = "";
     @Override
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity{
 
         mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new GridLayoutManager(this,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         myDataList = new ArrayList<>();
@@ -38,17 +38,18 @@ public class MainActivity extends AppCompatActivity{
                     case 0: intent = new Intent(MainActivity.this, Menu1Activity.class);  break;
                     case 1: intent = new Intent(MainActivity.this, Menu2Activity.class);  break;
                     case 2: intent = new Intent(MainActivity.this, Menu3Activity.class);  break;
-                    case 3:   break;
+                    case 3:  break;
                 }
                 startActivity(intent);
             }
         });
         mRecyclerView.setAdapter(mAdapter);
 
-        myDataList.add("메뉴 1 - 일기쓰기");
-        myDataList.add("메뉴 2 - 채팅하기");
-        myDataList.add("메뉴 3 - 미션");
-        myDataList.add("메뉴 4");
+        myDataList.add("일기");
+        myDataList.add("문자");
+        myDataList.add("미션");
+        myDataList.add("치매");
+
 
     }
 
