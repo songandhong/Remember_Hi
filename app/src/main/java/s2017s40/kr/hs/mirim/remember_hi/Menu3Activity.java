@@ -1,6 +1,7 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,12 +19,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import s2017s40.kr.hs.mirim.remember_hi.Adapter.MainAdapter;
+import s2017s40.kr.hs.mirim.remember_hi.Adapter.Menu3Adapter;
+import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
+import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
 
 public class Menu3Activity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<String> myDataList;
+    private ArrayList<MissionDTO> myDataList;
 
     Button writeBtn;
 
@@ -37,14 +41,14 @@ public class Menu3Activity extends AppCompatActivity {
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
+        myRef = database.getInstance().getReference("User/"+Number+"/Mission");
 
         writeBtn = findViewById(R.id.menu3_recycler_write_btn);
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //미션 보기 페이지 연결
-                //Intent intent = new Intent(Menu3Activity.this, .class);
-                //startActivity(intent);
+                Intent intent = new Intent(Menu3Activity.this, AddMissionActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -57,7 +61,7 @@ public class Menu3Activity extends AppCompatActivity {
 
         myDataList = new ArrayList<>();
 
-        mAdapter = new MainAdapter(myDataList, new MainAdapter.ClickCallback() {
+        mAdapter = new Menu3Adapter(myDataList, new Menu3Adapter.ClickCallback() {
             @Override
             public void onItemClick(int position) {
                 //클릭 이벤트 처리
@@ -66,13 +70,17 @@ public class Menu3Activity extends AppCompatActivity {
 
         mRecyclerView.setAdapter(mAdapter);
         //DB연동
-        myRef.child("CheckList").addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
-                    myDataList.add(fileSnapshot.getValue(String.class));
+                if(dataSnapshot.exists()){
+                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+                        //아이템 추가
+                        MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
+                        myDataList.add(missionDTO);
+                    }
+                    mAdapter.notifyDataSetChanged();
                 }
-                mAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(DatabaseError error) {
