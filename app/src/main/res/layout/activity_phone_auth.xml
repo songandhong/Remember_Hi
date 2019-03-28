@@ -94,28 +94,6 @@
 
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/signupbtn_phoneAuth"
-            android:layout_gravity="right"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:textColor="@color/mainDarkGray"
-                android:textSize="13sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="아직 회원가입을 안했다면"
-                />
-            <TextView
-                android:textColor="@color/mainDark"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:text="회원가입하기"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>

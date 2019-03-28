@@ -59,21 +59,19 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
 
-    private int phoneNumber;
     private ViewGroup mPhoneNumberViews;
     private EditText mPhoneNumberField;
     private EditText mVerificationField;
     private Button mStartButton;
     private Button mVerifyButton;
     private Button mResendButton;
-    private LinearLayout SignupBtn;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_auth);
-
         // Restore instance state
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
@@ -99,21 +97,8 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         mStartButton.setOnClickListener(this);
         mVerifyButton.setOnClickListener(this);
         mResendButton.setOnClickListener(this);
-        SignupBtn = findViewById(R.id.signupbtn_phoneAuth);
 
         mAuth = FirebaseAuth.getInstance();
-
-        SignupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
-                startActivity(i);
-            }
-        });
-
-
-
-
 
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
@@ -128,23 +113,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                 mVerificationInProgress = false;
                 updateUI(STATE_VERIFY_SUCCESS, credential);
                 signInWithPhoneAuthCredential(credential);
-
-
-
-                SignupBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
-                        startActivity(i);
-                    }
-                });
-
-
             }
-
-
-
-
             @Override
             public void onVerificationFailed(FirebaseException e) {
                 // This callback is invoked in an invalid request for verification is made,
@@ -372,7 +341,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
             //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
             autoLogin.commit();
 
-            Intent intent = new Intent(PhoneAuthActivity.this, MainActivity.class);
+            Intent intent = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
             startActivity(intent);
         }
     }
