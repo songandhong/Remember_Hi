@@ -1,6 +1,9 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import s2017s40.kr.hs.mirim.remember_hi.Adapter.MainAdapter;
 import s2017s40.kr.hs.mirim.remember_hi.Adapter.Menu3Adapter;
@@ -34,6 +38,8 @@ public class Menu3Activity extends AppCompatActivity {
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
     String Number = "";
+    private static int ONE_MINUTE = 5626;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,10 @@ public class Menu3Activity extends AppCompatActivity {
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
         myRef = database.getInstance().getReference("User/"+Number+"/Mission");
+
+
+
+
 
         writeBtn = findViewById(R.id.menu3_recycler_write_btn);
         writeBtn.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +96,6 @@ public class Menu3Activity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
             }
         });
-
-
     }
+
 }

@@ -1,5 +1,6 @@
 package s2017s40.kr.hs.mirim.remember_hi.Adapter;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +38,16 @@ public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> 
         return vh;
     }
     @Override
-    public void onBindViewHolder(Menu3Adapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final Menu3Adapter.ViewHolder holder, final int position) {
+        final MissionDTO model = mDataset.get(position);
+        holder.mView.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
+        holder.TitleText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model.setMissionComple(!model.isSelected());
+                holder.mView.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
+            }
+        });
         holder.TitleText.setText(mDataset.get(position).getMissionTitle());
         holder.TimeText.setText(mDataset.get(position).getmissionAlarm());
         holder.mView.setOnClickListener(new View.OnClickListener() {

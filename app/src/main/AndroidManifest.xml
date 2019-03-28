@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".AddMissionActivity" />
         <activity android:name=".Menu3Activity" />
         <activity android:name=".Menu2Activity" />
@@ -30,6 +32,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ViewDiaryActivity" />
         <activity android:name=".WriteDiaryActivity" />
+
+        <receiver android:name=".BroadcastD" />
     </application>
 
 </manifest>
