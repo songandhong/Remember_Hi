@@ -15,16 +15,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
 
 public class ViewDiaryActivity extends AppCompatActivity {
-    TextView yearTitle, monthTitle, dateTitle, contents;
+    TextView Title, contents,yearTitle,monthTitle,dateTitle;
 
     //파이어베이스 연결 위한 준비
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
-    String Number = "";
     String Date = "";
+    String Number = "";
     DiaryDTO diaryDTO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +56,10 @@ public class ViewDiaryActivity extends AppCompatActivity {
                 monthTitle.setText(setDate.substring(5,7) + "월 ");
                 dateTitle.setText(setDate.substring(setDate.length()-2, setDate.length()) + "일");
 
+
                 contents.setText("오늘의 날씨는 " + diaryDTO.getDiaryWeather() +
                         "\n오늘의 기분은 " + diaryDTO.getDiaryFeel()+
-                        "\n오늘의 키워드 3개는 " + diaryDTO.getDiaryKey1() + ", "+ diaryDTO.getDiaryKey2() + ", "+ diaryDTO.getDiaryKey3() + "이고, "
+                        "\n오늘의 키워드는 " + diaryDTO.getDiaryKey1() + ", "+ diaryDTO.getDiaryKey2() + ", "+ diaryDTO.getDiaryKey3() + "이고, "
                         + "오늘의 메모는 "+ diaryDTO.getDiaryContent() + "이다.");
             }
             @Override

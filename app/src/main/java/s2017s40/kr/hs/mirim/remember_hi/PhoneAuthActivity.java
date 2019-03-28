@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -64,7 +65,8 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     private EditText mVerificationField;
     private Button mStartButton;
     private Button mVerifyButton;
-    private Button mResendButton, SignupBtn;
+    private Button mResendButton;
+    private LinearLayout SignupBtn;
 
 
     @Override
@@ -97,9 +99,21 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         mStartButton.setOnClickListener(this);
         mVerifyButton.setOnClickListener(this);
         mResendButton.setOnClickListener(this);
-
+        SignupBtn = findViewById(R.id.signupbtn_phoneAuth);
 
         mAuth = FirebaseAuth.getInstance();
+
+        SignupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+
+
 
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override

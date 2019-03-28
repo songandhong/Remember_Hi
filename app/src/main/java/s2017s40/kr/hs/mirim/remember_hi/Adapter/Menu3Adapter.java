@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-
-import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
+import s2017s40.kr.hs.mirim.remember_hi.MissionDTO;
 import s2017s40.kr.hs.mirim.remember_hi.R;
 
 public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> {

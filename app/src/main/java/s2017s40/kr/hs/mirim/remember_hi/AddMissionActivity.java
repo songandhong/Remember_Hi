@@ -19,8 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
-import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
-
 public class AddMissionActivity extends AppCompatActivity {
     String missionTitle;
     int Hour, Minute;
@@ -56,7 +54,7 @@ public class AddMissionActivity extends AppCompatActivity {
                 missionTitle = EditTitle.getText().toString();
                 Hour = timePicker.getCurrentHour(); //timepicker로 선택한 시간
                 Minute = timePicker.getCurrentMinute();//timepicker로 선택한 분
-                String missionHour = Hour + " : " +Minute ;
+                String missionHour = Hour + ":" +  Minute;
                 //미션 DB연동
                 myRef.child(missionTitle).setValue( new MissionDTO(missionTitle, missionHour,  false));
                 //알람 설정

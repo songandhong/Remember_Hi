@@ -24,8 +24,7 @@ import java.util.Calendar;
 
 import s2017s40.kr.hs.mirim.remember_hi.Adapter.MainAdapter;
 import s2017s40.kr.hs.mirim.remember_hi.Adapter.Menu3Adapter;
-import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
-import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
+
 
 public class Menu3Activity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
@@ -48,9 +47,6 @@ public class Menu3Activity extends AppCompatActivity {
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
         myRef = database.getInstance().getReference("User/"+Number+"/Mission");
-
-
-
 
 
         writeBtn = findViewById(R.id.menu3_recycler_write_btn);

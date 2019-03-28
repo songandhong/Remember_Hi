@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 
@@ -50,6 +49,7 @@ public class MainActivity extends AppCompatActivity{
         myDataList.add("문자");
         myDataList.add("미션");
         myDataList.add("치매");
+
 
     }
 
