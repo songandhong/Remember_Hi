@@ -10,7 +10,7 @@
     android:background="@color/mainGray"
     >
     <LinearLayout
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -51,13 +51,12 @@
 
 
     <LinearLayout
+        android:layout_margin="17sp"
         android:padding="15dp"
         android:id="@+id/viewDiary_textArea_Linear"
         android:background="#ffffff"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
-        android:layout_height="500dp">
+        android:layout_height="match_parent">
         <TextView
             android:textColor="@color/mainDark"
             android:id="@+id/viewDiary_contents_textView"

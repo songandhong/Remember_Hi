@@ -33,6 +33,7 @@
             android:weightSum="3">
 
             <EditText
+                android:textColor="@color/mainDark"
                 android:id="@+id/fieldPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,6 +59,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:textColor="@color/mainDark"
                 android:id="@+id/fieldVerificationCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
