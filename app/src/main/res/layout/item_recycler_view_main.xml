@@ -16,7 +16,7 @@
                 android:id="@+id/item_main_list_text"
                 android:gravity="center|left"
                 android:textSize="100sp"
-                android:text="aaa"
+                android:text="ddd"
                 android:layout_width="match_parent"
                 android:layout_height= "180dp"
                 android:padding="10dp"/>

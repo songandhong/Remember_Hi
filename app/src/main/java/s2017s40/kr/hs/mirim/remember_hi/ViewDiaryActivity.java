@@ -57,9 +57,10 @@ public class ViewDiaryActivity extends AppCompatActivity {
                 monthTitle.setText(setDate.substring(5,7) + "월 ");
                 dateTitle.setText(setDate.substring(setDate.length()-2, setDate.length()) + "일");
 
+
                 contents.setText("오늘의 날씨는 " + diaryDTO.getDiaryWeather() +
                         "\n오늘의 기분은 " + diaryDTO.getDiaryFeel()+
-                        "\n오늘의 키워드 3개는 " + diaryDTO.getDiaryKey1() + ", "+ diaryDTO.getDiaryKey2() + ", "+ diaryDTO.getDiaryKey3() + "이고, "
+                        "\n오늘의 키워드는 " + diaryDTO.getDiaryKey1() + ", "+ diaryDTO.getDiaryKey2() + ", "+ diaryDTO.getDiaryKey3() + "이고, "
                         + "오늘의 메모는 "+ diaryDTO.getDiaryContent() + "이다.");
             }
             @Override
