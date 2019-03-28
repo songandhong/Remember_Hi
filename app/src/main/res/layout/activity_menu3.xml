@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Menu3Activity"
     android:orientation="vertical">
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/menu3_recycler_view"
         android:scrollbars="vertical"
@@ -13,6 +15,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1"/>
     <Button
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_style"
         android:id="@+id/menu3_recycler_write_btn"
         android:text= "작성하러 가기"
         android:layout_width="match_parent"

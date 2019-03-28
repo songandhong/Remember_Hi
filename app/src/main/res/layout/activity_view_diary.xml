@@ -7,13 +7,15 @@
     tools:context=".ViewDiaryActivity"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="#E0E3DA"
+    android:background="@color/mainGray"
     >
     <LinearLayout
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
+            android:textColor="@color/mainDark"
             android:id="@+id/viewDiary_yearTitle_textView"
             android:layout_marginTop="30dp"
             android:textSize="30sp"
@@ -23,6 +25,7 @@
             android:layout_marginRight="7dp"
             />
         <TextView
+            android:textColor="@color/mainDark"
             android:id="@+id/viewDiary_monthTitle_textView"
             android:layout_marginTop="30dp"
             android:textSize="30sp"
@@ -32,6 +35,7 @@
             android:layout_marginRight="7dp"
             />
         <TextView
+            android:textColor="@color/mainDark"
             android:id="@+id/viewDiary_dateTitle_textView"
             android:layout_marginTop="30dp"
             android:textSize="30sp"
@@ -47,6 +51,7 @@
 
 
     <LinearLayout
+        android:padding="15dp"
         android:id="@+id/viewDiary_textArea_Linear"
         android:background="#ffffff"
         android:layout_marginLeft="10dp"
@@ -54,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="500dp">
         <TextView
+            android:textColor="@color/mainDark"
             android:id="@+id/viewDiary_contents_textView"
             android:textSize="23sp"
             android:text="오늘은 어저구 저쩌구 그랫다 암튼 그랫다 오키"

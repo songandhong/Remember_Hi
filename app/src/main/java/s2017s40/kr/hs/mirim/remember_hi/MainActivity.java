@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity{
         });
         mRecyclerView.setAdapter(mAdapter);
 
-        myDataList.add("메뉴 1 - 아마 일기");
-        myDataList.add("메뉴 2 - 아마 채팅");
-        myDataList.add("메뉴 3 - 아마 미션");
+        myDataList.add("메뉴 1 - 일기쓰기");
+        myDataList.add("메뉴 2 - 채팅하기");
+        myDataList.add("메뉴 3 - 미션");
         myDataList.add("메뉴 4");
 
     }
