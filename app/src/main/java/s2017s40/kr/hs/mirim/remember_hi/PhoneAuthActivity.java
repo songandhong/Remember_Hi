@@ -102,14 +102,13 @@ public class PhoneAuthActivity extends AppCompatActivity implements
 
         mAuth = FirebaseAuth.getInstance();
 
-
-//        SignupBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
-//                startActivity(i);
-//            }
-//        });
+        SignupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
+                startActivity(i);
+            }
+        });
 
 
 
