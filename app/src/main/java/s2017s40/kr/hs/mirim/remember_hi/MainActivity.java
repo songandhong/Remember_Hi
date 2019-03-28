@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 
+import s2017s40.kr.hs.mirim.remember_hi.Adapter.MainAdapter;
+
 public class MainActivity extends AppCompatActivity{
     private RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
