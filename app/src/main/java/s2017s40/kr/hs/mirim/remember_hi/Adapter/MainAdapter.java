@@ -1,5 +1,6 @@
 package s2017s40.kr.hs.mirim.remember_hi.Adapter;
 
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.v7.widget.RecyclerView;
@@ -44,7 +45,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.mTextView.setText(mDataset.get(position));
         switch (position){
-            case 0: holder.mImageView.setImageResource(R.drawable.icon3); break;
+
+            case 0: holder.mImageView.setImageResource(R.drawable.icon3);
+            break;
             case 1: holder.mImageView.setImageResource(R.drawable.icon4); break;
             case 2: holder.mImageView.setImageResource(R.drawable.icon1); break;
             case 3: holder.mImageView.setImageResource(R.drawable.icon2); break;
