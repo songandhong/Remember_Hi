@@ -5,72 +5,115 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/base"
-    android:orientation="vertical"
-    android:weightSum="4">
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/phoneAuthFields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:textColor="@color/main"
+            android:textStyle="bold"
+            android:layout_marginBottom="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Remember,\nHi"
+            android:textSize="40sp" />
+
         <LinearLayout
-            android:id="@+id/phoneAuthFields"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-                    <EditText
-                        android:id="@+id/fieldPhoneNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="hint_phone_number"
-                        android:layout_weight="1"
-                        android:inputType="phone"
-                        />
-                    <Button
-                        android:theme="@style/ThemeOverlay.MyDarkButton"
-                        style="@style/Widget.AppCompat.Button.Colored"
-                        android:id="@+id/buttonStartVerification"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="start_phone_auth" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-                    <EditText
-                        android:id="@+id/fieldVerificationCode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="hint_verification_code"
-                        android:layout_weight="1.0"
-                        android:inputType="number"/>
+            android:orientation="horizontal"
+            android:weightSum="3">
 
-                    <Button
-                        android:theme="@style/ThemeOverlay.MyDarkButton"
-                        style="@style/Widget.AppCompat.Button.Colored"
-                        android:id="@+id/buttonVerifyPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
-                        android:text="verify_phone_auth"/>
-                 </LinearLayout>
-            </LinearLayout>
+            <EditText
+                android:id="@+id/fieldPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:hint="전화번호를 입력해주세요"
+                android:inputType="phone"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/buttonStartVerification"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="인증번호 \n전송"
+                android:theme="@style/ThemeOverlay.MyDarkButton" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/fieldVerificationCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:hint="인증 코드를 입력해주세요"
+                android:inputType="number"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/buttonVerifyPhone"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="인증번호\n확인"
+                android:theme="@style/ThemeOverlay.MyDarkButton" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3.0">
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
                 <Button
-                    android:theme="@style/ThemeOverlay.MyDarkButton"
-                    style="@style/Widget.AppCompat.Button.Colored"
                     android:id="@+id/buttonResend"
-                    android:layout_width="0dp"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    android:text="resend_phone_auth"/>
+                    android:text="인증번호재전송"
+                    android:theme="@style/ThemeOverlay.MyDarkButton" />
+
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/signupbtn_phoneAuth"
+            android:layout_gravity="right"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/mainDarkGray"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아직 회원가입을 안했다면"
+                />
+            <TextView
+                android:textColor="@color/mainDark"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:text="회원가입하기"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

@@ -88,6 +88,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
                 String weatherStr = weatherSpinner.getSelectedItem().toString();
                 String emotionStr =  emotionSpinner.getSelectedItem().toString();
                 String editContents = writeDiaryEdit.getText().toString();
+
                 String keyword1Str = keyword1.getTextOn().toString();
                 String keyword2Str = keyword2.getTextOn().toString();
                 String keyword3Str = keyword3.getTextOn().toString();

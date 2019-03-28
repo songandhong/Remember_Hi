@@ -10,6 +10,7 @@
     >
 
     <TextView
+        android:textColor="@color/mainDark"
         android:id="@+id/addMission_titleText_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,8 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
         <EditText
+            android:textColor="@color/mainDark"
         android:id="@+id/addMission_missionTitle_editText"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:hint="미션을 입력하세요"
@@ -35,9 +37,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         >
         <Button
+            android:textColor="@color/white"
+            android:background="@drawable/btn_style"
             android:id="@+id/addMission_confirm_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,6 +49,8 @@
             android:layout_marginRight="15dp"
             />
         <Button
+            android:textColor="@color/white"
+            android:background="@drawable/btn_style"
             android:id="@+id/addMission_cancel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

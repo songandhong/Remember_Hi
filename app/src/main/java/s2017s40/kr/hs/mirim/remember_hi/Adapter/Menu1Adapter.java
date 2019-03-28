@@ -1,4 +1,4 @@
-package s2017s40.kr.hs.mirim.remember_hi;
+package s2017s40.kr.hs.mirim.remember_hi.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,9 +8,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
+import s2017s40.kr.hs.mirim.remember_hi.R;
+
+public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ViewHolder> {
     private ArrayList<String> mDataset;
-    private ClickCallback callback;
+    private Menu1Adapter.ClickCallback callback;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
@@ -19,22 +21,21 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mTextView = (TextView)view.findViewById(R.id.item_main_list_text);
+            mTextView = (TextView)view.findViewById(R.id.item_menu1_list_text);
         }
     }
-    public MainAdapter(ArrayList<String> myDataset, ClickCallback clickCallback) {
+    public Menu1Adapter(ArrayList<String> myDataset, Menu1Adapter.ClickCallback clickCallback) {
         mDataset = myDataset;
         this.callback = clickCallback;
     }
     @Override
-    public MainAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_main, parent, false);
-        ViewHolder vh = new ViewHolder(v);
+    public Menu1Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_menu1, parent, false);
+        Menu1Adapter.ViewHolder vh = new Menu1Adapter.ViewHolder(v);
         return vh;
     }
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(Menu1Adapter.ViewHolder holder, final int position) {
         holder.mTextView.setText(mDataset.get(position));
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,5 +52,6 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         void onItemClick(int position);
     }
 }
+
 
 

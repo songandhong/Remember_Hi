@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:textColor="@color/mainDarkGray"
             android:id="@+id/writeDiary_Year_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,6 +22,7 @@
             android:textSize="30sp" />
 
         <TextView
+            android:textColor="@color/mainDarkGray"
             android:id="@+id/writeDiary_Month_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,6 +30,7 @@
             android:textSize="30sp" />
 
         <TextView
+            android:textColor="@color/mainDarkGray"
             android:id="@+id/writeDiary_Date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,6 +41,7 @@
 
 
     <TextView
+        android:textColor="@color/mainDark"
         android:id="@+id/writeDiary_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,6 +60,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/mainDark"
                 android:id="@+id/writeDiary_weather_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,6 +82,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/mainDark"
                 android:id="@+id/writeDiary_emotion_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,6 +103,7 @@
             android:orientation="horizontal">
 
             <ToggleButton
+                android:textColor="@color/mainDark"
                 android:id="@+id/writeDiary_keyword1_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,6 +111,7 @@
                 android:textOn="keyword1" />
 
             <ToggleButton
+                android:textColor="@color/mainDark"
                 android:id="@+id/writeDiary_keyword2_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,6 +119,7 @@
                 android:textOn="keyword2" />
 
             <ToggleButton
+                android:textColor="@color/mainDark"
                 android:id="@+id/writeDiary_keyword3_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,6 +130,7 @@
     </LinearLayout>
 
     <EditText
+        android:textColor="@color/mainDark"
         android:id="@+id/writeDiary_content_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -130,6 +140,8 @@
         android:textSize="23sp" />
 
     <Button
+        android:textColor="@color/white"
+        android:background="@drawable/btn_style"
         android:id="@+id/writeDiary_write_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
