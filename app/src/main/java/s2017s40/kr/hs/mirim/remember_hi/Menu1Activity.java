@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import s2017s40.kr.hs.mirim.remember_hi.Adapter.Menu1Adapter;
 import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
 
 public class Menu1Activity extends AppCompatActivity {

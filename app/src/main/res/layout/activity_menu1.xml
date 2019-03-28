@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Menu1Activity">
+    <!-- 일기 -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/menu1_recycler_view"
         android:scrollbars="vertical"
@@ -13,8 +14,11 @@
         android:layout_height="match_parent"
         android:layout_weight="1"/>
     <Button
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_style"
         android:id="@+id/menu1_recycler_write_btn"
-        android:text= "작성하러 가기"
+        android:text= "일기 작성하러 가기"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="10"/>

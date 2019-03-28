@@ -11,10 +11,13 @@
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
     <Button
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_style"
         android:id="@+id/menu3_recycler_write_btn"
-        android:text= "작성하러 가기"
+        android:text= "미션 추가하기"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="10"/>
