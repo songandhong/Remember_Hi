@@ -7,7 +7,7 @@ public class MissionDTO {
 
     public MissionDTO() {}
 
-    public MissionDTO(String StringTitle, String missionAlarm_H , String missionAlarm_M, int missionComple) {
+    public MissionDTO(String StringTitle, String missionAlarm_H , int missionComple) {
         super();
         this.missionTitle = StringTitle;
         this.missionAlarm = missionAlarm_H;
