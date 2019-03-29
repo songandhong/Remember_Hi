@@ -92,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Button
+                android:elevation="7dp"
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:background="@drawable/btn_style"
@@ -112,6 +113,7 @@
             android:hint="보호자 전화번호" />
 
         <Button
+            android:elevation="7dp"
             android:textSize="18sp"
             android:textColor="@color/white"
             android:background="@drawable/btn_style"

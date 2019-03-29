@@ -51,6 +51,7 @@
 
 
     <LinearLayout
+        android:elevation="10dp"
         android:layout_margin="17sp"
         android:padding="15dp"
         android:id="@+id/viewDiary_textArea_Linear"

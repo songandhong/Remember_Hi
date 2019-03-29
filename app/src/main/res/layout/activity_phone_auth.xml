@@ -17,6 +17,7 @@
         android:paddingRight="16dp">
 
         <TextView
+            android:elevation="5sp"
             android:textColor="@color/main"
             android:textStyle="bold"
             android:layout_marginBottom="100dp"
@@ -44,6 +45,7 @@
                 android:textSize="18sp" />
 
             <Button
+                android:elevation="6dp"
                 android:id="@+id/buttonStartVerification"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
@@ -70,6 +72,7 @@
                 android:textSize="18sp" />
 
             <Button
+                android:elevation="6dp"
                 android:id="@+id/buttonVerifyPhone"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
@@ -85,6 +88,7 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:elevation="6dp"
                     android:id="@+id/buttonResend"
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
