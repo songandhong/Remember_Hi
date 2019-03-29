@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -21,11 +22,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.IOException;
 
 public class Menu2Activity extends AppCompatActivity {
     Button buttonSendDiary, buttonSendMission;
     TextView textPhoneNo;
+
+    FirebaseDatabase database  = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getInstance().getReference();
+
+    String Number = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +47,21 @@ public class Menu2Activity extends AppCompatActivity {
         buttonSendDiary = (Button) findViewById(R.id.buttonSendDiary);
         buttonSendMission = (Button) findViewById(R.id.buttonSendMission);
         textPhoneNo =  findViewById(R.id.editTextPhoneNo);
+
+        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+        Number = auto.getString("Number",null);
+
+        //DB연동
+        myRef.child("User").child(Number).child("info/phoneNum").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String a = String.valueOf(dataSnapshot.getValue());
+                textPhoneNo.setText(a);
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
 
         //버튼 클릭이벤트
         buttonSendDiary.setOnClickListener(new View.OnClickListener() {

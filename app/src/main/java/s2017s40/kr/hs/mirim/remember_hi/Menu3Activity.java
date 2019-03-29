@@ -36,13 +36,18 @@ public class Menu3Activity extends AppCompatActivity {
 
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
+
     String Number = "";
+    ArrayList<String> arr;
+
     private static int ONE_MINUTE = 5626;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu3);
+
+        arr = new ArrayList<>();
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
@@ -67,14 +72,6 @@ public class Menu3Activity extends AppCompatActivity {
 
         myDataList = new ArrayList<>();
 
-        mAdapter = new Menu3Adapter(myDataList, new Menu3Adapter.ClickCallback() {
-            @Override
-            public void onItemClick(int position) {
-                //클릭 이벤트 처리
-            }
-        });
-
-        mRecyclerView.setAdapter(mAdapter);
         //DB연동
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -83,6 +80,7 @@ public class Menu3Activity extends AppCompatActivity {
                     for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
                         //아이템 추가
                         MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
+                        arr.add(missionDTO.getMissionTitle());
                         myDataList.add(missionDTO);
                     }
                     mAdapter.notifyDataSetChanged();
@@ -92,6 +90,17 @@ public class Menu3Activity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
             }
         });
+
+        //어댑터 연결
+        mAdapter = new Menu3Adapter(myDataList, new Menu3Adapter.ClickCallback() {
+            @Override
+            public void onItemClick(int position) {
+                //클릭 이벤트 처리
+            }
+        });
+
+        mRecyclerView.setAdapter(mAdapter);
+
     }
 
 }
