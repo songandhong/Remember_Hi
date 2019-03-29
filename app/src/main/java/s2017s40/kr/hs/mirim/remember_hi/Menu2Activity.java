@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -18,33 +19,58 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 
 public class Menu2Activity extends AppCompatActivity {
-    Button buttonSend;
-    EditText textPhoneNo;
-    EditText textSMS;
+    Button buttonSendDiary, buttonSendMission;
+    TextView textPhoneNo;
+
+    FirebaseDatabase database  = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getInstance().getReference();
+
+    String Number = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu2);
 
-        buttonSend = (Button) findViewById(R.id.buttonSend);
-        textPhoneNo = (EditText) findViewById(R.id.editTextPhoneNo);
-        textSMS = (EditText) findViewById(R.id.editTextSMS);
+        buttonSendDiary = (Button) findViewById(R.id.buttonSendDiary);
+        buttonSendMission = (Button) findViewById(R.id.buttonSendMission);
+        textPhoneNo =  findViewById(R.id.editTextPhoneNo);
+
+        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+        Number = auto.getString("Number",null);
+
+        //DB연동
+        myRef.child("User").child(Number).child("info/phoneNum").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String a = String.valueOf(dataSnapshot.getValue());
+                textPhoneNo.setText(a);
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
 
         //버튼 클릭이벤트
-        buttonSend.setOnClickListener(new View.OnClickListener() {
+        buttonSendDiary.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 //입력한 값을 가져와 변수에 담는다
-                String phoneNo = textPhoneNo.getText().toString();
-                String sms = textSMS.getText().toString();
-
+                String phoneNo = "01063320658";
+                String sms = "문자를 보냅니다.";
                 try {
                     if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Menu2Activity.this, android.Manifest.permission.SEND_SMS )
                             != PackageManager.PERMISSION_GRANTED)
@@ -58,7 +84,6 @@ public class Menu2Activity extends AppCompatActivity {
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
                     Log.e("error", String.valueOf(e));
-
                     e.printStackTrace();
                 }
             }
