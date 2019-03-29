@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="240dp">
             <ImageView
-                android:background="@color/mainGray"
+                android:padding="20dp"
+                android:background="@android:color/white"
                 android:id="@+id/item_main_image_image"
                 android:scaleType="fitCenter"
                 android:layout_width="match_parent"
@@ -26,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_gravity="bottom"
-                android:background="@color/main"
+                android:background="@android:color/black"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/item_main_list_text"
