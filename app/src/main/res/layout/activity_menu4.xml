@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu4Activity"
+    android:layout_centerHorizontal="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_marginBottom="100dp"
+        android:textSize="25sp"
+        android:text="숫자 순서 맞추기 게임"
+        android:id="@+id/gameTitleTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:text="난이도"
+        android:id="@+id/chooseTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/levelHigh"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:text="상"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/levelMiddle"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:text="중"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/levelLow"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:text="하"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

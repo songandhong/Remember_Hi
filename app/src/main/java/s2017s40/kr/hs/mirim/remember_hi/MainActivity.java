@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity{
                     case 0: intent = new Intent(MainActivity.this, Menu1Activity.class);  break;
                     case 1: intent = new Intent(MainActivity.this, Menu2Activity.class);  break;
                     case 2: intent = new Intent(MainActivity.this, Menu3Activity.class);  break;
-                    case 3: intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.nid.or.kr/main/main.aspx"));
+                    case 3: intent = new Intent(MainActivity.this, Menu4Activity.class);  break;
                 }
                 startActivity(intent);
             }
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity{
         myDataList.add("일기");
         myDataList.add("문자");
         myDataList.add("미션");
-        myDataList.add("치매");
+        myDataList.add("게임");
 
 
     }
