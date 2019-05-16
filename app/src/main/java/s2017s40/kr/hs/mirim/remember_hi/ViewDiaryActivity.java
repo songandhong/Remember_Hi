@@ -22,8 +22,10 @@ public class ViewDiaryActivity extends AppCompatActivity {
     //파이어베이스 연결 위한 준비
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
+
     String Date = "";
     String Number = "";
+
     DiaryDTO diaryDTO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

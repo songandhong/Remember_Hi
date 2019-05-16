@@ -1,14 +1,25 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -16,12 +27,15 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class SignUpActivity extends AppCompatActivity {
+    FirebaseDatabase database  = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getInstance().getReference();
+
     Button datePickBtn, signUpBtn;
     Calendar cal;
     int resultYear, resultMonth, resultDate;
     TextView yearTxt, monthTxt, dateTxt;
-    EditText nameEdit,phoneNumEdit, emailEdit;
-
+    EditText nameEdit,phoneNumEdit;
+    Spinner genderSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +50,10 @@ public class SignUpActivity extends AppCompatActivity {
 
         nameEdit = findViewById(R.id.signup_name_edit);
         phoneNumEdit = findViewById(R.id.signup_phoneNum_edit);
-        emailEdit = findViewById(R.id.signup_email_edit);
+
+        genderSpinner = findViewById(R.id.signup_gender_spinner);
 
         cal = Calendar.getInstance();
-
-
 
         datePickBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +78,17 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserDTO user = new  UserDTO(String.valueOf(nameEdit.getText()), (resultYear+"/"+resultMonth+"/"+resultDate), (Calendar.YEAR -  resultYear+1), genderSpinner.getSelectedItem().toString(), String.valueOf(phoneNumEdit.getText()));
+                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                myRef.child("User").child(auto.getString("Number",null)).child("info").setValue(user);
+
+                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

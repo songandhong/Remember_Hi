@@ -13,6 +13,7 @@
         app:cardUseCompatPadding="true"
         app:cardElevation="4dp">
         <LinearLayout
+            android:elevation="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="240dp">
@@ -27,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_gravity="bottom"
-                android:background="@android:color/black"
+                android:background="@color/main"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/item_main_list_text"

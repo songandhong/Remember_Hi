@@ -45,6 +45,12 @@ public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> 
             public void onClick(View view) {
                 model.setMissionComple(!model.isSelected());
                 holder.mView.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
+                if(!model.isSelected()) {
+                    model.setMissionComple(false);
+                }
+                else if(model.isSelected()){
+                    model.setMissionComple(true);
+                }
             }
         });
         holder.TitleText.setText(mDataset.get(position).getMissionTitle());

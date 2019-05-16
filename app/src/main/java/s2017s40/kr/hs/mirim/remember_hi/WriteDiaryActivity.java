@@ -94,11 +94,11 @@ public class WriteDiaryActivity extends AppCompatActivity {
                 String keyword3Str = keyword3.getTextOn().toString();
               
                 if(!(keyword1.isChecked()))
-                    keyword1Str = null;
+                    keyword1Str = "";
                 if(!(keyword2.isChecked()))
-                    keyword2Str = null;
+                    keyword2Str = "";
                 if(!(keyword3.isChecked()))
-                    keyword3Str = null;  
+                    keyword3Str = "";
               
                 DiaryDTO diarydto = new DiaryDTO(editContents, nowTimeStr, emotionStr, keyword1Str, keyword2Str, keyword3Str, weatherStr);
                 myRef.child(nowTimeStr).addValueEventListener(new ValueEventListener() {
