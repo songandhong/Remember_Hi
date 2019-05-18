@@ -45,6 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNo" />
 
     <Button
+        android:textSize="@dimen/button"
         android:id="@+id/buttonSendDiary"
         android:layout_width="166dp"
         android:layout_height="56dp"
@@ -58,6 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewSMS" />
 
     <Button
+        android:textSize="@dimen/button"
         android:id="@+id/buttonSendMission"
         android:layout_width="166dp"
         android:layout_height="56dp"

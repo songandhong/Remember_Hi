@@ -1,5 +1,6 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,7 +22,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import s2017s40.kr.hs.mirim.remember_hi.Adapter.Menu1Adapter;
+import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
 
+
+//일기 목록 액티비티
 public class Menu1Activity extends AppCompatActivity {
     //recyclerview 연결 위한 준비
     private RecyclerView mRecyclerView;
@@ -41,6 +46,11 @@ public class Menu1Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu1);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
+        TextView t =findViewById(R.id.actionbar_text);
+        t.setText("일기 목록");
 
         arr = new ArrayList<>();
 

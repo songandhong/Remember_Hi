@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainGray"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".WriteDiaryActivity">
@@ -38,18 +37,15 @@
             android:text="00일"
             android:textColor="@color/mainDarkGray"
             android:textSize="30sp" />
+        <TextView
+            android:textColor="@color/mainDarkGray"
+            android:textSize="30sp"
+            android:text="의 일기"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
-
-    <TextView
-        android:layout_marginBottom="10dp"
-        android:id="@+id/writeDiary_title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="오늘의 일기"
-        android:textColor="@color/mainDark"
-        android:textSize="30sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,6 +56,8 @@
         android:paddingRight="12dp">
         <!-- 오늘의 날씨 -->
         <LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="left"
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,6 +80,8 @@
 
         <!-- 오늘의 기분 -->
         <LinearLayout
+            android:layout_marginTop="5dp"
+            android:gravity="left"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,6 +103,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -152,6 +153,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:layout_marginTop="10dp"
             android:id="@+id/writeDiary_content_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -165,6 +167,7 @@
             android:textSize="23sp" />
     </LinearLayout>
     <Button
+        android:textSize="@dimen/button"
         android:layout_weight="2.2"
         android:id="@+id/writeDiary_write_btn"
         android:layout_width="match_parent"

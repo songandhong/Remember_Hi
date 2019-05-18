@@ -2,6 +2,7 @@ package s2017s40.kr.hs.mirim.remember_hi;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 
+//문자전송 액티비팉
 public class Menu2Activity extends AppCompatActivity {
     Button buttonSendDiary, buttonSendMission;
     TextView textPhoneNo;
@@ -43,6 +45,12 @@ public class Menu2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu2);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
+
+        TextView t =findViewById(R.id.actionbar_text);
+        t.setText("문자 전송하기");
 
         buttonSendDiary = (Button) findViewById(R.id.buttonSendDiary);
         buttonSendMission = (Button) findViewById(R.id.buttonSendMission);

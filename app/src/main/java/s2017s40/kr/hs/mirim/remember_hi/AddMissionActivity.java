@@ -19,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
+import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
+
 public class AddMissionActivity extends AppCompatActivity {
     String missionTitle;
     int Hour, Minute;
@@ -37,6 +39,8 @@ public class AddMissionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_mission);
+        getSupportActionBar().hide();
+
 
         EditTitle = findViewById(R.id.addMission_missionTitle_editText);
         confirmBtn = findViewById(R.id.addMission_confirm_btn);

@@ -1,5 +1,6 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
+
 public class WriteDiaryActivity extends AppCompatActivity {
     Spinner weatherSpinner, emotionSpinner;
     EditText writeDiaryEdit;
@@ -39,6 +42,8 @@ public class WriteDiaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_diary);
+
+        getSupportActionBar().hide();
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);

@@ -1,9 +1,7 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,12 +19,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
-import s2017s40.kr.hs.mirim.remember_hi.Adapter.MainAdapter;
 import s2017s40.kr.hs.mirim.remember_hi.Adapter.Menu3Adapter;
+import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
 
-
+//미션 액티비티
 public class Menu3Activity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
@@ -46,6 +44,12 @@ public class Menu3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu3);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
+
+        TextView t =findViewById(R.id.actionbar_text);
+        t.setText("미션 목록");
 
         arr = new ArrayList<>();
 

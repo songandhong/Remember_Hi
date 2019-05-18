@@ -2,20 +2,19 @@ package s2017s40.kr.hs.mirim.remember_hi;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 
 import s2017s40.kr.hs.mirim.remember_hi.Adapter.GameAdapter;
@@ -30,6 +29,9 @@ public class GamePlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_play);
+
+        getSupportActionBar().hide();
+
         HashSet<Integer> lists = new HashSet<>();
         final int value[] = new int[4];
         int ShuffleArr[] = new int[4]; // 셔플시 사용
@@ -66,11 +68,18 @@ public class GamePlayActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(value[Flag] == adapter.get(position)){
+
+                    LinearLayout l = (LinearLayout) view;
+
+                    l.setBackgroundColor(getResources().getColor(R.color.mainDark));
+
                     Toast.makeText(getApplicationContext(), "정답입니다", Toast.LENGTH_SHORT).show();
                     Flag++;
                     if(Flag == 4){
                         Dialog();
                     }
+                }else{
+                    Toast.makeText(getApplicationContext(), "정답이 아닙니다", Toast.LENGTH_SHORT).show();
                 }
             }
         });
