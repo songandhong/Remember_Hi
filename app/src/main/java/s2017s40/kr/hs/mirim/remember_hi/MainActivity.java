@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity{
         myDataList.add("미션");
         myDataList.add("게임");
 
-
     }
 
 }
