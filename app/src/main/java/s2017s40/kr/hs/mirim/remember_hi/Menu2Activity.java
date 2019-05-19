@@ -85,14 +85,13 @@ public class Menu2Activity extends AppCompatActivity {
 
         //다이어리 DB연동
         myRef.addValueEventListener(new ValueEventListener() {
-            long nowTime = System.currentTimeMillis();
-            Date date = new Date(nowTime);
-            SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd");
-            String nowTimeStr = formatTime.format(date);
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
+                    long nowTime = System.currentTimeMillis();
+                    Date date = new Date(nowTime);
+                    SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd");
+                    String nowTimeStr = formatTime.format(date);
                     for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
                         DiaryDTO diaryDTO = fileSnapshot.getValue(DiaryDTO.class);
                         if(nowTimeStr.equals(diaryDTO.getDiaryDate())){
