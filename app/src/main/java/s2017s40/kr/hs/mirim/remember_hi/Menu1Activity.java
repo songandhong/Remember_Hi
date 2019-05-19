@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -68,7 +67,7 @@ public class Menu1Activity extends AppCompatActivity {
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Menu1Activity.this, WriteDiaryActivity.class);
+                Intent intent = new Intent(Menu1Activity.this, AddDiaryActivity.class);
                 startActivity(intent);
             }
         });

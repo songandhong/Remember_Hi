@@ -59,16 +59,19 @@ public class AddMissionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 missionTitle = EditTitle.getText().toString();
+                if(missionTitle.equals("")){
+                    Toast.makeText(AddMissionActivity.this, "제목을 입력해주세요", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Hour = timePicker.getCurrentHour(); //timepicker로 선택한 시간
                 Minute = timePicker.getCurrentMinute();//timepicker로 선택한 분
-
                 String missionHour = Hour + ":" +  Minute;
                 //미션 DB연동
                 myRef.child(missionTitle).setValue( new MissionDTO(missionTitle, missionHour,  false));
+
                 //알람 설정
                 new AlarmHATT(getApplicationContext()).Alarm(Hour, Minute);
                 Toast.makeText(AddMissionActivity.this, "미션이 추가되었습니다.", Toast.LENGTH_SHORT).show();
-                //Activity 끝내기
                 finish();
             }
         });
