@@ -1,5 +1,6 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,7 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import s2017s40.kr.hs.mirim.remember_hi.Adapter.Menu1Adapter;
+import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
 
+
+//일기 목록 액티비티
 public class Menu1Activity extends AppCompatActivity {
     //recyclerview 연결 위한 준비
     private RecyclerView mRecyclerView;
@@ -34,6 +40,7 @@ public class Menu1Activity extends AppCompatActivity {
     //파이어베이스 연결 위한 준비
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
+    SharedPreferences pref;
 
     String Number = "";
     ArrayList<String> arr;
@@ -41,6 +48,14 @@ public class Menu1Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu1);
+
+          pref = getSharedPreferences("pref", MODE_PRIVATE);
+//        Toast.makeText( getApplicationContext(), pref.getString("textsize", ""), Toast.LENGTH_SHORT).show();
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
+        TextView t =findViewById(R.id.actionbar_text);
+        t.setText("일기 목록");
 
         arr = new ArrayList<>();
 
@@ -57,6 +72,21 @@ public class Menu1Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        switch (pref.getString("textsize", "")) {
+            case "big":
+                t.setTextSize(35);
+                writeBtn.setTextSize(23);
+                break;
+            case "small":
+                t.setTextSize(25);
+                writeBtn.setTextSize(13);
+                break;
+            default:
+                t.setTextSize(30);
+                writeBtn.setTextSize(18);
+                break;
+        }
 
         //recyclerview 연결 및 adapter 연동
         mRecyclerView = (RecyclerView) findViewById(R.id.menu1_recycler_view);
@@ -100,6 +130,6 @@ public class Menu1Activity extends AppCompatActivity {
         //어댑터와 recyclerview 연결
         mRecyclerView.setAdapter(mAdapter);
 
-
     }
+
 }

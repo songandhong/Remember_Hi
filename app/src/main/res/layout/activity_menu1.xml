@@ -14,7 +14,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"/>
     <Button
-        android:textSize="18sp"
+        android:elevation="10dp"
+        android:textSize="@dimen/middleButton"
         android:textColor="@color/white"
         android:background="@drawable/btn_style"
         android:id="@+id/menu1_recycler_write_btn"

@@ -2,6 +2,7 @@ package s2017s40.kr.hs.mirim.remember_hi;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,12 +31,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 
+//문자전송 액티비팉
 public class Menu2Activity extends AppCompatActivity {
     Button buttonSendDiary, buttonSendMission;
-    TextView textPhoneNo;
+    TextView textPhoneNo, textViewPhoneNum, textViewSMS;
 
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
+    SharedPreferences pref;
 
     String Number = "";
 
@@ -44,9 +47,17 @@ public class Menu2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu2);
 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
+
+        TextView t =findViewById(R.id.actionbar_text);
+        t.setText("문자 전송하기");
+
+        textViewSMS = findViewById(R.id.textViewSMS);
         buttonSendDiary = (Button) findViewById(R.id.buttonSendDiary);
         buttonSendMission = (Button) findViewById(R.id.buttonSendMission);
         textPhoneNo =  findViewById(R.id.editTextPhoneNo);
+        textViewPhoneNum = findViewById(R.id.textViewPhoneNo);
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
@@ -88,6 +99,36 @@ public class Menu2Activity extends AppCompatActivity {
                 }
             }
         });
+
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
+
+        switch (pref.getString("textsize", "")){
+            case "big":
+                t.setTextSize(35);
+                textViewSMS.setTextSize(30);
+                textPhoneNo.setTextSize(25);
+                textViewPhoneNum.setTextSize(30);
+                buttonSendDiary.setTextSize(23);
+                buttonSendMission.setTextSize(23);
+                break;
+            case "small":
+                t.setTextSize(25);
+                textViewSMS.setTextSize(20);
+                textPhoneNo.setTextSize(15);
+                textViewPhoneNum.setTextSize(20);
+                buttonSendDiary.setTextSize(13);
+                buttonSendMission.setTextSize(13);
+                break;
+            default:
+                t.setTextSize(30);
+                textViewSMS.setTextSize(25);
+                textPhoneNo.setTextSize(20);
+                textViewPhoneNum.setTextSize(25);
+                buttonSendDiary.setTextSize(18);
+                buttonSendMission.setTextSize(18);
+                break;
+        }
+
 
     }
     @TargetApi(Build.VERSION_CODES.M)
