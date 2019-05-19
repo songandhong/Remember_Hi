@@ -108,6 +108,12 @@ public class WriteDiaryActivity extends AppCompatActivity {
         keyword2.setText(arr.wordArr.get(randomNum[1]));
         keyword3.setText(arr.wordArr.get(randomNum[2]));
 
+        keyword1.setTextOn(arr.wordArr.get(randomNum[0]));
+        keyword1.setTextOff(arr.wordArr.get(randomNum[0]));
+        keyword2.setTextOn(arr.wordArr.get(randomNum[1]));
+        keyword2.setTextOff(arr.wordArr.get(randomNum[1]));
+        keyword3.setTextOn(arr.wordArr.get(randomNum[2]));
+        keyword3.setTextOff(arr.wordArr.get(randomNum[2]));
 
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
