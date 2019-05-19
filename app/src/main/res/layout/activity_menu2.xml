@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Menu2Activity">
     <TextView
-        android:id="@+id/textViewPhoneNo"
+        android:id="@+id/menu2_phone_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -19,8 +19,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/menu2_phone_num_text"
         android:textSize="@dimen/middleContent"
-        android:id="@+id/editTextPhoneNo"
         android:layout_width="344dp"
         android:layout_height="41dp"
         android:layout_marginStart="8dp"
@@ -30,10 +30,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNo" />
+        app:layout_constraintTop_toBottomOf="@+id/menu2_phone_title_text" />
 
     <TextView
-        android:id="@+id/textViewSMS"
+        android:id="@+id/menu2_btn_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -43,11 +43,11 @@
         android:textColor="@color/mainDark"
         android:textSize="@dimen/middleMenus"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNo" />
+        app:layout_constraintTop_toBottomOf="@+id/menu2_phone_num_text" />
 
     <Button
+        android:id="@+id/menu2_diary_btn"
         android:textSize="@dimen/middleButton"
-        android:id="@+id/buttonSendDiary"
         android:layout_width="166dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
@@ -57,11 +57,10 @@
         android:text="일기 보내기"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSMS" />
-
+        app:layout_constraintTop_toBottomOf="@+id/menu2_btn_title_text" />
     <Button
+        android:id="@+id/menu2_mission_btn"
         android:textSize="@dimen/middleButton"
-        android:id="@+id/buttonSendMission"
         android:layout_width="166dp"
         android:layout_height="56dp"
         android:layout_marginStart="228dp"
@@ -71,5 +70,5 @@
         android:text="미션 보내기"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonSendDiary" />
+        app:layout_constraintTop_toTopOf="@+id/menu2_diary_btn" />
 </android.support.constraint.ConstraintLayout>

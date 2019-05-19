@@ -86,7 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 UserDTO user = new UserDTO(String.valueOf(nameEdit.getText()), (resultYear+"/"+resultMonth+"/"+resultDate), (Calendar.YEAR -  resultYear+1), genderSpinner.getSelectedItem().toString(), String.valueOf(phoneNumEdit.getText()));
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
-                myRef.child("User").child(auto.getString("Number",null)).child("info").setValue(user);
+                myRef.child("User").child(auto.getString("Number","defValue")).child("info").setValue(user);
 
                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                 startActivity(intent);

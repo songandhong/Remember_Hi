@@ -65,7 +65,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
         yearTitle = findViewById(R.id.writeDiary_Year_text);
         monthTitle = findViewById(R.id.writeDiary_Month_text);
         dateTitle = findViewById(R.id.writeDiary_Date_text);
-        titleText_wirte = findViewById(R.id.titleText_wirte);
+        titleText_wirte = findViewById(R.id.writeDiary_content_edit);
 
         writeDiary_weather_text = findViewById(R.id.writeDiary_weather_text);
         writeDiary_emotion_text = findViewById(R.id.writeDiary_emotion_text);

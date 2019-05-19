@@ -53,11 +53,11 @@ public class Menu2Activity extends AppCompatActivity {
         TextView t =findViewById(R.id.actionbar_text);
         t.setText("문자 전송하기");
 
-        textViewSMS = findViewById(R.id.textViewSMS);
-        buttonSendDiary = (Button) findViewById(R.id.buttonSendDiary);
-        buttonSendMission = (Button) findViewById(R.id.buttonSendMission);
-        textPhoneNo =  findViewById(R.id.editTextPhoneNo);
-        textViewPhoneNum = findViewById(R.id.textViewPhoneNo);
+        textViewSMS = findViewById(R.id.menu2_btn_title_text);
+        buttonSendDiary = (Button) findViewById(R.id.menu2_diary_btn);
+        buttonSendMission = (Button) findViewById(R.id.menu2_mission_btn);
+        textPhoneNo =  findViewById(R.id.menu2_phone_num_text);
+        textViewPhoneNum = findViewById(R.id.menu2_phone_title_text);
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
@@ -84,8 +84,7 @@ public class Menu2Activity extends AppCompatActivity {
                 String sms = "문자를 보냅니다.";
                 try {
                     if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Menu2Activity.this, android.Manifest.permission.SEND_SMS )
-                            != PackageManager.PERMISSION_GRANTED)
-                    {
+                            != PackageManager.PERMISSION_GRANTED) {
                         checkVerify();
                     }
                     SmsManager smsManager = SmsManager.getDefault();
