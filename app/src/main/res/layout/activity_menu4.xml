@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu4Activity"
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="@color/DarkGray"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:textSize="@dimen/middleTitle"
+            android:text="숫자 순서 맞추기"
+            android:id="@+id/gameTitleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/information"
+            android:layout_toRightOf="@+id/gameTitleTxt"
+            android:id="@+id/infoGame"
+            android:layout_width="32dp"
+            android:layout_height="32dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/DarkGray"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="20sp"
+        android:text="난이도"
+        android:id="@+id/chooseTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:textStyle="bold"
+        android:background="@color/main"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/chooseTxt"
+        android:id="@+id/levelHigh"
+        android:layout_margin="5dp"
+        android:textSize="@dimen/middleButton"
+        android:text="상"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:textStyle="bold"
+        android:background="@color/main"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/levelHigh"
+        android:id="@+id/levelMiddle"
+        android:layout_margin="5dp"
+        android:textSize="@dimen/middleButton"
+        android:text="중"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:textStyle="bold"
+        android:background="@color/main"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/levelMiddle"
+        android:id="@+id/levelLow"
+        android:layout_margin="5dp"
+        android:textSize="@dimen/middleButton"
+        android:text="하"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>

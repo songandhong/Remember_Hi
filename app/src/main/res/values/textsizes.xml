@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <dimen name="middleTitle">30sp</dimen>
+   <dimen name="middleMenus">25sp</dimen>
+   <dimen name="middleButton">18sp</dimen>
+   <dimen name="middleContent">20sp</dimen>
+</resources>

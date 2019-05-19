@@ -1,5 +1,6 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,13 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
 
 
 public class ViewDiaryActivity extends AppCompatActivity {
@@ -26,19 +28,24 @@ public class ViewDiaryActivity extends AppCompatActivity {
     String Date = "";
     String Number = "";
 
+    String title;
+    TextView t;
+
     DiaryDTO diaryDTO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_diary);
 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
+
+        t =findViewById(R.id.actionbar_text);
+
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
         myRef = database.getInstance().getReference("User/"+Number+"/Diary");
 
-        yearTitle = findViewById(R.id.viewDiary_yearTitle_textView);
-        monthTitle = findViewById(R.id.viewDiary_monthTitle_textView);
-        dateTitle = findViewById(R.id.viewDiary_dateTitle_textView);
         contents = findViewById(R.id.viewDiary_contents_textView);
 
         Intent intent = getIntent();
@@ -53,20 +60,41 @@ public class ViewDiaryActivity extends AppCompatActivity {
                 diaryDTO =  dataSnapshot.getValue(DiaryDTO.class);
                 String setDate = diaryDTO.getDiaryDate();
 
+                title = setDate.substring(0,4) + "년 " + setDate.substring(5,7) + "월" +
+                        setDate.substring(setDate.length()-2) + "일";
+
                 //년, 월, 일 형식으로
-                yearTitle.setText(setDate.substring(0,4) + "년 ");
-                monthTitle.setText(setDate.substring(5,7) + "월 ");
-                dateTitle.setText(setDate.substring(setDate.length()-2, setDate.length()) + "일");
-
-
                 contents.setText("오늘의 날씨는 " + diaryDTO.getDiaryWeather() +
                         "\n오늘의 기분은 " + diaryDTO.getDiaryFeel()+
                         "\n오늘의 키워드는 " + diaryDTO.getDiaryKey1() + ", "+ diaryDTO.getDiaryKey2() + ", "+ diaryDTO.getDiaryKey3() + "이고, "
                         + "오늘의 메모는 "+ diaryDTO.getDiaryContent() + "이다.");
+
+                t.setText(title);
             }
             @Override
             public void onCancelled(DatabaseError error) {
             }
         });
+
+        SharedPreferences pref;
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
+
+        switch (pref.getString("textsize", "")){
+            case "big":
+                t.setTextSize(35);
+               contents.setTextSize(25);
+
+                break;
+            case "small":
+                t.setTextSize(25);
+                contents.setTextSize(15);
+
+                break;
+            default:
+                contents.setTextSize(20);
+                t.setTextSize(30);
+
+                break;
+        }
     }
 }

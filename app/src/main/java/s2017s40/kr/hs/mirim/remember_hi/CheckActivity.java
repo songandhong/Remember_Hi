@@ -1,9 +1,6 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -28,6 +25,8 @@ public class CheckActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
+        
+
         listview = (ListView) findViewById(R.id.check_list_view);
         items = new ArrayList<String>() ;
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, items) ;

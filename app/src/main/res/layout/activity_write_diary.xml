@@ -6,70 +6,70 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".WriteDiaryActivity"
-    android:background="@color/mainGray"
-    >
+    tools:context=".WriteDiaryActivity">
 
     <LinearLayout
+        android:paddingTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:textColor="@color/mainDarkGray"
             android:id="@+id/writeDiary_Year_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00년 "
+            android:textColor="@color/mainDarkGray"
             android:textSize="30sp" />
 
         <TextView
-            android:textColor="@color/mainDarkGray"
             android:id="@+id/writeDiary_Month_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00월 "
+            android:textColor="@color/mainDarkGray"
             android:textSize="30sp" />
 
         <TextView
-            android:textColor="@color/mainDarkGray"
             android:id="@+id/writeDiary_Date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00일"
+            android:textColor="@color/mainDarkGray"
             android:textSize="30sp" />
+        <TextView
+            android:id="@+id/titleText_wirte"
+            android:textColor="@color/mainDarkGray"
+            android:textSize="30sp"
+            android:text="의 일기"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
 
-    <TextView
-        android:textColor="@color/mainDark"
-        android:id="@+id/writeDiary_title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="오늘의 일기"
-        android:textSize="30sp" />
-
     <LinearLayout
-        android:paddingRight="12dp"
-        android:paddingLeft="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
         <!-- 오늘의 날씨 -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:textColor="@color/mainDark"
                 android:id="@+id/writeDiary_weather_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
                 android:text="오늘의 날씨는"
+                android:textColor="@color/mainDark"
                 android:textSize="23sp" />
 
             <Spinner
@@ -81,17 +81,19 @@
 
         <!-- 오늘의 기분 -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="left"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:textColor="@color/mainDark"
                 android:id="@+id/writeDiary_emotion_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
                 android:text="오늘의 기분은"
+                android:textColor="@color/mainDark"
                 android:textSize="23sp" />
 
             <Spinner
@@ -102,66 +104,86 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ToggleButton
-                android:textColor="@color/mainDark"
+
+                android:background="@drawable/toggle_bg"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:id="@+id/writeDiary_keyword1_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:elevation="7dp"
+                android:textColor="@color/white"
                 android:textOff="keyword1"
                 android:textOn="keyword1" />
 
             <ToggleButton
-                android:textColor="@color/mainDark"
+                android:background="@drawable/toggle_bg"
+                android:layout_weight="1"
                 android:id="@+id/writeDiary_keyword2_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:elevation="7dp"
+                android:textColor="@color/white"
                 android:textOff="keyword2"
                 android:textOn="keyword2" />
 
             <ToggleButton
-                android:textColor="@color/mainDark"
+                android:background="@drawable/toggle_bg"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
                 android:id="@+id/writeDiary_keyword3_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:elevation="7dp"
+                android:textColor="@color/white"
                 android:textOff="keyword3"
                 android:textOn="keyword3" />
         </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <EditText
-            android:paddingRight="12dp"
-            android:paddingLeft="12dp"
-            android:layout_weight="1"
-            android:textColor="@color/mainDark"
+            android:layout_marginTop="10dp"
             android:id="@+id/writeDiary_content_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="start"
             android:hint="오늘의 일기를 써보세요"
             android:lines="12"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:textColor="@color/mainDark"
             android:textSize="23sp" />
-
-        <Button
-            android:textColor="@color/white"
-            android:background="@drawable/btn_style"
-            android:id="@+id/writeDiary_write_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="글쓰기" />
-
     </LinearLayout>
+    <Button
+        android:textSize="@dimen/middleButton"
+        android:layout_weight="2.2"
+        android:id="@+id/writeDiary_write_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/btn_style"
+        android:elevation="10dp"
+        android:text="글쓰기"
+        android:textColor="@color/white" />
+
 
 
 </LinearLayout>
 
-<!--1. 키워드 3개 클릭 토클로 추가하기-->
-<!--2. 날짜 텍스트 분리하기-->
-<!--3. 날짜만 따로 분리!!1-->
+    <!--1. 키워드 3개 클릭 토클로 추가하기--><!--2. 날짜 텍스트 분리하기--><!--3. 날짜만 따로 분리!!1-->

@@ -8,20 +8,10 @@
     android:orientation="vertical"
     tools:context=".SignUpActivity"
     >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:gravity="center">
 
-        <TextView
-            android:textColor="@color/mainDark"
-            android:textSize="25sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="회원가입" />
-    </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -29,6 +19,7 @@
         android:paddingRight="15dp">
 
         <LinearLayout
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -92,7 +83,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Button
-                android:textSize="18sp"
+                android:elevation="7dp"
+                android:textSize="@dimen/middleButton"
                 android:textColor="@color/white"
                 android:background="@drawable/btn_style"
                 android:id="@+id/signup_pickBirth_btn"
@@ -112,7 +104,8 @@
             android:hint="보호자 전화번호" />
 
         <Button
-            android:textSize="18sp"
+            android:elevation="7dp"
+            android:textSize="@dimen/middleButton"
             android:textColor="@color/white"
             android:background="@drawable/btn_style"
             android:id="@+id/signup_signup_btn"

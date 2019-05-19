@@ -14,52 +14,60 @@
         android:text="보호자 전화번호"
         android:textColor="@color/mainDark"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="12dp"
+        android:textSize="@dimen/middleMenus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
+        android:textSize="@dimen/middleContent"
         android:id="@+id/editTextPhoneNo"
         android:layout_width="344dp"
         android:layout_height="41dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:text="전화번호"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNo"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNo" />
 
     <TextView
         android:id="@+id/textViewSMS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
         android:text="버튼을 선택해 주세요"
-        android:textColor="@color/mainDark"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="12dp"
+        android:textColor="@color/mainDark"
+        android:textSize="@dimen/middleMenus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNo" />
 
     <Button
+        android:textSize="@dimen/middleButton"
         android:id="@+id/buttonSendDiary"
         android:layout_width="166dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_style"
+        android:elevation="7dp"
         android:text="일기 보내기"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSMS" />
 
     <Button
+        android:textSize="@dimen/middleButton"
         android:id="@+id/buttonSendMission"
         android:layout_width="166dp"
         android:layout_height="56dp"
         android:layout_marginStart="228dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/btn_style"
+        android:elevation="7dp"
         android:text="미션 보내기"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
