@@ -30,12 +30,12 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
         TextView t =findViewById(R.id.actionbar_text);
         t.setText("게임하기");
 
-        gametitle = findViewById(R.id.gameTitleTxt);
-        levelTxt = findViewById(R.id.chooseTxt);
-        info = findViewById(R.id.infoGame);
-        levelHigh = findViewById(R.id.levelHigh);
-        levelMiddlw = findViewById(R.id.levelMiddle);
-        levelLow = findViewById(R.id.levelLow);
+        gametitle = findViewById(R.id.menu4_title_text);
+        levelTxt = findViewById(R.id.menu4_level_text);
+        info = findViewById(R.id.menu4_info_img);
+        levelHigh = findViewById(R.id.menu4_levelHigh_btn);
+        levelMiddlw = findViewById(R.id.menu4_levelMiddle_btn);
+        levelLow = findViewById(R.id.menu4_levelLow_btn);
         levelLow.setOnClickListener(this);
         levelMiddlw.setOnClickListener(this);
         levelHigh.setOnClickListener(this);
@@ -86,9 +86,9 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.levelHigh: level = "h"; break;
-            case R.id.levelMiddle: level = "m"; break;
-            case R.id.levelLow :level = "l"; break;
+            case R.id.menu4_levelHigh_btn: level = "h"; break;
+            case R.id.menu4_levelMiddle_btn: level = "m"; break;
+            case R.id.menu4_levelLow_btn :level = "l"; break;
         }
 
         Intent i = new Intent(Menu4Activity.this, GamePlayActivity.class);

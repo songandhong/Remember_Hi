@@ -52,36 +52,30 @@ public class MainActivity extends AppCompatActivity{
         getSupportActionBar().setCustomView(R.layout.actionbar_layout);
         t = findViewById(R.id.actionbar_text);
 
-        LinearLayout goto_site = findViewById(R.id.goto_site);
+        LinearLayout goto_site = findViewById(R.id.main_site_layout);
         welcome = findViewById(R.id.main_welcome_text);
-        linkTxt = findViewById(R.id.linkTxt);
+        linkTxt = findViewById(R.id.main_site_text);
         item_main_list_text = findViewById(R.id.item_main_list_text);
 
         setTxtsize();
 
-        txtsize = findViewById(R.id.textSizeSpinner);
+        txtsize = findViewById(R.id.main_textsize_spinner);
         txtsize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String p;
                 if(txtsize.getItemAtPosition(position).toString().equals("큰텍스트")){
                     p = "big";
-
                 }else if(txtsize.getItemAtPosition(position).toString().equals("작은텍스트")){
                     p = "small";
-
                 }else if(txtsize.getItemAtPosition(position).toString().equals("보통텍스트")){
                     p = "middle";
-
                 }else{
                     return;
                 }
-
                 savePreferences(p);
                 setTxtsize();
                 Toast.makeText(getApplicationContext(), getPreferences(), Toast.LENGTH_SHORT).show();
-
-
             }
 
             @Override
@@ -142,26 +136,22 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-
     public void setTxtsize(){
                 switch (getPreferences()) {
             case "big":
                 t.setTextSize(35);
                 welcome.setTextSize(35);
                 linkTxt.setTextSize(30);
-//                item_main_list_text.setTextSize(30);
                 break;
             case "small":
                 t.setTextSize(25);
                 welcome.setTextSize(25);
                 linkTxt.setTextSize(20);
-//                item_main_list_text.setTextSize(20);
                 break;
             default:
                 t.setTextSize(30);
                 welcome.setTextSize(30);
                 linkTxt.setTextSize(25);
-//                item_main_list_text.setTextSize(R.dimen.middleMenus);
                 break;
         }
     }
