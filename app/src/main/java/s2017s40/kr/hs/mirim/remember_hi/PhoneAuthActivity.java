@@ -342,7 +342,6 @@ public class PhoneAuthActivity extends AppCompatActivity implements
             SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
             SharedPreferences.Editor autoLogin = auto.edit();
             autoLogin.putString("Number", user.getPhoneNumber());
-            //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
             autoLogin.commit();
 
             Intent intent = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
@@ -379,7 +378,6 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                 if (!validatePhoneNumber()) {
                     return;
                 }
-
                 startPhoneNumberVerification(mPhoneNumberField.getText().toString());
                 break;
             case R.id.buttonVerifyPhone:
@@ -388,7 +386,6 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                     mVerificationField.setError("Cannot be empty.");
                     return;
                 }
-
                 verifyPhoneNumberWithCode(mVerificationId, code);
                 break;
             case R.id.buttonResend:
