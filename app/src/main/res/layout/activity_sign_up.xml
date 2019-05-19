@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content" />
             <Button
                 android:elevation="7dp"
-                android:textSize="@dimen/button"
+                android:textSize="@dimen/middleButton"
                 android:textColor="@color/white"
                 android:background="@drawable/btn_style"
                 android:id="@+id/signup_pickBirth_btn"
@@ -105,7 +105,7 @@
 
         <Button
             android:elevation="7dp"
-            android:textSize="@dimen/button"
+            android:textSize="@dimen/middleButton"
             android:textColor="@color/white"
             android:background="@drawable/btn_style"
             android:id="@+id/signup_signup_btn"

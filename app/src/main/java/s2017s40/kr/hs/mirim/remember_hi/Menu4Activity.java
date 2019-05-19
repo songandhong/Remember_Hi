@@ -3,6 +3,7 @@ package s2017s40.kr.hs.mirim.remember_hi;
 import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
     Button levelHigh, levelMiddlw, levelLow;
     String level;
     ImageView info;
+    TextView gametitle, levelTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,8 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
         TextView t =findViewById(R.id.actionbar_text);
         t.setText("게임하기");
 
-
+        gametitle = findViewById(R.id.gameTitleTxt);
+        levelTxt = findViewById(R.id.chooseTxt);
         info = findViewById(R.id.infoGame);
         levelHigh = findViewById(R.id.levelHigh);
         levelMiddlw = findViewById(R.id.levelMiddle);
@@ -43,6 +46,40 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
                 Dialog();
             }
         });
+
+        SharedPreferences pref;
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
+
+        switch (pref.getString("textsize", "")){
+            case "big":
+                t.setTextSize(35);
+                levelHigh.setTextSize(23);
+                levelLow.setTextSize(23);
+                levelMiddlw.setTextSize(23);
+                gametitle.setTextSize(30);
+                levelTxt.setTextSize(30);
+
+                break;
+            case "small":
+                t.setTextSize(25);
+                levelHigh.setTextSize(13);
+                levelLow.setTextSize(13);
+                levelMiddlw.setTextSize(13);
+                gametitle.setTextSize(20);
+                levelTxt.setTextSize(20);
+
+                break;
+            default:
+                t.setTextSize(30);
+                levelHigh.setTextSize(18);
+                levelLow.setTextSize(18);
+                levelMiddlw.setTextSize(18);
+                gametitle.setTextSize(25);
+                levelTxt.setTextSize(25);
+
+                break;
+        }
+
 
 
     }

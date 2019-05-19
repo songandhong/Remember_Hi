@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="middleTitle1">30</dimen>
+    <dimen name="middleMenus1">25</dimen>
+    <dimen name="middleButton1">18</dimen>
+    <dimen name="middleContent1">20</dimen>
+
+    <dimen name="smallTitle">25</dimen>
+    <dimen name="smallMenus">20</dimen>
+    <dimen name="smallButton">13</dimen>
+    <dimen name="smallContent">15</dimen>
+
+    <dimen name="bigTitle">35</dimen>
+    <dimen name="bigMenus">30</dimen>
+    <dimen name="bigButton">23</dimen>
+    <dimen name="bigContent">25</dimen>
+</resources>

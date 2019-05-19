@@ -17,7 +17,7 @@
             android:textColor="@color/DarkGray"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
-            android:textSize="@dimen/title"
+            android:textSize="@dimen/middleTitle"
             android:text="숫자 순서 맞추기"
             android:id="@+id/gameTitleTxt"
             android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
         android:layout_below="@+id/chooseTxt"
         android:id="@+id/levelHigh"
         android:layout_margin="5dp"
-        android:textSize="@dimen/button"
+        android:textSize="@dimen/middleButton"
         android:text="상"
         android:layout_width="100dp"
         android:layout_height="wrap_content" />
@@ -63,7 +63,7 @@
         android:layout_below="@+id/levelHigh"
         android:id="@+id/levelMiddle"
         android:layout_margin="5dp"
-        android:textSize="@dimen/button"
+        android:textSize="@dimen/middleButton"
         android:text="중"
         android:layout_width="100dp"
         android:layout_height="wrap_content" />
@@ -75,7 +75,7 @@
         android:layout_below="@+id/levelMiddle"
         android:id="@+id/levelLow"
         android:layout_margin="5dp"
-        android:textSize="@dimen/button"
+        android:textSize="@dimen/middleButton"
         android:text="하"
         android:layout_width="100dp"
         android:layout_height="wrap_content" />

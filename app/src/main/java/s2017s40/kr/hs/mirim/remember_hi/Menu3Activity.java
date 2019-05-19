@@ -29,6 +29,7 @@ public class Menu3Activity extends AppCompatActivity {
     RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<MissionDTO> myDataList;
+    SharedPreferences pref;
 
     Button writeBtn;
 
@@ -104,6 +105,26 @@ public class Menu3Activity extends AppCompatActivity {
         });
 
         mRecyclerView.setAdapter(mAdapter);
+
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
+
+        switch (pref.getString("textsize", "")){
+            case "big":
+                t.setTextSize(35);
+                writeBtn.setTextSize(23);
+
+                break;
+            case "small":
+                t.setTextSize(25);
+                writeBtn.setTextSize(13);
+                break;
+            default:
+                t.setTextSize(30);
+                writeBtn.setTextSize(18);
+                break;
+        }
+
+
 
     }
 

@@ -6,7 +6,7 @@
         android:textStyle="bold"
         android:textColor="@color/DarkGray"
         android:text="Remember Hi"
-        android:textSize="@dimen/title"
+        android:textSize="@dimen/middleTitle"
        android:id="@+id/actionbar_text"
         android:gravity="center"
         android:layout_width="match_parent"

@@ -11,9 +11,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,12 +29,17 @@ import java.util.ArrayList;
 import s2017s40.kr.hs.mirim.remember_hi.Adapter.MainAdapter;
 
 public class MainActivity extends AppCompatActivity{
+
     private RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
     private GridLayoutManager mLayoutManager;
     private ArrayList<String> myDataList;
-    private TextView welcome;
     String Number = "";
+    Spinner txtsize;
+    TextView linkTxt, item_main_list_text, welcome;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    TextView t;
 
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
@@ -40,14 +48,47 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        LinearLayout goto_site = findViewById(R.id.goto_site);
-
-        welcome = findViewById(R.id.main_welcome_text);
-
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar_layout);
+        t = findViewById(R.id.actionbar_text);
 
+        LinearLayout goto_site = findViewById(R.id.goto_site);
+        welcome = findViewById(R.id.main_welcome_text);
+        linkTxt = findViewById(R.id.linkTxt);
+        item_main_list_text = findViewById(R.id.item_main_list_text);
+
+        setTxtsize();
+
+        txtsize = findViewById(R.id.textSizeSpinner);
+        txtsize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String p;
+                if(txtsize.getItemAtPosition(position).toString().equals("큰텍스트")){
+                    p = "big";
+
+                }else if(txtsize.getItemAtPosition(position).toString().equals("작은텍스트")){
+                    p = "small";
+
+                }else if(txtsize.getItemAtPosition(position).toString().equals("보통텍스트")){
+                    p = "middle";
+
+                }else{
+                    return;
+                }
+
+                savePreferences(p);
+                setTxtsize();
+                Toast.makeText(getApplicationContext(), getPreferences(), Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
@@ -72,6 +113,7 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
         mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new GridLayoutManager(this,2);
@@ -98,7 +140,57 @@ public class MainActivity extends AppCompatActivity{
         myDataList.add("미션");
         myDataList.add("게임");
 
+    }
 
+
+    public void setTxtsize(){
+                switch (getPreferences()) {
+            case "big":
+                t.setTextSize(35);
+                welcome.setTextSize(35);
+                linkTxt.setTextSize(30);
+//                item_main_list_text.setTextSize(30);
+                break;
+            case "small":
+                t.setTextSize(25);
+                welcome.setTextSize(25);
+                linkTxt.setTextSize(20);
+//                item_main_list_text.setTextSize(20);
+                break;
+            default:
+                t.setTextSize(30);
+                welcome.setTextSize(30);
+                linkTxt.setTextSize(25);
+//                item_main_list_text.setTextSize(R.dimen.middleMenus);
+                break;
+        }
+    }
+
+
+    //값 가져오기
+    public String getPreferences(){
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
+        return pref.getString("textsize", "");
+    }
+
+    // 값 저장하기
+    public void savePreferences(String textSize){
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+
+        if(!(pref.getString("textsize", "").equals(""))){
+            removePreferences();
+        }
+        editor.putString("textsize", textSize);
+        editor.commit();
+    }
+
+    // 값(Key Data) 삭제하기
+    public void removePreferences(){
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
+        editor = pref.edit();
+        editor.remove("textsize");
+        editor.commit();
     }
 
 }
