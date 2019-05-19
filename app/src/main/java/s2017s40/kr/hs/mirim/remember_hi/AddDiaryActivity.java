@@ -1,6 +1,5 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -20,12 +19,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
 
-public class WriteDiaryActivity extends AppCompatActivity {
+public class AddDiaryActivity extends AppCompatActivity {
     Spinner weatherSpinner, emotionSpinner;
     EditText writeDiaryEdit;
     Button writeBtn;
@@ -45,7 +43,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write_diary);
+        setContentView(R.layout.activity_add_diary);
 
         getSupportActionBar().hide();
 
@@ -65,7 +63,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
         yearTitle = findViewById(R.id.writeDiary_Year_text);
         monthTitle = findViewById(R.id.writeDiary_Month_text);
         dateTitle = findViewById(R.id.writeDiary_Date_text);
-        titleText_wirte = findViewById(R.id.titleText_wirte);
+        titleText_wirte = findViewById(R.id.writeDiary_content_edit);
 
         writeDiary_weather_text = findViewById(R.id.writeDiary_weather_text);
         writeDiary_emotion_text = findViewById(R.id.writeDiary_emotion_text);

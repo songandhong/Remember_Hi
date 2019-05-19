@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GamePlayActivity"></activity>
+        <activity android:name=".GamePlayActivity"/>
         <activity android:name=".Menu4Activity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".AddMissionActivity" />
@@ -33,7 +33,7 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".ViewDiaryActivity" />
-        <activity android:name=".WriteDiaryActivity" />
+        <activity android:name=".AddDiaryActivity" />
 
         <receiver android:name=".BroadcastD" />
     </application>

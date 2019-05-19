@@ -68,11 +68,8 @@ public class GamePlayActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(value[Flag] == adapter.get(position)){
-
                     LinearLayout l = (LinearLayout) view;
-
                     l.setBackgroundColor(getResources().getColor(R.color.mainDark));
-
                     Toast.makeText(getApplicationContext(), "정답입니다", Toast.LENGTH_SHORT).show();
                     Flag++;
                     if(Flag == 4){
@@ -83,9 +80,6 @@ public class GamePlayActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
 
     }//onCreate
 

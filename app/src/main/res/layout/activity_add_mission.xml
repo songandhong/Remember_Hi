@@ -10,58 +10,49 @@
     >
 
     <TextView
-        android:textColor="@color/mainDark"
         android:id="@+id/addMission_titleText_textView"
+        android:textColor="@color/mainDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="미션 추가하기"
         android:textSize="@dimen/middleTitle" />
     <TimePicker
+        android:id="@+id/addMission_time_timepicker"
         android:numbersTextColor="@color/mainDark"
         android:numbersInnerTextColor="@color/mainDark"
         android:layout_margin="10dp"
-        android:id="@+id/addMission_time_timepicker"
         android:timePickerMode="spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-        <EditText
-            android:textColor="@color/mainDark"
+    <EditText android:textColor="@color/mainDark"
         android:id="@+id/addMission_missionTitle_editText"
         android:layout_marginTop="15dp"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:hint="미션을 입력하세요"
-        />
-
+        android:hint="미션을 입력하세요" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="25dp"
-        >
+        android:layout_marginTop="25dp">
         <Button
+            android:id="@+id/addMission_confirm_btn"
             android:elevation="7dp"
             android:textColor="@color/white"
             android:background="@drawable/btn_style"
-            android:id="@+id/addMission_confirm_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="미션추가"
             android:layout_marginRight="15dp"
             />
         <Button
+            android:id="@+id/addMission_cancel_btn"
             android:elevation="7dp"
             android:textColor="@color/white"
             android:background="@drawable/btn_style"
-            android:id="@+id/addMission_cancel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="취소"
-            />
-
+            android:text="취소" />
     </LinearLayout>
-
-
-
 </LinearLayout>

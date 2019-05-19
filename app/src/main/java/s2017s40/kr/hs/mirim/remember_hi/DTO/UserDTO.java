@@ -5,7 +5,8 @@ public class UserDTO {
     private String birth;
     private int age;
     private  String gender;
-    String phoneNum;
+    private String phoneNum;
+
     public UserDTO(){ }
     public UserDTO(String name, String birth, int age, String gender, String phoneNum){
         this.age = age;
@@ -13,6 +14,14 @@ public class UserDTO {
         this.gender = gender;
         this.name = name;
         this.phoneNum = phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
     public void setGender(String gender) {

@@ -14,27 +14,27 @@ public class MissionDTO {
         this.missionComple = missionComple;
     }
 
-    public void setmissionAlarm(String missionAlarm) {
+    public void setMissionTitle(String missionTitle) {
+        this.missionTitle = missionTitle;
+    }
+
+    public void setMissionComple(Boolean missionComple) {
+        this.missionComple = missionComple;
+    }
+
+    public void setMissionAlarm(String missionAlarm) {
         this.missionAlarm = missionAlarm;
     }
 
-    public String getmissionAlarm() {
-        return missionAlarm;
-    }
-
-    public boolean isSelected() {
-        return missionComple;
-    }
     public String getMissionTitle() {
         return missionTitle;
     }
-    public void setMissionTitle(String StringTitle) {
-        this.missionTitle = StringTitle;
+
+    public String getMissionAlarm() {
+        return missionAlarm;
     }
+
     public Boolean getMissionComple() {
         return missionComple;
-    }
-    public void setMissionComple(Boolean missionComple) {
-        this.missionComple = missionComple;
     }
 }
