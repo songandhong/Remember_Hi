@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
@@ -31,6 +32,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
     TextView yearTitle, monthTitle, dateTitle, titleText_wirte, writeDiary_weather_text, writeDiary_emotion_text;
     String nowTimeStr;
     ToggleButton keyword1, keyword2, keyword3;
+    int randomNum[];
 
     //파이어베이스 연결 위한 준비
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -38,12 +40,16 @@ public class WriteDiaryActivity extends AppCompatActivity {
 
     String Number = "";
 
+    WordsArray arr;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_diary);
 
         getSupportActionBar().hide();
+
+        randomNum = new int[3];
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
@@ -54,8 +60,6 @@ public class WriteDiaryActivity extends AppCompatActivity {
         keyword1 = findViewById(R.id.writeDiary_keyword1_toggle);
         keyword2 = findViewById(R.id.writeDiary_keyword2_toggle);
         keyword3 = findViewById(R.id.writeDiary_keyword3_toggle);
-
-
 
         //일기 맨 상단의 제목
         yearTitle = findViewById(R.id.writeDiary_Year_text);
@@ -88,6 +92,22 @@ public class WriteDiaryActivity extends AppCompatActivity {
         yearTitle.setText(nowTimeStr.substring(0,4) + "년 ");
         monthTitle.setText(nowTimeStr.substring(5,7) + "월 ");
         dateTitle.setText(nowTimeStr.substring(nowTimeStr.length()-2, nowTimeStr.length())+ "일");
+
+        arr = new WordsArray();
+
+        for(int i = 0; i< 3; i ++){
+            randomNum[i] = (int) (Math.random() * arr.wordArr.size());
+            for(int j = 0; j < i; j++){
+                if(randomNum[i] == randomNum[j]){
+                    i--;
+                }
+            }
+        }
+
+        keyword1.setText(arr.wordArr.get(randomNum[0]));
+        keyword2.setText(arr.wordArr.get(randomNum[1]));
+        keyword3.setText(arr.wordArr.get(randomNum[2]));
+
 
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
