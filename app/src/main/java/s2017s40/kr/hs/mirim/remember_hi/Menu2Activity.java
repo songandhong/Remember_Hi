@@ -30,6 +30,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
+import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
 
 //문자전송 액티비팉
 public class Menu2Activity extends AppCompatActivity {
@@ -42,6 +47,10 @@ public class Menu2Activity extends AppCompatActivity {
 
     String Number = "";
 
+    String PhoneSms = "";
+    String DiarySms = "";
+    String MissionSms = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +62,11 @@ public class Menu2Activity extends AppCompatActivity {
         TextView t =findViewById(R.id.actionbar_text);
         t.setText("문자 전송하기");
 
-        textViewSMS = findViewById(R.id.textViewSMS);
-        buttonSendDiary = (Button) findViewById(R.id.buttonSendDiary);
-        buttonSendMission = (Button) findViewById(R.id.buttonSendMission);
-        textPhoneNo =  findViewById(R.id.editTextPhoneNo);
-        textViewPhoneNum = findViewById(R.id.textViewPhoneNo);
+        textViewSMS = findViewById(R.id.menu2_btn_title_text);
+        buttonSendDiary = (Button) findViewById(R.id.menu2_diary_btn);
+        buttonSendMission = (Button) findViewById(R.id.menu2_mission_btn);
+        textPhoneNo =  findViewById(R.id.menu2_phone_num_text);
+        textViewPhoneNum = findViewById(R.id.menu2_phone_title_text);
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
@@ -66,32 +75,74 @@ public class Menu2Activity extends AppCompatActivity {
         myRef.child("User").child(Number).child("info/phoneNum").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String a = String.valueOf(dataSnapshot.getValue());
-                textPhoneNo.setText(a);
+                PhoneSms = dataSnapshot.getValue().toString();
+                textPhoneNo.setText(PhoneSms);
             }
             @Override
             public void onCancelled(DatabaseError error) {
             }
         });
 
-        //버튼 클릭이벤트
-        buttonSendDiary.setOnClickListener(new View.OnClickListener() {
+        //다이어리 DB연동
+        myRef.addValueEventListener(new ValueEventListener() {
+            long nowTime = System.currentTimeMillis();
+            Date date = new Date(nowTime);
+            SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd");
+            String nowTimeStr = formatTime.format(date);
 
             @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+                        DiaryDTO diaryDTO = fileSnapshot.getValue(DiaryDTO.class);
+                        if(nowTimeStr.equals(diaryDTO.getDiaryDate())){
+                            DiarySms = diaryDTO.getDiaryContent();
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
+
+        //미션 DB연동
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+                        MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
+                        String comple = "";
+                        if(missionDTO.getMissionComple()){
+                            comple = "완료";
+                        }else {
+                            comple = "미 완료";
+                        }
+                        MissionSms += missionDTO.getMissionTitle() + "의 미션을" + comple + "하셨습니다";
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
+
+        //다이어리 보내기 버튼 이벤트
+        buttonSendDiary.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                //입력한 값을 가져와 변수에 담는다
-                String phoneNo = "01063320658";
-                String sms = "문자를 보냅니다.";
                 try {
                     if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Menu2Activity.this, android.Manifest.permission.SEND_SMS )
-                            != PackageManager.PERMISSION_GRANTED)
-                    {
+                            != PackageManager.PERMISSION_GRANTED) {
                         checkVerify();
                     }
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+                    smsManager.sendTextMessage(PhoneSms, null, DiarySms, null, null);
 
-                    Toast.makeText(getApplicationContext(), "전송 완료!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "오늘의 다이어리 보내기 성공", Toast.LENGTH_LONG).show();
+
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
                     Log.e("error", String.valueOf(e));
@@ -100,6 +151,29 @@ public class Menu2Activity extends AppCompatActivity {
             }
         });
 
+        //미션 보내기 버튼 이벤트
+        buttonSendMission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Menu2Activity.this, android.Manifest.permission.SEND_SMS )
+                            != PackageManager.PERMISSION_GRANTED) {
+                        checkVerify();
+                    }
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(PhoneSms, null, MissionSms, null, null);
+
+                    Toast.makeText(getApplicationContext(), "오늘의 미션 보내기 성공", Toast.LENGTH_LONG).show();
+
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
+                    Log.e("error", String.valueOf(e));
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //글씨 크기 변동
         pref = getSharedPreferences("pref", MODE_PRIVATE);
 
         switch (pref.getString("textsize", "")){

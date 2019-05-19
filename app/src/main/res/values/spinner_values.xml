@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="weather">
+        <item>맑았다.</item>
+        <item>흐렸다.</item>
+        <item>비가 왔다.</item>
+        <item>눈이 왔다.</item>
+        <item>미세먼지가 많았다.</item>
+        <item>안개가 꼈다.</item>
+    </string-array>
+    <string-array name="textList">
+        <item>텍스트크기선택</item>
+        <item>보통텍스트</item>
+        <item>큰텍스트</item>
+        <item>작은텍스트</item>
+    </string-array>
+    <string-array name="gender">
+        <item>남자</item>
+        <item>여자</item>
+    </string-array>
+    <string-array name="emotion">
+        <item>좋았다</item>
+        <item>기뻤다</item>
+        <item>행복했다</item>
+        <item>슬펐다</item>
+        <item>화가 났다</item>
+        <item>이상했다</item>
+    </string-array>
+</resources>

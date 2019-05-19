@@ -43,10 +43,9 @@
                 android:hint="전화번호를 입력해주세요"
                 android:inputType="phone"
                 android:textSize="18sp" />
-
             <Button
-                android:elevation="6dp"
                 android:id="@+id/buttonStartVerification"
+                android:elevation="6dp"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,11 +55,9 @@
         </LinearLayout>
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
             <EditText
                 android:textColor="@color/mainDark"
                 android:id="@+id/fieldVerificationCode"
@@ -73,8 +70,8 @@
                 android:textSize="18sp" />
 
             <Button
-                android:elevation="6dp"
                 android:id="@+id/buttonVerifyPhone"
+                android:elevation="6dp"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +84,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:orientation="horizontal">
-
                 <Button
                     android:elevation="6dp"
                     android:id="@+id/buttonResend"
@@ -96,7 +92,6 @@
                     android:layout_height="wrap_content"
                     android:text="인증번호재전송"
                     android:theme="@style/ThemeOverlay.MyDarkButton" />
-
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

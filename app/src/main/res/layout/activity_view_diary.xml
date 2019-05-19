@@ -11,17 +11,17 @@
     >
 
     <LinearLayout
+        android:id="@+id/viewDiary_textArea_Linear"
         android:layout_marginTop="5dp"
         android:elevation="10dp"
         android:layout_margin="17dp"
         android:padding="20dp"
-        android:id="@+id/viewDiary_textArea_Linear"
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:textColor="@color/mainDark"
             android:id="@+id/viewDiary_contents_textView"
+            android:textColor="@color/mainDark"
             android:textSize="23sp"
             android:text="오늘은 어저구 저쩌구 그랫다 암튼 그랫다 오키"
             android:layout_width="wrap_content"

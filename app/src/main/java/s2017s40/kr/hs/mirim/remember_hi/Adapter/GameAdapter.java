@@ -38,7 +38,7 @@ public class GameAdapter extends BaseAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.gamegrid_item, null);
+            convertView = inflater.inflate(R.layout.item_grid_game_menu4, null);
         }
 
         TextView textView = convertView.findViewById(R.id.GameTxt);
