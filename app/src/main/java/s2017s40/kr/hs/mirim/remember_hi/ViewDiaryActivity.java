@@ -60,6 +60,9 @@ public class ViewDiaryActivity extends AppCompatActivity {
                 diaryDTO =  dataSnapshot.getValue(DiaryDTO.class);
                 String setDate = diaryDTO.getDiaryDate();
 
+                title = setDate.substring(0,4) + "년 " + setDate.substring(5,7) + "월" +
+                        setDate.substring(setDate.length()-2) + "일";
+
                 //년, 월, 일 형식으로
                 contents.setText("오늘의 날씨는 " + diaryDTO.getDiaryWeather() +
                         "\n오늘의 기분은 " + diaryDTO.getDiaryFeel()+
@@ -72,5 +75,26 @@ public class ViewDiaryActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
             }
         });
+
+        SharedPreferences pref;
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
+
+        switch (pref.getString("textsize", "")){
+            case "big":
+                t.setTextSize(35);
+               contents.setTextSize(25);
+
+                break;
+            case "small":
+                t.setTextSize(25);
+                contents.setTextSize(15);
+
+                break;
+            default:
+                contents.setTextSize(20);
+                t.setTextSize(30);
+
+                break;
+        }
     }
 }

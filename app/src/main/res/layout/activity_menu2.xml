@@ -14,11 +14,12 @@
         android:text="보호자 전화번호"
         android:textColor="@color/mainDark"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="12dp"
+        android:textSize="@dimen/middleMenus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textSize="@dimen/middleContent"
         android:id="@+id/editTextPhoneNo"
         android:layout_width="344dp"
         android:layout_height="41dp"
@@ -40,12 +41,12 @@
         android:text="버튼을 선택해 주세요"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/mainDark"
-        android:textSize="12dp"
+        android:textSize="@dimen/middleMenus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNo" />
 
     <Button
-        android:textSize="@dimen/button"
+        android:textSize="@dimen/middleButton"
         android:id="@+id/buttonSendDiary"
         android:layout_width="166dp"
         android:layout_height="56dp"
@@ -59,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewSMS" />
 
     <Button
-        android:textSize="@dimen/button"
+        android:textSize="@dimen/middleButton"
         android:id="@+id/buttonSendMission"
         android:layout_width="166dp"
         android:layout_height="56dp"

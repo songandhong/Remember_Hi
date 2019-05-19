@@ -38,6 +38,7 @@
             android:textColor="@color/mainDarkGray"
             android:textSize="30sp" />
         <TextView
+            android:id="@+id/titleText_wirte"
             android:textColor="@color/mainDarkGray"
             android:textSize="30sp"
             android:text="의 일기"
@@ -110,34 +111,38 @@
             android:orientation="horizontal">
 
             <ToggleButton
+
+                android:background="@drawable/toggle_bg"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:id="@+id/writeDiary_keyword1_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="7dp"
-                android:textColor="@color/mainDark"
+                android:textColor="@color/white"
                 android:textOff="keyword1"
                 android:textOn="keyword1" />
 
             <ToggleButton
+                android:background="@drawable/toggle_bg"
                 android:layout_weight="1"
                 android:id="@+id/writeDiary_keyword2_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="7dp"
-                android:textColor="@color/mainDark"
+                android:textColor="@color/white"
                 android:textOff="keyword2"
                 android:textOn="keyword2" />
 
             <ToggleButton
+                android:background="@drawable/toggle_bg"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:id="@+id/writeDiary_keyword3_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="7dp"
-                android:textColor="@color/mainDark"
+                android:textColor="@color/white"
                 android:textOff="keyword3"
                 android:textOn="keyword3" />
         </LinearLayout>
@@ -167,7 +172,7 @@
             android:textSize="23sp" />
     </LinearLayout>
     <Button
-        android:textSize="@dimen/button"
+        android:textSize="@dimen/middleButton"
         android:layout_weight="2.2"
         android:id="@+id/writeDiary_write_btn"
         android:layout_width="match_parent"
