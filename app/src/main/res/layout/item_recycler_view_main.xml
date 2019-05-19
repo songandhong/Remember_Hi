@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="240dp">
             <ImageView
-                android:background="@color/mainGray"
+                android:background="@color/white"
                 android:id="@+id/item_main_image_image"
                 android:scaleType="fitCenter"
                 android:layout_width="match_parent"

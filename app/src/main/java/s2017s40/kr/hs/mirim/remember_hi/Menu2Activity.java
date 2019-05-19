@@ -73,8 +73,7 @@ public class Menu2Activity extends AppCompatActivity {
                 String sms = "문자를 보냅니다.";
                 try {
                     if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Menu2Activity.this, android.Manifest.permission.SEND_SMS )
-                            != PackageManager.PERMISSION_GRANTED)
-                    {
+                            != PackageManager.PERMISSION_GRANTED) {
                         checkVerify();
                     }
                     SmsManager smsManager = SmsManager.getDefault();
