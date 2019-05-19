@@ -47,9 +47,11 @@
 
     <style name="MySuperAppTheme"></style>
 
-    <style name="textSizes" parent="@android:style/Widget.TextView">
-
-
+    <style name="largeText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">30sp</item>
+    </style>
+    <style name="smallText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">18sp</item>
     </style>
 
 </resources>

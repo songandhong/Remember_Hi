@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class AddMissionActivity extends AppCompatActivity {
     EditText EditTitle;
     Button confirmBtn, cancelBtn;
     TimePicker timePicker;
+    TextView addimissiontitletxt;
 
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
@@ -46,6 +48,7 @@ public class AddMissionActivity extends AppCompatActivity {
         confirmBtn = findViewById(R.id.addMission_confirm_btn);
         cancelBtn = findViewById(R.id.addMission_cancel_btn);
         timePicker = findViewById(R.id.addMission_time_timepicker);
+        addimissiontitletxt = findViewById(R.id.addMission_titleText_textView);
 
         //DB연동위한 값
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
@@ -69,6 +72,32 @@ public class AddMissionActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        SharedPreferences pref;
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
+
+        switch (pref.getString("textsize", "")){
+            case "big":
+               EditTitle.setTextSize(25);
+                addimissiontitletxt.setTextSize(35);
+                confirmBtn.setTextSize(23);
+                cancelBtn.setTextSize(23);
+
+                break;
+            case "small":
+                EditTitle.setTextSize(15);
+                addimissiontitletxt.setTextSize(25);
+                confirmBtn.setTextSize(13);
+                cancelBtn.setTextSize(13);
+
+                break;
+            default:
+                EditTitle.setTextSize(20);
+                addimissiontitletxt.setTextSize(30);
+                confirmBtn.setTextSize(18);
+                cancelBtn.setTextSize(18);
+                break;
+        }
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override

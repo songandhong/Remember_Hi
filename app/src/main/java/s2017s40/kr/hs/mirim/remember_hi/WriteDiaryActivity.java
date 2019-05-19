@@ -28,7 +28,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
     Spinner weatherSpinner, emotionSpinner;
     EditText writeDiaryEdit;
     Button writeBtn;
-    TextView yearTitle, monthTitle, dateTitle;
+    TextView yearTitle, monthTitle, dateTitle, titleText_wirte, writeDiary_weather_text, writeDiary_emotion_text;
     String nowTimeStr;
     ToggleButton keyword1, keyword2, keyword3;
 
@@ -61,6 +61,10 @@ public class WriteDiaryActivity extends AppCompatActivity {
         yearTitle = findViewById(R.id.writeDiary_Year_text);
         monthTitle = findViewById(R.id.writeDiary_Month_text);
         dateTitle = findViewById(R.id.writeDiary_Date_text);
+        titleText_wirte = findViewById(R.id.titleText_wirte);
+
+        writeDiary_weather_text = findViewById(R.id.writeDiary_weather_text);
+        writeDiary_emotion_text = findViewById(R.id.writeDiary_emotion_text);
 
         //글쓰기 버튼
         writeBtn = findViewById(R.id.writeDiary_write_btn);
@@ -128,5 +132,55 @@ public class WriteDiaryActivity extends AppCompatActivity {
 
             }
         });
+
+        SharedPreferences pref;
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
+        switch (pref.getString("textsize", "")){
+            case "big":
+                titleText_wirte.setTextSize(35);
+                writeDiary_weather_text.setTextSize(30);
+                writeDiary_emotion_text.setTextSize(30);
+
+                yearTitle.setTextSize(35);
+                monthTitle.setTextSize(35);
+                dateTitle.setTextSize(35);
+                keyword1.setTextSize(23);
+                keyword2.setTextSize(23);
+                keyword3.setTextSize(23);
+                writeDiaryEdit.setTextSize(25);
+                writeBtn.setTextSize(23);
+                break;
+            case "small":
+                titleText_wirte.setTextSize(25);
+                writeDiary_weather_text.setTextSize(20);
+                writeDiary_emotion_text.setTextSize(20);
+
+                yearTitle.setTextSize(25);
+                monthTitle.setTextSize(25);
+                dateTitle.setTextSize(25);
+                keyword1.setTextSize(13);
+                keyword2.setTextSize(13);
+                keyword3.setTextSize(13);
+                writeDiaryEdit.setTextSize(15);
+                writeBtn.setTextSize(13);
+                break;
+            default:
+                titleText_wirte.setTextSize(30);
+                writeDiary_weather_text.setTextSize(25);
+                writeDiary_emotion_text.setTextSize(25);
+
+                yearTitle.setTextSize(30);
+                monthTitle.setTextSize(30);
+                dateTitle.setTextSize(30);
+                keyword1.setTextSize(18);
+                keyword2.setTextSize(18);
+                keyword3.setTextSize(18);
+                writeDiaryEdit.setTextSize(20);
+                writeBtn.setTextSize(18);
+                break;
+        }
+
+
+
     }
 }
