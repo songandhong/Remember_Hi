@@ -7,18 +7,20 @@
         android:orientation="horizontal"
         android:clickable="true" >
         <TextView
-            android:id="@+id/item_menu3_title_text"
+            android:textColor="@color/DarkGray"
+            android:id="@+id/item_menu3_time_text"
             android:textSize="25sp"
-            android:text="제목"
+            android:text="시간"
             android:layout_width="match_parent"
             android:gravity="right|center"
             android:layout_weight="1"
             android:layout_height= "70dp"
             android:padding="10dp"/>
         <TextView
-            android:id="@+id/item_menu3_time_text"
+            android:textColor="@color/DarkGray"
+            android:id="@+id/item_menu3_title_text"
             android:textSize="25sp"
-            android:text="시간"
+            android:text="제목"
             android:gravity="left|center"
             android:layout_width="match_parent"
             android:layout_height= "70dp"

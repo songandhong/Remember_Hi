@@ -8,9 +8,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
+                android:textColor="@color/DarkGray"
                 android:id="@+id/item_menu1_list_text"
                 android:gravity="center|left"
-                android:textSize="15sp"
+                android:textSize="25sp"
                 android:text="ddd"
                 android:layout_width="match_parent"
                 android:layout_height= "70dp"
