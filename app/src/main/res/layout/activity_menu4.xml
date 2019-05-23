@@ -6,28 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".Menu4Activity"
     android:layout_centerHorizontal="true"
-    android:orientation="vertical">
-    <RelativeLayout
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/menu4_title_text"
-            android:textColor="@color/DarkGray"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
-            android:text="숫자 순서 맞추기"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/menu4_info_img"
-            android:layout_toRightOf="@+id/menu4_title_text"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/information"
-            android:layout_width="32dp"
-            android:layout_height="32dp" />
-    </RelativeLayout>
+    android:orientation="vertical"
+    android:gravity="center"
+    >
 
     <TextView
         android:id="@+id/menu4_level_text"
@@ -36,7 +17,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:textSize="20sp"
-        android:text="난이도"
+        android:text="난이도를 선택하세요"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button

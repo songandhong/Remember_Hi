@@ -65,14 +65,6 @@ public class MainActivity extends AppCompatActivity {
         linkTxt = findViewById(R.id.main_site_text);
         item_main_list_text = findViewById(R.id.item_main_list_text);
 
-
-
-
-
-
-
-
-
         setTxtsize();
 
         txtsize = findViewById(R.id.main_textsize_spinner);

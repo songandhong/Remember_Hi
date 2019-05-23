@@ -18,19 +18,17 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
     Button levelHigh, levelMiddlw, levelLow;
     String level;
     ImageView info;
-    TextView gametitle, levelTxt;
+    TextView levelTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu4);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
+        getSupportActionBar().setCustomView(R.layout.game_custom_appbar);
 
-        TextView t =findViewById(R.id.actionbar_text);
-        t.setText("게임하기");
+        TextView t = findViewById(R.id.gameactionbar_text);
 
-        gametitle = findViewById(R.id.menu4_title_text);
         levelTxt = findViewById(R.id.menu4_level_text);
         info = findViewById(R.id.menu4_info_img);
         levelHigh = findViewById(R.id.menu4_levelHigh_btn);
@@ -56,7 +54,6 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
                 levelHigh.setTextSize(23);
                 levelLow.setTextSize(23);
                 levelMiddlw.setTextSize(23);
-                gametitle.setTextSize(30);
                 levelTxt.setTextSize(30);
 
                 break;
@@ -65,7 +62,6 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
                 levelHigh.setTextSize(13);
                 levelLow.setTextSize(13);
                 levelMiddlw.setTextSize(13);
-                gametitle.setTextSize(20);
                 levelTxt.setTextSize(20);
 
                 break;
@@ -74,7 +70,6 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
                 levelHigh.setTextSize(18);
                 levelLow.setTextSize(18);
                 levelMiddlw.setTextSize(18);
-                gametitle.setTextSize(25);
                 levelTxt.setTextSize(25);
 
                 break;

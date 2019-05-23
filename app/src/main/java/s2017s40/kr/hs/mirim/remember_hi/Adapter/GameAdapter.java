@@ -13,7 +13,6 @@ import s2017s40.kr.hs.mirim.remember_hi.R;
 
 public class GameAdapter extends BaseAdapter {
 
-    private Context context;
     ArrayList<Integer> list = new ArrayList<Integer>();
 
     @Override
