@@ -11,49 +11,70 @@
     >
 
     <TextView
+        android:layout_marginBottom="15dp"
+        android:textStyle="bold"
+        android:gravity="center"
         android:id="@+id/menu4_level_text"
-        android:layout_marginBottom="10dp"
         android:textColor="@color/DarkGray"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:text="난이도를 선택하세요"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:src="@drawable/game1"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/GamePreimg"
+        android:layout_below="@+id/menu4_level_text"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/levelchoice"
+        android:gravity="center"
+        android:layout_below="@+id/GamePreimg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/leftPoint"
+            android:src="@drawable/leftpoint"
+            android:layout_width="32dp"
+            android:layout_height="32dp" />
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/DarkGray"
+            android:textSize="25sp"
+            android:id="@+id/game_levelTxt"
+            android:layout_toRightOf="@+id/leftPoint"
+            android:text="쉬움"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/game_levelTxt"
+            android:id="@+id/rightPoint"
+            android:src="@drawable/rightpoint"
+            android:layout_width="32dp"
+            android:layout_height="32dp" />
+    </RelativeLayout>
+    <Button
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_style"
+        android:id="@+id/startGameBtn"
+        android:text="게임 시작"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/levelchoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/menu4_levelHigh_btn"
-        android:textStyle="bold"
-        android:background="@color/main"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/menu4_level_text"
-        android:layout_margin="5dp"
-        android:textSize="@dimen/middleButton"
-        android:text="상"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/menu4_levelMiddle_btn"
-        android:textStyle="bold"
-        android:background="@color/main"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/menu4_levelHigh_btn"
-        android:layout_margin="5dp"
-        android:textSize="@dimen/middleButton"
-        android:text="중"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/menu4_levelLow_btn"
-        android:textStyle="bold"
-        android:background="@color/main"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/menu4_levelMiddle_btn"
-        android:layout_margin="5dp"
-        android:textSize="@dimen/middleButton"
-        android:text="하"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
+
+
 </RelativeLayout>

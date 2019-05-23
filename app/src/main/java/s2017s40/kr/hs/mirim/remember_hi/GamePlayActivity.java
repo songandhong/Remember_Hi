@@ -43,9 +43,9 @@ public class GamePlayActivity extends AppCompatActivity {
         level = intent.getStringExtra("level");
 
         switch (level){
-            case"h":levelValue=1000; values=8; break;
-            case"m":levelValue=500;values=6; break;
-            case"l":levelValue=10; values=4;break;
+            case"어려움":levelValue=1000; values=8; break;
+            case"보통":levelValue=500;values=6; break;
+            case"쉬움":levelValue=10; values=4;break;
         }
 
         value = new int[values];

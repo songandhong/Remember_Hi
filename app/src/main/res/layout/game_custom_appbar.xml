@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
-    >
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center"
     >
     <TextView
+        android:layout_centerInParent="true"
         android:textStyle="bold"
         android:textColor="@color/DarkGray"
         android:text="게임하기"
@@ -17,14 +12,15 @@
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <ImageView
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="12dp"
         android:layout_centerVertical="true"
-        android:id="@+id/menu4_info_img"
         android:layout_toRightOf="@+id/gameactionbar_text"
-        android:src="@drawable/information"
-        android:layout_width="32dp"
-        android:layout_height="32dp" />
+        android:id="@+id/menu4_info_img"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/information" />
 
 </RelativeLayout>
-</LinearLayout>
+

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".GamePlayActivity"
     android:gravity="center"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
     >
 
 
