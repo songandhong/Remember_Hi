@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -24,7 +26,8 @@ public class GamePlayActivity extends AppCompatActivity {
     GameAdapter adapter;
     int Flag=0;
     String level;
-    int levelValue;
+    int levelValue, values = 6;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,33 +36,37 @@ public class GamePlayActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         HashSet<Integer> lists = new HashSet<>();
-        final int value[] = new int[4];
-        int ShuffleArr[] = new int[4]; // 셔플시 사용
+        final int value[];
+        int ShuffleArr[];// 셔플시 사용
+
         Intent intent = getIntent();
         level = intent.getStringExtra("level");
 
         switch (level){
-            case"h":levelValue=1000; break;
-            case"m":levelValue=500; break;
-            case"l":levelValue=10; break;
+            case"h":levelValue=1000; values=8; break;
+            case"m":levelValue=500;values=6; break;
+            case"l":levelValue=10; values=4;break;
         }
+
+        value = new int[values];
+        ShuffleArr = new int[values];
 
         grid = findViewById(R.id.Board);
         adapter = new GameAdapter();
 
-        while(lists.size() < 4){
-            lists.add((int)(Math.random()*levelValue));
+        while(lists.size() < values){
+            lists.add((int)(Math.random()*levelValue) + 1);
         }
 
         List valueList = new ArrayList(lists);
         Collections.sort(valueList);
-        for(int v =0; v < 4; v++){
+        for(int v =0; v < values; v++){
             value[v] = (Integer) valueList.get(v);
             ShuffleArr[v] = value[v];
         }
 
        shuffling(ShuffleArr);
-        for(int j = 0; j < 4; j++){
+        for(int j = 0; j < values; j++){
             adapter.addItem(ShuffleArr[j]);
         }
         grid.setAdapter(adapter);
@@ -68,11 +75,12 @@ public class GamePlayActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(value[Flag] == adapter.get(position)){
-                    LinearLayout l = (LinearLayout) view;
-                    l.setBackgroundColor(getResources().getColor(R.color.mainDark));
+                    TextView txt = view.findViewById(R.id.GameTxt);
+
+                    txt.setBackgroundColor(getResources().getColor(R.color.mainDark));
                     Toast.makeText(getApplicationContext(), "정답입니다", Toast.LENGTH_SHORT).show();
                     Flag++;
-                    if(Flag == 4){
+                    if(Flag == values){
                         Dialog();
                     }
                 }else{

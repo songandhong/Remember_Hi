@@ -7,20 +7,12 @@
     tools:context=".GamePlayActivity"
     android:gravity="center"
     >
-<!--  게임 완성하면 주석 풀기
-    <FrameLayout
-        android:background="#fff"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
-            android:layout_gravity="center"
-            android:text="게임시작"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
--->
+
 
     <GridView
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:background="@drawable/gridview_back_radius"
         android:id="@+id/Board"
         android:numColumns="2"
         android:layout_width="wrap_content"

@@ -18,22 +18,20 @@
                 android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="안녕"
-                android:padding="15dp"
-                android:textColor="@color/white"
-                android:background="@color/main"
+                android:text="나의 이름은 000 압니다"
+                android:padding="12dp"
+                android:textColor="@color/mainDark"
                 android:textSize="@dimen/middleTitle"/>
             <LinearLayout
+                android:padding="8dp"
                 android:id="@+id/main_site_layout"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:background="@color/mainlightDark"
-                android:layout_marginTop="10dp"
+                android:background="@color/main"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:id="@+id/main_site_text"
                     android:textStyle="bold"
                     android:textSize="@dimen/middleMenus"
