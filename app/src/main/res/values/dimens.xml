@@ -7,6 +7,8 @@
     <dimen name="icon_bottom_margin">24dp</dimen>
     <dimen name="title_bottom_margin">16dp</dimen>
     <dimen name="field_width_standard">160dp</dimen>
+    <dimen name="layout_left_right_margin">10dp</dimen>
+    <dimen name="btnPadding">30dp</dimen>
 
     <dimen name="middleTitle1">30</dimen>
     <dimen name="middleMenus1">25</dimen>

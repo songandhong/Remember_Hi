@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,26 +67,32 @@ public class Menu2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_menu2);
 
 
-        testReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                // TODO Auto-generated method stub
-                // 이벤트 처리
-                sendDiaryMessage();
-                sendMissionMessage();
-                //AlarmManager 재 등록
-                testAlarm();
-            }
-        };
-        registerReceiver(testReceiver, new IntentFilter("AlarmService"));
+//        testReceiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                // TODO Auto-generated method stub
+//                // 이벤트 처리
+//                sendDiaryMessage();
+//                sendMissionMessage();
+//                //AlarmManager 재 등록
+//                testAlarm();
+//            }
+//        };
+//        registerReceiver(testReceiver, new IntentFilter("AlarmService"));
 
 
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
-
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout_withback);
         TextView t =findViewById(R.id.actionbar_text);
         t.setText("문자 전송하기");
+        ImageView back = findViewById(R.id.appBackBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         textViewSMS = findViewById(R.id.menu2_btn_title_text);
         buttonSendDiary = (Button) findViewById(R.id.menu2_diary_btn);
@@ -211,25 +218,25 @@ public class Menu2Activity extends AppCompatActivity {
         }
     }
 
-    public void testAlarm(){
-        Intent intent = new Intent("AlarmService");
-        PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
-        long firstTime = SystemClock.elapsedRealtime();
-        firstTime += 24 * 60 * 60*1000; //24시간 후 알람 이벤트 발생
-        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                //API 19 이상 API 23미만
-                am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender) ;
-            } else {
-                //API 19미만
-                am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
-            }
-        } else {
-            //API 23 이상
-            am.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
-        }
-    }
+//    public void testAlarm(){
+//        Intent intent = new Intent("AlarmService");
+//        PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+//        long firstTime = SystemClock.elapsedRealtime();
+//        firstTime += 24 * 60 * 60*1000; //24시간 후 알람 이벤트 발생
+//        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+//        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+//            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//                //API 19 이상 API 23미만
+//                am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender) ;
+//            } else {
+//                //API 19미만
+//                am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
+//            }
+//        } else {
+//            //API 23 이상
+//            am.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
+//        }
+//    }
 
     public void sendDiaryMessage(){
         try {

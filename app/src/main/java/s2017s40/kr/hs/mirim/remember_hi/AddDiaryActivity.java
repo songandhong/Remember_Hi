@@ -1,5 +1,6 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,9 +29,9 @@ public class AddDiaryActivity extends AppCompatActivity {
     Spinner weatherSpinner, emotionSpinner;
     EditText writeDiaryEdit;
     Button writeBtn;
-    TextView yearTitle, monthTitle, dateTitle, titleText_wirte, writeDiary_weather_text, writeDiary_emotion_text;
+    TextView titleText_wirte, writeDiary_weather_text, writeDiary_emotion_text;
     String nowTimeStr;
-    ToggleButton keyword1, keyword2, keyword3;
+    ToggleButton keyword1, keyword2, keyword3, keyword4, keyword5, keyword6, keyword7, keyword8,keyword9;
     int randomNum[];
 
     //파이어베이스 연결 위한 준비
@@ -45,9 +47,18 @@ public class AddDiaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_diary);
 
-        getSupportActionBar().hide();
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout_withback);
+        TextView t =findViewById(R.id.actionbar_text);
+        ImageView back = findViewById(R.id.appBackBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
-        randomNum = new int[3];
+        randomNum = new int[9];
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
@@ -55,14 +66,20 @@ public class AddDiaryActivity extends AppCompatActivity {
       
         //toggleButton
         //isChecked 로 boolean 타입 반환(상태 저장)
+
         keyword1 = findViewById(R.id.writeDiary_keyword1_toggle);
         keyword2 = findViewById(R.id.writeDiary_keyword2_toggle);
         keyword3 = findViewById(R.id.writeDiary_keyword3_toggle);
 
+        keyword4 = findViewById(R.id.writeDiary_keyword4_toggle);
+        keyword5 = findViewById(R.id.writeDiary_keyword5_toggle);
+        keyword6 = findViewById(R.id.writeDiary_keyword6_toggle);
+
+        keyword7 = findViewById(R.id.writeDiary_keyword7_toggle);
+        keyword8 = findViewById(R.id.writeDiary_keyword8_toggle);
+        keyword9 = findViewById(R.id.writeDiary_keyword9_toggle);
+
         //일기 맨 상단의 제목
-        yearTitle = findViewById(R.id.writeDiary_Year_text);
-        monthTitle = findViewById(R.id.writeDiary_Month_text);
-        dateTitle = findViewById(R.id.writeDiary_Date_text);
         titleText_wirte = findViewById(R.id.writeDiary_content_edit);
 
         writeDiary_weather_text = findViewById(R.id.writeDiary_weather_text);
@@ -84,16 +101,16 @@ public class AddDiaryActivity extends AppCompatActivity {
         SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd");
         nowTimeStr = formatTime.format(date);
 
-        // 일단 날짜 형식 "yyyy-MM-dd로 줄게,,
-        // 타입이 스트링이길래  ㅜㅜ ㅜ 형식이나 타입 바꿔야하면 얘기해조
+        String s =
+                nowTimeStr.substring(5,7) + "월 " +
+                nowTimeStr.substring(nowTimeStr.length()-2, nowTimeStr.length())+ "일" + "의 일기";
 
-        yearTitle.setText(nowTimeStr.substring(0,4) + "년 ");
-        monthTitle.setText(nowTimeStr.substring(5,7) + "월 ");
-        dateTitle.setText(nowTimeStr.substring(nowTimeStr.length()-2, nowTimeStr.length())+ "일");
+        t.setText(s); // 액션바에 setText
+
 
         arr = new WordsArray();
 
-        for(int i = 0; i< 3; i ++){
+        for(int i = 0; i< 9; i ++){
             randomNum[i] = (int) (Math.random() * arr.wordArr.size());
             for(int j = 0; j < i; j++){
                 if(randomNum[i] == randomNum[j]){
@@ -102,9 +119,16 @@ public class AddDiaryActivity extends AppCompatActivity {
             }
         }
 
+
         keyword1.setText(arr.wordArr.get(randomNum[0]));
         keyword2.setText(arr.wordArr.get(randomNum[1]));
         keyword3.setText(arr.wordArr.get(randomNum[2]));
+        keyword4.setText(arr.wordArr.get(randomNum[3]));
+        keyword5.setText(arr.wordArr.get(randomNum[4]));
+        keyword6.setText(arr.wordArr.get(randomNum[5]));
+        keyword7.setText(arr.wordArr.get(randomNum[6]));
+        keyword8.setText(arr.wordArr.get(randomNum[7]));
+        keyword9.setText(arr.wordArr.get(randomNum[8]));
 
         keyword1.setTextOn(arr.wordArr.get(randomNum[0]));
         keyword1.setTextOff(arr.wordArr.get(randomNum[0]));
@@ -112,6 +136,20 @@ public class AddDiaryActivity extends AppCompatActivity {
         keyword2.setTextOff(arr.wordArr.get(randomNum[1]));
         keyword3.setTextOn(arr.wordArr.get(randomNum[2]));
         keyword3.setTextOff(arr.wordArr.get(randomNum[2]));
+
+        keyword4.setTextOn(arr.wordArr.get(randomNum[3]));
+        keyword4.setTextOff(arr.wordArr.get(randomNum[3]));
+        keyword5.setTextOn(arr.wordArr.get(randomNum[4]));
+        keyword5.setTextOff(arr.wordArr.get(randomNum[4]));
+        keyword6.setTextOn(arr.wordArr.get(randomNum[5]));
+        keyword6.setTextOff(arr.wordArr.get(randomNum[5]));
+
+        keyword7.setTextOn(arr.wordArr.get(randomNum[6]));
+        keyword7.setTextOff(arr.wordArr.get(randomNum[6]));
+        keyword8.setTextOn(arr.wordArr.get(randomNum[7]));
+        keyword8.setTextOff(arr.wordArr.get(randomNum[7]));
+        keyword9.setTextOn(arr.wordArr.get(randomNum[8]));
+        keyword9.setTextOff(arr.wordArr.get(randomNum[8]));
 
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +163,14 @@ public class AddDiaryActivity extends AppCompatActivity {
                 String keyword1Str = keyword1.getTextOn().toString();
                 String keyword2Str = keyword2.getTextOn().toString();
                 String keyword3Str = keyword3.getTextOn().toString();
+
+                String keyword4Str = keyword4.getTextOn().toString();
+                String keyword5Str = keyword5.getTextOn().toString();
+                String keyword6Str = keyword6.getTextOn().toString();
+
+                String keyword7Str = keyword7.getTextOn().toString();
+                String keyword8Str = keyword8.getTextOn().toString();
+                String keyword9Str = keyword9.getTextOn().toString();
               
                 if(!(keyword1.isChecked()))
                     keyword1Str = "";
@@ -132,7 +178,23 @@ public class AddDiaryActivity extends AppCompatActivity {
                     keyword2Str = "";
                 if(!(keyword3.isChecked()))
                     keyword3Str = "";
-              
+
+                if(!(keyword4.isChecked()))
+                    keyword4Str = "";
+                if(!(keyword5.isChecked()))
+                    keyword5Str = "";
+                if(!(keyword6.isChecked()))
+                    keyword6Str = "";
+
+                if(!(keyword4.isChecked()))
+                    keyword7Str = "";
+                if(!(keyword5.isChecked()))
+                    keyword8Str = "";
+                if(!(keyword6.isChecked()))
+                    keyword9Str = "";
+
+
+                // 9까지 추가해야함,,,
                 DiaryDTO diarydto = new DiaryDTO(editContents, nowTimeStr, emotionStr, keyword1Str, keyword2Str, keyword3Str, weatherStr);
                 myRef.child(nowTimeStr).addValueEventListener(new ValueEventListener() {
                     @Override
@@ -165,12 +227,15 @@ public class AddDiaryActivity extends AppCompatActivity {
                 writeDiary_weather_text.setTextSize(30);
                 writeDiary_emotion_text.setTextSize(30);
 
-                yearTitle.setTextSize(35);
-                monthTitle.setTextSize(35);
-                dateTitle.setTextSize(35);
                 keyword1.setTextSize(23);
                 keyword2.setTextSize(23);
                 keyword3.setTextSize(23);
+                keyword4.setTextSize(23);
+                keyword5.setTextSize(23);
+                keyword6.setTextSize(23);
+                keyword7.setTextSize(23);
+                keyword8.setTextSize(23);
+                keyword9.setTextSize(23);
                 writeDiaryEdit.setTextSize(25);
                 writeBtn.setTextSize(23);
                 break;
@@ -179,12 +244,15 @@ public class AddDiaryActivity extends AppCompatActivity {
                 writeDiary_weather_text.setTextSize(20);
                 writeDiary_emotion_text.setTextSize(20);
 
-                yearTitle.setTextSize(25);
-                monthTitle.setTextSize(25);
-                dateTitle.setTextSize(25);
                 keyword1.setTextSize(13);
                 keyword2.setTextSize(13);
                 keyword3.setTextSize(13);
+                keyword4.setTextSize(13);
+                keyword5.setTextSize(13);
+                keyword6.setTextSize(13);
+                keyword7.setTextSize(13);
+                keyword8.setTextSize(13);
+                keyword9.setTextSize(13);
                 writeDiaryEdit.setTextSize(15);
                 writeBtn.setTextSize(13);
                 break;
@@ -193,12 +261,15 @@ public class AddDiaryActivity extends AppCompatActivity {
                 writeDiary_weather_text.setTextSize(25);
                 writeDiary_emotion_text.setTextSize(25);
 
-                yearTitle.setTextSize(30);
-                monthTitle.setTextSize(30);
-                dateTitle.setTextSize(30);
                 keyword1.setTextSize(18);
                 keyword2.setTextSize(18);
                 keyword3.setTextSize(18);
+                keyword4.setTextSize(18);
+                keyword5.setTextSize(18);
+                keyword6.setTextSize(18);
+                keyword7.setTextSize(18);
+                keyword8.setTextSize(18);
+                keyword9.setTextSize(18);
                 writeDiaryEdit.setTextSize(20);
                 writeBtn.setTextSize(18);
                 break;

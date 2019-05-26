@@ -8,12 +8,12 @@
         android:bottom="5dp"
         />
     <gradient
-        android:startColor="@color/mainDark"
-        android:endColor="@color/mainDark"
+        android:startColor="@color/lightPurple"
+        android:endColor="@color/lightPurple"
         />
-    <stroke
-        android:color="@color/mainDark"
-        android:width="1dp" />
+    <corners
+        android:radius="10dp"
+        />
 
 </shape>
 

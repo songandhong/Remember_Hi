@@ -29,8 +29,15 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.game_custom_appbar);
-
         TextView t = findViewById(R.id.gameactionbar_text);
+
+        ImageView back = findViewById(R.id.appBackBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         gameImage = findViewById(R.id.GamePreimg);
         levelTxt = findViewById(R.id.menu4_level_text);

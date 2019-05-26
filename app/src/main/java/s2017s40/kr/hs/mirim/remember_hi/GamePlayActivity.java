@@ -77,7 +77,8 @@ public class GamePlayActivity extends AppCompatActivity {
                 if(value[Flag] == adapter.get(position)){
                     TextView txt = view.findViewById(R.id.GameTxt);
 
-                    txt.setBackgroundColor(getResources().getColor(R.color.mainDark));
+                    txt.setTextColor(getResources().getColor(R.color.main));
+                    txt.setBackgroundColor(getResources().getColor(R.color.white));
                     Toast.makeText(getApplicationContext(), "정답입니다", Toast.LENGTH_SHORT).show();
                     Flag++;
                     if(Flag == values){

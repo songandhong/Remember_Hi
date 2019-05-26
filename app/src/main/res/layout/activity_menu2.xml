@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Menu2Activity">
+    tools:context=".Menu2Activity"
+    android:background="@color/bgGray"
+    >
     <TextView
+        android:gravity="center"
+        android:padding="10dp"
         android:id="@+id/menu2_phone_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:text="보호자 전화번호"
+        android:layout_marginTop="20dp"
+        android:text="보호자\n전화번호"
         android:textColor="@color/mainDark"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/middleMenus"
