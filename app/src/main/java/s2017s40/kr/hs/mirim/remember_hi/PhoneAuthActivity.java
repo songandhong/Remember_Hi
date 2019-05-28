@@ -74,7 +74,10 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_auth);
 
-        getSupportActionBar().hide();
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
+        TextView t = findViewById(R.id.actionbar_text);
+        t.setText("SIGN IN");
 
         // Restore instance state
         if (savedInstanceState != null) {

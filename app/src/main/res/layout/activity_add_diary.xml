@@ -1,54 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".AddDiaryActivity">
+    tools:context=".AddDiaryActivity"
+    android:background="@color/bgGray"
+    >
 
     <LinearLayout
-        android:paddingTop="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/writeDiary_Year_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00년 "
-            android:textColor="@color/mainDarkGray"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/writeDiary_Month_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00월 "
-            android:textColor="@color/mainDarkGray"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/writeDiary_Date_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00일"
-            android:textColor="@color/mainDarkGray"
-            android:textSize="30sp" />
-        <TextView
-            android:id="@+id/titleText_wirte"
-            android:textColor="@color/mainDarkGray"
-            android:textSize="30sp"
-            android:text="의 일기"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
+        android:id="@+id/wrap_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
@@ -57,50 +20,56 @@
         android:paddingRight="12dp">
         <!-- 오늘의 날씨 -->
         <LinearLayout
+            android:padding="10dp"
+            android:background="@color/bgGray"
             android:layout_marginTop="10dp"
-            android:gravity="left"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center_vertical"
                 android:id="@+id/writeDiary_weather_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_bold"
-                android:text="오늘의 날씨는"
-                android:textColor="@color/mainDark"
-                android:textSize="23sp" />
+                android:text="오늘은 날씨가 " />
 
             <Spinner
+                android:background="@color/white"
                 android:id="@+id/writeDiary_weather_spinner"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:entries="@array/weather" />
         </LinearLayout>
 
         <!-- 오늘의 기분 -->
         <LinearLayout
+            android:padding="10dp"
+            android:background="@color/bgGray"
             android:layout_marginTop="5dp"
-            android:gravity="left"
             android:layout_margin="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center_vertical|left"
                 android:id="@+id/writeDiary_emotion_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_bold"
-                android:text="ABS"
-                android:textColor="@color/mainDark"
-                android:textSize="23sp" />
+                android:text="오늘은 기분이 " />
 
             <Spinner
+                android:background="@color/white"
                 android:id="@+id/writeDiary_emotion_spinner"
-                android:layout_width="190dp"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:entries="@array/emotion" />
         </LinearLayout>
@@ -113,79 +82,178 @@
             android:orientation="horizontal">
 
             <ToggleButton
-
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/toggle_bg"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:id="@+id/writeDiary_keyword1_toggle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="7dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textOff="keyword1"
                 android:textOn="keyword1" />
 
             <ToggleButton
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/toggle_bg"
                 android:layout_weight="1"
                 android:id="@+id/writeDiary_keyword2_toggle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="7dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textOff="keyword2"
                 android:textOn="keyword2" />
 
             <ToggleButton
                 android:background="@drawable/toggle_bg"
                 android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:id="@+id/writeDiary_keyword3_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="7dp"
+                android:textColor="@color/black"
+                android:textOff="keyword3"
+                android:textOn="keyword3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ToggleButton
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/toggle_bg"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:id="@+id/writeDiary_keyword4_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="7dp"
-                android:textColor="@color/white"
-                android:textOff="keyword3"
-                android:textOn="keyword3" />
+                android:textColor="@color/black"
+                android:textOff="keyword4"
+                android:textOn="keyword4" />
+
+            <ToggleButton
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/toggle_bg"
+                android:layout_weight="1"
+                android:id="@+id/writeDiary_keyword5_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="7dp"
+                android:textColor="@color/black"
+                android:textOff="keyword5"
+                android:textOn="keyword5" />
+
+            <ToggleButton
+                android:background="@drawable/toggle_bg"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:id="@+id/writeDiary_keyword6_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="7dp"
+                android:textColor="@color/black"
+                android:textOff="keyword6"
+                android:textOn="keyword6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ToggleButton
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/toggle_bg"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:id="@+id/writeDiary_keyword7_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="7dp"
+                android:textColor="@color/black"
+                android:textOff="keyword7"
+                android:textOn="keyword7" />
+
+            <ToggleButton
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/toggle_bg"
+                android:layout_weight="1"
+                android:id="@+id/writeDiary_keyword8_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="7dp"
+                android:textColor="@color/black"
+                android:textOff="keyword8"
+                android:textOn="keyword8" />
+
+            <ToggleButton
+                android:background="@drawable/toggle_bg"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:id="@+id/writeDiary_keyword9_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="7dp"
+                android:textColor="@color/black"
+                android:textOff="keyword9"
+                android:textOn="keyword9" />
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_weight="1"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/wrap_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical">
 
         <EditText
-            android:layout_marginTop="10dp"
+
+            android:background="@color/white"
             android:id="@+id/writeDiary_content_edit"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="start"
             android:hint="오늘의 일기를 써보세요"
-            android:lines="12"
+            android:lines="3"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:textColor="@color/mainDark"
             android:textSize="23sp" />
     </LinearLayout>
     <Button
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/btnPadding"
+        android:layout_marginRight="@dimen/btnPadding"
         android:textSize="@dimen/middleButton"
-        android:layout_weight="2.2"
         android:id="@+id/writeDiary_write_btn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/btn_style"
         android:elevation="10dp"
-        android:text="글쓰기"
+        android:text="일기 작성"
         android:textColor="@color/white" />
 
 
 
-</LinearLayout>
+</RelativeLayout>
 
     <!--1. 키워드 3개 클릭 토클로 추가하기--><!--2. 날짜 텍스트 분리하기--><!--3. 날짜만 따로 분리!!1-->

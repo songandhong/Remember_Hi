@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -47,17 +48,22 @@ public class Menu3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_menu3);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
-
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout_withback);
         TextView t =findViewById(R.id.actionbar_text);
         t.setText("미션 목록");
+        ImageView back = findViewById(R.id.appBackBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         arr = new ArrayList<>();
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
         myRef = database.getInstance().getReference("User/"+Number+"/Mission");
-
 
         writeBtn = findViewById(R.id.menu3_recycler_write_btn);
         writeBtn.setOnClickListener(new View.OnClickListener() {

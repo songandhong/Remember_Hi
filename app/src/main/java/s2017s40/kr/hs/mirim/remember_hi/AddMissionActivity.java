@@ -1,5 +1,6 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -26,9 +28,8 @@ public class AddMissionActivity extends AppCompatActivity {
     String missionTitle;
     int Hour, Minute;
     EditText EditTitle;
-    Button confirmBtn, cancelBtn;
+    Button confirmBtn;
     TimePicker timePicker;
-    TextView addimissiontitletxt;
 
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
@@ -41,14 +42,22 @@ public class AddMissionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_mission);
-        getSupportActionBar().hide();
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout_withback);
+        TextView t =findViewById(R.id.actionbar_text);
+        t.setText("미션추가하기");
+        ImageView back = findViewById(R.id.appBackBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         EditTitle = findViewById(R.id.addMission_missionTitle_editText);
         confirmBtn = findViewById(R.id.addMission_confirm_btn);
-        cancelBtn = findViewById(R.id.addMission_cancel_btn);
         timePicker = findViewById(R.id.addMission_time_timepicker);
-        addimissiontitletxt = findViewById(R.id.addMission_titleText_textView);
 
         //DB연동위한 값
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
@@ -82,32 +91,19 @@ public class AddMissionActivity extends AppCompatActivity {
         switch (pref.getString("textsize", "")){
             case "big":
                EditTitle.setTextSize(25);
-                addimissiontitletxt.setTextSize(35);
                 confirmBtn.setTextSize(23);
-                cancelBtn.setTextSize(23);
 
                 break;
             case "small":
                 EditTitle.setTextSize(15);
-                addimissiontitletxt.setTextSize(25);
                 confirmBtn.setTextSize(13);
-                cancelBtn.setTextSize(13);
 
                 break;
             default:
                 EditTitle.setTextSize(20);
-                addimissiontitletxt.setTextSize(30);
                 confirmBtn.setTextSize(18);
-                cancelBtn.setTextSize(18);
                 break;
         }
-
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
     public class AlarmHATT {
         private Context context;

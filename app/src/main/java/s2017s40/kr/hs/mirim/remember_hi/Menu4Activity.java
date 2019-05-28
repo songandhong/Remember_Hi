@@ -15,10 +15,13 @@ import android.widget.TextView;
 
 //game 액티비티
 public class Menu4Activity extends AppCompatActivity implements View.OnClickListener{
-    Button levelHigh, levelMiddlw, levelLow;
-    String level;
-    ImageView info;
-    TextView levelTxt;
+    ImageView info, leftPoint, rightPoint, gameImage;
+    TextView levelTxt, GamePlayLevel;
+    int levelIndex;
+    String levelStrs[] = {"쉬움", "보통", "어려움"};
+    String levelStrResult=levelStrs[0];
+    Button startBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,17 +29,27 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.game_custom_appbar);
-
         TextView t = findViewById(R.id.gameactionbar_text);
 
+        ImageView back = findViewById(R.id.appBackBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        gameImage = findViewById(R.id.GamePreimg);
         levelTxt = findViewById(R.id.menu4_level_text);
         info = findViewById(R.id.menu4_info_img);
-        levelHigh = findViewById(R.id.menu4_levelHigh_btn);
-        levelMiddlw = findViewById(R.id.menu4_levelMiddle_btn);
-        levelLow = findViewById(R.id.menu4_levelLow_btn);
-        levelLow.setOnClickListener(this);
-        levelMiddlw.setOnClickListener(this);
-        levelHigh.setOnClickListener(this);
+        leftPoint = findViewById(R.id.leftPoint);
+        rightPoint = findViewById(R.id.rightPoint);
+        GamePlayLevel = findViewById(R.id.game_levelTxt);
+        startBtn = findViewById(R.id.startGameBtn);
+
+        leftPoint.setOnClickListener(this);
+        rightPoint.setOnClickListener(this);
+        startBtn.setOnClickListener(this);
 
         info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,46 +64,52 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
         switch (pref.getString("textsize", "")){
             case "big":
                 t.setTextSize(35);
-                levelHigh.setTextSize(23);
-                levelLow.setTextSize(23);
-                levelMiddlw.setTextSize(23);
                 levelTxt.setTextSize(30);
-
                 break;
             case "small":
                 t.setTextSize(25);
-                levelHigh.setTextSize(13);
-                levelLow.setTextSize(13);
-                levelMiddlw.setTextSize(13);
                 levelTxt.setTextSize(20);
 
                 break;
             default:
                 t.setTextSize(30);
-                levelHigh.setTextSize(18);
-                levelLow.setTextSize(18);
-                levelMiddlw.setTextSize(18);
                 levelTxt.setTextSize(25);
 
                 break;
         }
 
+    }// onCreate
 
 
-    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.menu4_levelHigh_btn: level = "h"; break;
-            case R.id.menu4_levelMiddle_btn: level = "m"; break;
-            case R.id.menu4_levelLow_btn :level = "l"; break;
+            case R.id.rightPoint:
+                if(levelIndex == 2){
+                    levelIndex = -1;
+                }
+                levelIndex++;
+                levelStrResult = levelStrs[levelIndex];
+                GamePlayLevel.setText(levelStrResult);
+                setImage(levelIndex);
+                break;
+            case R.id.leftPoint:
+                if(levelIndex == 0){
+                    levelIndex = 3;
+                }
+                levelIndex--;
+                levelStrResult = levelStrs[levelIndex];
+                GamePlayLevel.setText(levelStrResult);
+                setImage(levelIndex);
+                break;
+            case R.id.startGameBtn:
+                Intent i = new Intent(Menu4Activity.this, GamePlayActivity.class);
+                i.putExtra("level", levelStrResult);
+                startActivity(i);
+                break;
         }
 
-        Intent i = new Intent(Menu4Activity.this, GamePlayActivity.class);
-        i.putExtra("level", level);
-        startActivity(i);
-        finish();
-    }
+    }// onClick
 
     public void Dialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -102,5 +121,15 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
                     }
                 });
         builder.show();
+    }//Dialog
+    public void setImage(int index){
+        switch (index){
+            case 0:gameImage.setImageDrawable(getDrawable(R.drawable.game1)); break;
+            case 1:gameImage.setImageDrawable(getDrawable(R.drawable.game2)); break;
+            case 2:gameImage.setImageDrawable(getDrawable(R.drawable.game3)); break;
+        }
+
     }
-}
+
+
+} // class

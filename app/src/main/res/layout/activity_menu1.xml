@@ -5,22 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Menu1Activity">
+    tools:context=".Menu1Activity"
+    >
+    <LinearLayout
+        android:paddingRight="@dimen/layout_left_right_margin"
+        android:paddingLeft="@dimen/layout_left_right_margin"
+        android:background="@color/bgGray"
+        android:paddingBottom="25dp"
+        android:paddingTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:id="@+id/menu1_recycler_write_btn"
+            android:background="@drawable/btn_style"
+            android:padding="20dp"
+            android:text="오늘의 일기 작성하기"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
     <!-- 일기 -->
     <android.support.v7.widget.RecyclerView
+        android:paddingRight="@dimen/layout_left_right_margin"
+        android:paddingLeft="@dimen/layout_left_right_margin"
+        android:layout_marginTop="25dp"
         android:id="@+id/menu1_recycler_view"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"/>
-    <Button
-        android:id="@+id/menu1_recycler_write_btn"
-        android:elevation="10dp"
-        android:textSize="@dimen/middleButton"
-        android:textColor="@color/white"
-        android:background="@drawable/btn_style"
-        android:text= "일기 작성하러 가기"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="10"/>
 </LinearLayout>
