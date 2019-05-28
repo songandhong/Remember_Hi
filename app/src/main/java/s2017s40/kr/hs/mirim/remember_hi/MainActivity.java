@@ -2,9 +2,16 @@ package s2017s40.kr.hs.mirim.remember_hi;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -25,10 +32,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import s2017s40.kr.hs.mirim.remember_hi.Adapter.MainAdapter;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
@@ -41,7 +49,7 @@ public class MainActivity extends AppCompatActivity{
     SharedPreferences.Editor editor;
     TextView t;
 
-    FirebaseDatabase database  = FirebaseDatabase.getInstance();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
 
     @Override
@@ -182,5 +190,12 @@ public class MainActivity extends AppCompatActivity{
         editor.remove("textsize");
         editor.commit();
     }
+
+    private PendingIntent getPendingIntent(Intent intent)
+    {
+        PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return pIntent;
+    }
+
 
 }

@@ -4,12 +4,18 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -51,10 +57,29 @@ public class Menu2Activity extends AppCompatActivity {
     String DiarySms = "";
     String MissionSms = "";
 
+
+    BroadcastReceiver testReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu2);
+
+
+        testReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                // TODO Auto-generated method stub
+                // 이벤트 처리
+                sendDiaryMessage();
+                sendMissionMessage();
+                //AlarmManager 재 등록
+                testAlarm();
+            }
+        };
+        registerReceiver(testReceiver, new IntentFilter("AlarmService"));
+
+
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar_layout);
@@ -132,21 +157,7 @@ public class Menu2Activity extends AppCompatActivity {
         buttonSendDiary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Menu2Activity.this, android.Manifest.permission.SEND_SMS )
-                            != PackageManager.PERMISSION_GRANTED) {
-                        checkVerify();
-                    }
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PhoneSms, null, DiarySms, null, null);
-
-                    Toast.makeText(getApplicationContext(), "오늘의 다이어리 보내기 성공", Toast.LENGTH_LONG).show();
-
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
-                    Log.e("error", String.valueOf(e));
-                    e.printStackTrace();
-                }
+                sendDiaryMessage();
             }
         });
 
@@ -154,21 +165,7 @@ public class Menu2Activity extends AppCompatActivity {
         buttonSendMission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Menu2Activity.this, android.Manifest.permission.SEND_SMS )
-                            != PackageManager.PERMISSION_GRANTED) {
-                        checkVerify();
-                    }
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PhoneSms, null, MissionSms, null, null);
-
-                    Toast.makeText(getApplicationContext(), "오늘의 미션 보내기 성공", Toast.LENGTH_LONG).show();
-
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
-                    Log.e("error", String.valueOf(e));
-                    e.printStackTrace();
-                }
+                sendMissionMessage();
             }
         });
 
@@ -213,4 +210,63 @@ public class Menu2Activity extends AppCompatActivity {
         } else {
         }
     }
+
+    public void testAlarm(){
+        Intent intent = new Intent("AlarmService");
+        PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+        long firstTime = SystemClock.elapsedRealtime();
+        firstTime += 24 * 60 * 60*1000; //24시간 후 알람 이벤트 발생
+        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                //API 19 이상 API 23미만
+                am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender) ;
+            } else {
+                //API 19미만
+                am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
+            }
+        } else {
+            //API 23 이상
+            am.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
+        }
+    }
+
+    public void sendDiaryMessage(){
+        try {
+            if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Menu2Activity.this, android.Manifest.permission.SEND_SMS )
+                    != PackageManager.PERMISSION_GRANTED) {
+                checkVerify();
+            }
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(PhoneSms, null, DiarySms, null, null);
+
+            Toast.makeText(getApplicationContext(), "오늘의 다이어리 보내기 성공", Toast.LENGTH_LONG).show();
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
+            Log.e("error", String.valueOf(e));
+            e.printStackTrace();
+        }
+    }
+
+    public void sendMissionMessage(){
+        try {
+            if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Menu2Activity.this, android.Manifest.permission.SEND_SMS )
+                    != PackageManager.PERMISSION_GRANTED) {
+                checkVerify();
+            }
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(PhoneSms, null, MissionSms, null, null);
+
+            Toast.makeText(getApplicationContext(), "오늘의 미션 보내기 성공", Toast.LENGTH_LONG).show();
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
+            Log.e("error", String.valueOf(e));
+            e.printStackTrace();
+        }
+
+    }
+
+
 }
