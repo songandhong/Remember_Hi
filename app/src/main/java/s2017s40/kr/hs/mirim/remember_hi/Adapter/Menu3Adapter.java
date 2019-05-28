@@ -39,12 +39,27 @@ public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> 
     @Override
     public void onBindViewHolder(final Menu3Adapter.ViewHolder holder, final int position) {
         final MissionDTO model = mDataset.get(position);
-        holder.mView.setBackgroundColor(model.getMissionComple() ? Color.CYAN : Color.WHITE);
+
+        holder.mView.setBackgroundColor(model.getMissionComple() ? holder.mView.getResources().getColor(R.color.lightMain) :
+                holder.mView.getResources().getColor(R.color.mainGray));
+
+        holder.TitleText.setTextColor(model.getMissionComple() ? holder.mView.getResources().getColor(R.color.main) :
+                holder.mView.getResources().getColor(R.color.DarkGray));
+        holder.TimeText.setTextColor(model.getMissionComple() ? holder.mView.getResources().getColor(R.color.main) :
+                holder.mView.getResources().getColor(R.color.DarkGray));
+
         holder.TitleText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 model.setMissionComple(!model.getMissionComple());
-                holder.mView.setBackgroundColor(model.getMissionComple() ? Color.CYAN : Color.WHITE);
+                holder.mView.setBackgroundColor(model.getMissionComple() ? holder.mView.getResources().getColor(R.color.lightMain) :
+                        holder.mView.getResources().getColor(R.color.mainGray));
+
+                holder.TitleText.setTextColor(model.getMissionComple() ? holder.mView.getResources().getColor(R.color.main) :
+                        holder.mView.getResources().getColor(R.color.DarkGray));
+                holder.TimeText.setTextColor(model.getMissionComple() ? holder.mView.getResources().getColor(R.color.main) :
+                        holder.mView.getResources().getColor(R.color.DarkGray));
+
                 if(!model.getMissionComple()) {
                     model.setMissionComple(false);
                 }
@@ -53,8 +68,10 @@ public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> 
                 }
             }
         });
+
         holder.TitleText.setText(mDataset.get(position).getMissionTitle());
         holder.TimeText.setText(mDataset.get(position).getMissionAlarm());
+
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

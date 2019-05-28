@@ -27,6 +27,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,10 @@ import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
 public class Menu2Activity extends AppCompatActivity {
     Button buttonSendDiary, buttonSendMission;
     TextView textPhoneNo, textViewPhoneNum, textViewSMS;
+    LinearLayout diaryChk, missionChk;
+    boolean diary_send = false, misson_send = true;
+
+    Button sendBtn;
 
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
@@ -94,11 +99,49 @@ public class Menu2Activity extends AppCompatActivity {
             }
         });
 
-        textViewSMS = findViewById(R.id.menu2_btn_title_text);
-        buttonSendDiary = (Button) findViewById(R.id.menu2_diary_btn);
-        buttonSendMission = (Button) findViewById(R.id.menu2_mission_btn);
+//        textViewSMS = findViewById(R.id.menu2_btn_title_text);
+//        buttonSendDiary = (Button) findViewById(R.id.menu2_diary_btn);
+//        buttonSendMission = (Button) findViewById(R.id.menu2_mission_btn);
+
+
         textPhoneNo =  findViewById(R.id.menu2_phone_num_text);
         textViewPhoneNum = findViewById(R.id.menu2_phone_title_text);
+        sendBtn = findViewById(R.id.send_today_btn);
+        diaryChk = findViewById(R.id.today_diary_check);
+        missionChk = findViewById(R.id.today_mission_check);
+
+        diaryChk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(diary_send)
+                    diary_send = false;
+                else
+                    diary_send = true;
+
+                if(diary_send){
+                    diaryChk.setBackgroundColor(getResources().getColor(R.color.lightMain));
+                }else{
+                    diaryChk.setBackgroundColor(getResources().getColor(R.color.white));
+                }
+            }
+        });
+
+        missionChk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(misson_send)
+                    misson_send = false;
+                else
+                    misson_send = true;
+
+                if(misson_send){
+                    missionChk.setBackgroundColor(getResources().getColor(R.color.lightMain));
+                }else{
+                    missionChk.setBackgroundColor(getResources().getColor(R.color.white));
+                }
+            }
+        });
+
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
@@ -206,8 +249,23 @@ public class Menu2Activity extends AppCompatActivity {
                 break;
         }
 
+        sendBtn.setOnClickListener(new View.OnClickListener() { // 문자 보내기 버튼
+            @Override
+            public void onClick(View v) {
+                if(misson_send){ // mission 보내기가 활성화 되어있는 경우
 
-    }
+                }
+                if(diary_send){ // diary 보내기가 활성화 되어있는 경우
+
+                }
+            }
+        });
+
+
+    }//onCreate
+
+
+
     @TargetApi(Build.VERSION_CODES.M)
     public void checkVerify()
     {
@@ -274,6 +332,5 @@ public class Menu2Activity extends AppCompatActivity {
         }
 
     }
-
 
 }

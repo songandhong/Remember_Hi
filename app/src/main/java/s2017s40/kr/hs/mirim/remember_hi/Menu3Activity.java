@@ -65,7 +65,6 @@ public class Menu3Activity extends AppCompatActivity {
         Number = auto.getString("Number",null);
         myRef = database.getInstance().getReference("User/"+Number+"/Mission");
 
-
         writeBtn = findViewById(R.id.menu3_recycler_write_btn);
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
