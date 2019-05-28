@@ -1,18 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Menu3Activity"
-    android:orientation="vertical">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/menu3_recycler_view"
-        android:scrollbars="vertical"
+    android:orientation="vertical"
+    android:background="@color/bgGray"
+    >
+
+    <LinearLayout
+        android:id="@+id/wrap_missionlist"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/common_radius"
+        android:backgroundTint="@color/white"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:paddingLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="미션 목록"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/menu3_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
+
+
+    </LinearLayout>
+
     <Button
+        android:layout_marginBottom="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/btnPadding"
+        android:layout_marginLeft="@dimen/btnPadding"
         android:id="@+id/menu3_recycler_write_btn"
         android:elevation="10dp"
         android:textSize="@dimen/middleButton"
@@ -20,6 +50,6 @@
         android:background="@drawable/btn_style"
         android:text= "미션 추가하기"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="10"/>
-</LinearLayout>
+        android:layout_height="wrap_content"
+       />
+</RelativeLayout>

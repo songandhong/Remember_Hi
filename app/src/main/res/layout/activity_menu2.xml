@@ -1,74 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Menu2Activity">
-    <TextView
-        android:id="@+id/menu2_phone_title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:text="보호자 전화번호"
-        android:textColor="@color/mainDark"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/middleMenus"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="@color/bgGray"
+    tools:context=".Menu2Activity"
+    android:orientation="vertical"
 
-    <TextView
-        android:id="@+id/menu2_phone_num_text"
-        android:textSize="@dimen/middleContent"
-        android:layout_width="344dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="전화번호"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2_phone_title_text" />
+    >
 
-    <TextView
-        android:id="@+id/menu2_btn_title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        android:text="버튼을 선택해 주세요"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/mainDark"
-        android:textSize="@dimen/middleMenus"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2_phone_num_text" />
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:padding="20dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/menu2_diary_btn"
-        android:textSize="@dimen/middleButton"
-        android:layout_width="166dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
+        <TextView
+            android:id="@+id/menu2_phone_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="보호자\n전화번호"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middleMenus" />
+
+        <TextView
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:id="@+id/menu2_phone_num_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="전화번호"
+            android:textSize="@dimen/middleContent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/btn_style"
-        android:elevation="7dp"
-        android:text="일기 보내기"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2_btn_title_text" />
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:id="@+id/today_diary_check"
+            android:elevation="1dp"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/common_radius"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="165dp"
+            android:layout_height="280dp">
+            <ImageView
+                android:src="@drawable/icon3"
+                android:layout_width="75dp"
+                android:layout_height="75dp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:textColor="@color/main"
+                android:text="오늘의 \n일기"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:id="@+id/today_mission_check"
+            android:elevation="1dp"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/common_radius"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="165dp"
+            android:layout_height="280dp">
+            <ImageView
+                android:src="@drawable/icon4"
+                android:layout_width="75dp"
+                android:layout_height="75dp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:textColor="@color/main"
+                android:text="오늘 \n미션 현황"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+
     <Button
-        android:id="@+id/menu2_mission_btn"
-        android:textSize="@dimen/middleButton"
-        android:layout_width="166dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="228dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/btn_style"
-        android:elevation="7dp"
-        android:text="미션 보내기"
+        android:id="@+id/send_today_btn"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="@dimen/btnPadding"
+        android:layout_marginRight="@dimen/btnPadding"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/menu2_diary_btn" />
-</android.support.constraint.ConstraintLayout>
+        android:text="문자 보내기"
+        android:background="@drawable/btn_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

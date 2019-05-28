@@ -7,16 +7,20 @@
     tools:context=".ViewDiaryActivity"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@color/DarkGray"
+    android:background="@color/bgGray"
     >
 
     <LinearLayout
+        android:layout_weight="1"
+        android:backgroundTint="@color/white"
         android:id="@+id/viewDiary_textArea_Linear"
         android:layout_marginTop="5dp"
         android:elevation="10dp"
         android:layout_margin="17dp"
-        android:padding="20dp"
-        android:background="#ffffff"
+        android:paddingLeft="@dimen/layout_left_right_margin"
+        android:paddingRight="@dimen/layout_left_right_margin"
+        android:paddingTop="20dp"
+        android:background="@drawable/common_radius"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
@@ -27,5 +31,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
+    <Button
+        android:textColor="@color/white"
+        android:layout_marginRight="@dimen/btnPadding"
+        android:layout_marginLeft="@dimen/btnPadding"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/btn_style"
+        android:text="일기 보기 완료"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
 <!--텍스트 분리하기 -> 분리 안해도 되는데 디자인??을 위해서라면 좋ㅇ을 듯?? 맘대로 해-->

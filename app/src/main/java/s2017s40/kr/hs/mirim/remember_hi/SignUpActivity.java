@@ -30,7 +30,6 @@ public class SignUpActivity extends AppCompatActivity {
     int resultYear, resultMonth, resultDate;
     TextView yearTxt, monthTxt, dateTxt;
     EditText nameEdit,phoneNumEdit;
-    Spinner genderSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +51,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         nameEdit = findViewById(R.id.signup_name_edit);
         phoneNumEdit = findViewById(R.id.signup_phoneNum_edit);
-
-        genderSpinner = findViewById(R.id.signup_gender_spinner);
 
         cal = Calendar.getInstance();
 
@@ -81,7 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UserDTO user = new UserDTO(String.valueOf(nameEdit.getText()), (resultYear+"/"+resultMonth+"/"+resultDate),
-                        (Calendar.YEAR -  resultYear+1), genderSpinner.getSelectedItem().toString(),phoneNumEdit.getText().toString());
+                        (Calendar.YEAR -  resultYear+1), null,phoneNumEdit.getText().toString());
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 myRef.child("User").child(auto.getString("Number","defValue")).child("info").setValue(user);
 

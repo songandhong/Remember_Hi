@@ -6,54 +6,60 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpActivity"
+    android:paddingTop="20dp"
+    >
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:padding="@dimen/layout_left_right_margin"
+        android:backgroundTint="@color/white"
+        android:layout_margin="@dimen/layout_left_right_margin"
+        android:background="@drawable/common_radius"
+        android:id="@+id/phoneAuthFields"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
-        <LinearLayout
-            android:layout_marginBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            <TextView
+                android:text="이름"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <EditText
                 android:textColor="@color/mainDark"
                 android:layout_marginBottom="15dp"
                 android:id="@+id/signup_name_edit"
                 android:textSize="18sp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:hint="이름" />
+                android:layout_weight="0.8" />
 
-            <Spinner
-                android:textColor="@color/mainDark"
-                android:layout_marginBottom="15dp"
-                android:entries="@array/gender"
-                android:id="@+id/signup_gender_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
+        <TextView
+            android:text="전화번호"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:textColor="@color/mainDark"
+            android:id="@+id/signup_phoneNum_edit"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            />
+
+        <TextView
+            android:text="생년월일"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:gravity="center_vertical"
             android:layout_marginBottom="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:textColor="@color/mainDark"
-                android:layout_marginRight="15dp"
-                android:textSize="18sp"
-                android:text="생년월일"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
             <TextView
+                android:layout_centerVertical="true"
                 android:textColor="@color/mainDark"
                 android:layout_marginRight="8dp"
                 android:textSize="18sp"
@@ -63,6 +69,8 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/signup_year_text"
                 android:textColor="@color/mainDark"
                 android:layout_marginRight="8dp"
                 android:textSize="18sp"
@@ -72,6 +80,8 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/signup_month_text"
                 android:textColor="@color/mainDark"
                 android:layout_marginRight="15dp"
                 android:textSize="18sp"
@@ -79,28 +89,51 @@
                 android:id="@+id/signup_date_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
             <Button
-                android:elevation="7dp"
-                android:textSize="@dimen/middleButton"
-                android:textColor="@color/white"
-                android:background="@drawable/btn_style"
+                android:layout_alignParentRight="true"
                 android:id="@+id/signup_pickBirth_btn"
-                android:text="생년월일 선택"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_style"
+                android:elevation="7dp"
+                android:text="생년월일선택"
+                android:textColor="@color/white"
+                android:textSize="@dimen/middleButton" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
+        <TextView
+            android:text="보호자 이름"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <EditText
             android:textColor="@color/mainDark"
-            android:id="@+id/signup_phoneNum_edit"
+            android:id="@+id/signup_pName_edit"
             android:layout_marginBottom="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:hint="보호자 전화번호" />
+            />
+
+
+
+        <TextView
+            android:text="보호자 전화번호"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:textColor="@color/mainDark"
+            android:id="@+id/signup_pPhoneNum_edit"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            />
 
         <Button
+            android:layout_marginLeft="@dimen/btnPadding"
+            android:layout_marginRight="@dimen/btnPadding"
             android:elevation="7dp"
             android:textSize="@dimen/middleButton"
             android:textColor="@color/white"
@@ -111,5 +144,8 @@
             android:layout_height="55dp" />
 
     </LinearLayout>
+
+
+
 
 </LinearLayout>

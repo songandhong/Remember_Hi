@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -52,9 +53,17 @@ public class Menu1Activity extends AppCompatActivity {
 //        Toast.makeText( getApplicationContext(), pref.getString("textsize", ""), Toast.LENGTH_SHORT).show();
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout_withback);
         TextView t =findViewById(R.id.actionbar_text);
         t.setText("일기 목록");
+        ImageView back = findViewById(R.id.appBackBtn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         arr = new ArrayList<>();
 

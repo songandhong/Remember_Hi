@@ -6,53 +6,88 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AddMissionActivity"
-    android:gravity="center"
+    android:background="@color/bgGray"
     >
 
-    <TextView
-        android:id="@+id/addMission_titleText_textView"
-        android:textColor="@color/mainDark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="미션 추가하기"
-        android:textSize="@dimen/middleTitle" />
-    <TimePicker
-        android:id="@+id/addMission_time_timepicker"
-        android:numbersTextColor="@color/mainDark"
-        android:numbersInnerTextColor="@color/mainDark"
-        android:layout_margin="10dp"
-        android:timePickerMode="spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <EditText android:textColor="@color/mainDark"
-        android:id="@+id/addMission_missionTitle_editText"
-        android:layout_marginTop="15dp"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:hint="미션을 입력하세요" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="25dp">
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:backgroundTint="@color/white"
+        android:id="@+id/wrap_setMissions"
+        android:layout_marginTop="5dp"
+        android:elevation="10dp"
+        android:layout_margin="17dp"
+        android:paddingLeft="@dimen/layout_left_right_margin"
+        android:paddingRight="@dimen/layout_left_right_margin"
+        android:paddingTop="20dp"
+        android:background="@drawable/common_radius"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="미션 이름"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/mainDark"
+            android:id="@+id/addMission_missionTitle_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="미션을 입력하세요" />
+
+
+        <TextView
+            android:text="미션 시간"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TimePicker
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/addMission_time_timepicker"
+            android:numbersTextColor="@color/mainDark"
+            android:numbersInnerTextColor="@color/mainDark"
+            android:layout_margin="10dp"
+            android:timePickerMode="spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="미션 메모"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:gravity="start"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/addMission_missionMemo_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="미션을 입력하세요"
+            android:lines="3"
+            android:textColor="@color/mainDark" />
+
+        <TextView
+            android:gravity="center"
+            android:text="정해진 시간에 휴대폰 알람이 울리게 됩니다"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
         <Button
+            android:layout_marginRight="@dimen/btnPadding"
+            android:layout_marginLeft="@dimen/btnPadding"
+            android:layout_marginBottom="10dp"
             android:id="@+id/addMission_confirm_btn"
             android:elevation="7dp"
             android:textColor="@color/white"
             android:background="@drawable/btn_style"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="미션추가"
-            android:layout_marginRight="15dp"
             />
-        <Button
-            android:id="@+id/addMission_cancel_btn"
-            android:elevation="7dp"
-            android:textColor="@color/white"
-            android:background="@drawable/btn_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="취소" />
-    </LinearLayout>
 </LinearLayout>

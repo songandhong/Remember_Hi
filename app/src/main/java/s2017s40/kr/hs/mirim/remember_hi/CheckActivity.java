@@ -1,9 +1,11 @@
 package s2017s40.kr.hs.mirim.remember_hi;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +27,11 @@ public class CheckActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
-        
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
+        TextView t = findViewById(R.id.actionbar_text);
+        t.setText("치매 정도 확인");
 
         listview = (ListView) findViewById(R.id.check_list_view);
         items = new ArrayList<String>() ;
