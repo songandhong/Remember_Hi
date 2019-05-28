@@ -72,6 +72,8 @@ public class Menu2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_menu2);
 
 
+        //자동 메시지
+
 //        testReceiver = new BroadcastReceiver() {
 //            @Override
 //            public void onReceive(Context context, Intent intent) {
@@ -204,50 +206,50 @@ public class Menu2Activity extends AppCompatActivity {
         });
 
         //다이어리 보내기 버튼 이벤트
-        buttonSendDiary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendDiaryMessage();
-            }
-        });
-
-        //미션 보내기 버튼 이벤트
-        buttonSendMission.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendMissionMessage();
-            }
-        });
+//        buttonSendDiary.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                sendDiaryMessage();
+//            }
+//        });
+//
+//        //미션 보내기 버튼 이벤트
+//        buttonSendMission.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                sendMissionMessage();
+//            }
+//        });
 
         //글씨 크기 변동
         pref = getSharedPreferences("pref", MODE_PRIVATE);
 
-        switch (pref.getString("textsize", "")){
-            case "big":
-                t.setTextSize(35);
-                textViewSMS.setTextSize(30);
-                textPhoneNo.setTextSize(25);
-                textViewPhoneNum.setTextSize(30);
-                buttonSendDiary.setTextSize(23);
-                buttonSendMission.setTextSize(23);
-                break;
-            case "small":
-                t.setTextSize(25);
-                textViewSMS.setTextSize(20);
-                textPhoneNo.setTextSize(15);
-                textViewPhoneNum.setTextSize(20);
-                buttonSendDiary.setTextSize(13);
-                buttonSendMission.setTextSize(13);
-                break;
-            default:
-                t.setTextSize(30);
-                textViewSMS.setTextSize(25);
-                textPhoneNo.setTextSize(20);
-                textViewPhoneNum.setTextSize(25);
-                buttonSendDiary.setTextSize(18);
-                buttonSendMission.setTextSize(18);
-                break;
-        }
+//        switch (pref.getString("textsize", "")){
+//            case "big":
+//                t.setTextSize(35);
+//                textViewSMS.setTextSize(30);
+//                textPhoneNo.setTextSize(25);
+//                textViewPhoneNum.setTextSize(30);
+//                buttonSendDiary.setTextSize(23);
+//                buttonSendMission.setTextSize(23);
+//                break;
+//            case "small":
+//                t.setTextSize(25);
+//                textViewSMS.setTextSize(20);
+//                textPhoneNo.setTextSize(15);
+//                textViewPhoneNum.setTextSize(20);
+//                buttonSendDiary.setTextSize(13);
+//                buttonSendMission.setTextSize(13);
+//                break;
+//            default:
+//                t.setTextSize(30);
+//                textViewSMS.setTextSize(25);
+//                textPhoneNo.setTextSize(20);
+//                textViewPhoneNum.setTextSize(25);
+//                buttonSendDiary.setTextSize(18);
+//                buttonSendMission.setTextSize(18);
+//                break;
+//        }
 
         sendBtn.setOnClickListener(new View.OnClickListener() { // 문자 보내기 버튼
             @Override
