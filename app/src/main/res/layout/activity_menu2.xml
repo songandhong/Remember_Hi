@@ -67,7 +67,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:textColor="@color/main"
-                android:text="오늘의 \n일기"
+                android:text="오늘의 \n일기 현황"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -98,9 +98,17 @@
         </LinearLayout>
     </LinearLayout>
 
+    <CheckBox
+        android:textSize="@dimen/middleContent"
+        android:id="@+id/auto_message"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="@dimen/btnPadding"
+        android:layout_marginRight="@dimen/btnPadding"
+        android:text="자동으로 메시지를 전송합니다"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <Button
         android:id="@+id/send_today_btn"
-        android:layout_marginTop="80dp"
         android:layout_marginLeft="@dimen/btnPadding"
         android:layout_marginRight="@dimen/btnPadding"
         android:textColor="@color/white"

@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.job.JobScheduler;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -39,16 +41,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
 import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
+import s2017s40.kr.hs.mirim.remember_hi.service.JobSchedulerStart;
 
 //문자전송 액티비팉
 public class Menu2Activity extends AppCompatActivity {
     TextView textPhoneNo, textViewPhoneNum;
     LinearLayout diaryChk, missionChk;
-    boolean diary_send = false, mission_send = true;
+    boolean diary_send = false, mission_send = false; // 미션을 보낼지 안보낼지 판단하는 boolean 변수
 
     Button sendBtn;
 
@@ -62,31 +66,10 @@ public class Menu2Activity extends AppCompatActivity {
     String DiarySms = "";
     String MissionSms = "";
 
-
-    BroadcastReceiver testReceiver;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu2);
-
-
-        //자동 메시지
-
-        testReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                // TODO Auto-generated method stub
-                // 이벤트 처리
-                sendDiaryMessage();
-                sendMissionMessage();
-                //AlarmManager 재 등록
-                testAlarm();
-            }
-        };
-        registerReceiver(testReceiver, new IntentFilter("AlarmService"));
-
-
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar_layout_withback);
@@ -145,9 +128,16 @@ public class Menu2Activity extends AppCompatActivity {
         //DB연동
         myRef.child("User").child(Number).child("info/phoneNum").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                PhoneSms = dataSnapshot.getValue().toString();
-                textPhoneNo.setText(PhoneSms);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                try{
+                    PhoneSms = dataSnapshot.getValue().toString(); // null pointer
+                    textPhoneNo.setText(PhoneSms);
+
+                }catch (Exception e){
+                    Log.e("error!", e.getStackTrace().toString());
+                }
+
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -194,13 +184,15 @@ public class Menu2Activity extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError error) {
             }
         });
 
-        //글씨 크기 변동
-        pref = getSharedPreferences("pref", MODE_PRIVATE);
+// 글씨 크기 변동
+
+//        pref = getSharedPreferences("pref", MODE_PRIVATE);
 
 //        switch (pref.getString("textsize", "")){
 //            case "big":
@@ -242,6 +234,12 @@ public class Menu2Activity extends AppCompatActivity {
         });
 
 
+
+
+        //자동으로 메시지 전송(테스트 필요)
+        JobSchedulerStart.start(this);
+
+
     }//onCreate
 
 
@@ -256,25 +254,6 @@ public class Menu2Activity extends AppCompatActivity {
         }
     }
 
-    public void testAlarm(){
-        Intent intent = new Intent("AlarmService");
-        PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
-        long firstTime = SystemClock.elapsedRealtime();
-        firstTime += 24 * 60 * 60*1000; //24시간 후 알람 이벤트 발생
-        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                //API 19 이상 API 23미만
-                am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender) ;
-            } else {
-                //API 19미만
-                am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
-            }
-        } else {
-            //API 23 이상
-            am.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
-        }
-    }
 
     public void sendDiaryMessage(){
         try {
