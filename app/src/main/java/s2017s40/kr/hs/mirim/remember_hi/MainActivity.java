@@ -137,12 +137,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mRecyclerView.setAdapter(mAdapter);
-
         myDataList.add("일기");
         myDataList.add("문자");
         myDataList.add("미션");
         myDataList.add("게임");
-
     }
 
     public void setTxtsize(){

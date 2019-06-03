@@ -4,16 +4,16 @@ public class UserDTO {
     private String name;
     private String birth;
     private int age;
-    private  String gender;
+    private  String sonNum;
     private String phoneNum;
 
     public UserDTO(){ }
-    public UserDTO(String name, String birth, int age, String gender, String phoneNum){
+    public UserDTO(String name, String birth, int age, String phoneNum, String sonNum){
         this.age = age;
         this.birth = birth;
-        this.gender = gender;
-        this.name = name;
         this.phoneNum = phoneNum;
+        this.name = name;
+        this.sonNum = sonNum;
     }
 
     public void setPhoneNum(String phoneNum) {
@@ -24,8 +24,8 @@ public class UserDTO {
         return phoneNum;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public String getSonNum() {
+        return sonNum;
     }
 
     public void setBirth(String birth) {
@@ -40,8 +40,8 @@ public class UserDTO {
         this.name = name;
     }
 
-    public String getGender() {
-        return gender;
+    public void setSonNum(String sonNum) {
+        this.sonNum = sonNum;
     }
 
     public String getBirth() {
