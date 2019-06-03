@@ -46,10 +46,9 @@ import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
 
 //문자전송 액티비팉
 public class Menu2Activity extends AppCompatActivity {
-    Button buttonSendDiary, buttonSendMission;
-    TextView textPhoneNo, textViewPhoneNum, textViewSMS;
+    TextView textPhoneNo, textViewPhoneNum;
     LinearLayout diaryChk, missionChk;
-    boolean diary_send = false, misson_send = true;
+    boolean diary_send = false, mission_send = true;
 
     Button sendBtn;
 
@@ -74,18 +73,18 @@ public class Menu2Activity extends AppCompatActivity {
 
         //자동 메시지
 
-//        testReceiver = new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                // TODO Auto-generated method stub
-//                // 이벤트 처리
-//                sendDiaryMessage();
-//                sendMissionMessage();
-//                //AlarmManager 재 등록
-//                testAlarm();
-//            }
-//        };
-//        registerReceiver(testReceiver, new IntentFilter("AlarmService"));
+        testReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                // TODO Auto-generated method stub
+                // 이벤트 처리
+                sendDiaryMessage();
+                sendMissionMessage();
+                //AlarmManager 재 등록
+                testAlarm();
+            }
+        };
+        registerReceiver(testReceiver, new IntentFilter("AlarmService"));
 
 
 
@@ -100,11 +99,6 @@ public class Menu2Activity extends AppCompatActivity {
                 finish();
             }
         });
-
-//        textViewSMS = findViewById(R.id.menu2_btn_title_text);
-//        buttonSendDiary = (Button) findViewById(R.id.menu2_diary_btn);
-//        buttonSendMission = (Button) findViewById(R.id.menu2_mission_btn);
-
 
         textPhoneNo =  findViewById(R.id.menu2_phone_num_text);
         textViewPhoneNum = findViewById(R.id.menu2_phone_title_text);
@@ -131,12 +125,12 @@ public class Menu2Activity extends AppCompatActivity {
         missionChk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(misson_send)
-                    misson_send = false;
+                if(mission_send)
+                    mission_send = false;
                 else
-                    misson_send = true;
+                    mission_send = true;
 
-                if(misson_send){
+                if(mission_send){
                     missionChk.setBackgroundColor(getResources().getColor(R.color.lightMain));
                 }else{
                     missionChk.setBackgroundColor(getResources().getColor(R.color.white));
@@ -205,22 +199,6 @@ public class Menu2Activity extends AppCompatActivity {
             }
         });
 
-        //다이어리 보내기 버튼 이벤트
-//        buttonSendDiary.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                sendDiaryMessage();
-//            }
-//        });
-//
-//        //미션 보내기 버튼 이벤트
-//        buttonSendMission.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                sendMissionMessage();
-//            }
-//        });
-
         //글씨 크기 변동
         pref = getSharedPreferences("pref", MODE_PRIVATE);
 
@@ -254,11 +232,11 @@ public class Menu2Activity extends AppCompatActivity {
         sendBtn.setOnClickListener(new View.OnClickListener() { // 문자 보내기 버튼
             @Override
             public void onClick(View v) {
-                if(misson_send){ // mission 보내기가 활성화 되어있는 경우
-
+                if(mission_send){ // mission 보내기가 활성화 되어있는 경우
+                    sendMissionMessage();
                 }
                 if(diary_send){ // diary 보내기가 활성화 되어있는 경우
-
+                    sendDiaryMessage();
                 }
             }
         });
@@ -278,25 +256,25 @@ public class Menu2Activity extends AppCompatActivity {
         }
     }
 
-//    public void testAlarm(){
-//        Intent intent = new Intent("AlarmService");
-//        PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
-//        long firstTime = SystemClock.elapsedRealtime();
-//        firstTime += 24 * 60 * 60*1000; //24시간 후 알람 이벤트 발생
-//        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-//        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-//            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//                //API 19 이상 API 23미만
-//                am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender) ;
-//            } else {
-//                //API 19미만
-//                am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
-//            }
-//        } else {
-//            //API 23 이상
-//            am.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
-//        }
-//    }
+    public void testAlarm(){
+        Intent intent = new Intent("AlarmService");
+        PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+        long firstTime = SystemClock.elapsedRealtime();
+        firstTime += 24 * 60 * 60*1000; //24시간 후 알람 이벤트 발생
+        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                //API 19 이상 API 23미만
+                am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender) ;
+            } else {
+                //API 19미만
+                am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
+            }
+        } else {
+            //API 23 이상
+            am.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
+        }
+    }
 
     public void sendDiaryMessage(){
         try {
