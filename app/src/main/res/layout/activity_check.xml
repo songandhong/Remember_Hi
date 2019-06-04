@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".CheckActivity"
-    tools:showIn="@layout/activity_main"
     android:orientation="vertical">
     <ListView
         android:id="@+id/check_list_view"
@@ -14,4 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:choiceMode="multipleChoice" />
+    <Button
+        android:id="@+id/check_next_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="다음으로"/>
 </LinearLayout>
