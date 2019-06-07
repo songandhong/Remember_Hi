@@ -13,10 +13,6 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import s2017s40.kr.hs.mirim.remember_hi.Menu2Activity;
 import s2017s40.kr.hs.mirim.remember_hi.R;
 
 public class AlarmBroadcastReceiver extends BroadcastReceiver {

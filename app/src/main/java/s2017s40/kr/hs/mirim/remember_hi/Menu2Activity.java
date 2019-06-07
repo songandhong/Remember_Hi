@@ -233,9 +233,6 @@ public class Menu2Activity extends AppCompatActivity {
             }
         });
 
-
-
-
         //자동으로 메시지 전송(테스트 필요)
         JobSchedulerStart.start(this);
 

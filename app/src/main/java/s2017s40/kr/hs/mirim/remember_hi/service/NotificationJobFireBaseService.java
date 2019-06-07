@@ -2,7 +2,7 @@ package s2017s40.kr.hs.mirim.remember_hi.service;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.job.JobParameters;
+
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
