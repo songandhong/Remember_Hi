@@ -50,7 +50,7 @@ import s2017s40.kr.hs.mirim.remember_hi.service.JobSchedulerStart;
 
 //문자전송 액티비팉
 public class Menu2Activity extends AppCompatActivity {
-    TextView textPhoneNo, textViewPhoneNum;
+    TextView textPhoneNo, textViewPhoneNum, diary_status, mission_status;
     LinearLayout diaryChk, missionChk;
     boolean diary_send = false, mission_send = false; // 미션을 보낼지 안보낼지 판단하는 boolean 변수
 
@@ -85,13 +85,19 @@ public class Menu2Activity extends AppCompatActivity {
 
         textPhoneNo =  findViewById(R.id.menu2_phone_num_text);
         textViewPhoneNum = findViewById(R.id.menu2_phone_title_text);
+        diary_status = findViewById(R.id.todaydiary_status_menu2);
+        mission_status = findViewById(R.id.todaymission_status_menu2);
         sendBtn = findViewById(R.id.send_today_btn);
+
+
         diaryChk = findViewById(R.id.today_diary_check);
         missionChk = findViewById(R.id.today_mission_check);
 
         diaryChk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.e("온클릭 실행", "to");
                 if(diary_send)
                     diary_send = false;
                 else
@@ -190,36 +196,36 @@ public class Menu2Activity extends AppCompatActivity {
             }
         });
 
-// 글씨 크기 변동
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
 
-//        pref = getSharedPreferences("pref", MODE_PRIVATE);
+        switch (pref.getString("textsize", "")){
+            case "big":
+                t.setTextSize(35);
+                textPhoneNo.setTextSize(25);
+                textViewPhoneNum.setTextSize(30);
+                sendBtn.setTextSize(23);
+                mission_status.setTextSize(25);
+                diary_status.setTextSize(25);
+                break;
 
-//        switch (pref.getString("textsize", "")){
-//            case "big":
-//                t.setTextSize(35);
-//                textViewSMS.setTextSize(30);
-//                textPhoneNo.setTextSize(25);
-//                textViewPhoneNum.setTextSize(30);
-//                buttonSendDiary.setTextSize(23);
-//                buttonSendMission.setTextSize(23);
-//                break;
-//            case "small":
-//                t.setTextSize(25);
-//                textViewSMS.setTextSize(20);
-//                textPhoneNo.setTextSize(15);
-//                textViewPhoneNum.setTextSize(20);
-//                buttonSendDiary.setTextSize(13);
-//                buttonSendMission.setTextSize(13);
-//                break;
-//            default:
-//                t.setTextSize(30);
-//                textViewSMS.setTextSize(25);
-//                textPhoneNo.setTextSize(20);
-//                textViewPhoneNum.setTextSize(25);
-//                buttonSendDiary.setTextSize(18);
-//                buttonSendMission.setTextSize(18);
-//                break;
-//        }
+            case "small":
+                t.setTextSize(25);
+                textPhoneNo.setTextSize(15);
+                textViewPhoneNum.setTextSize(20);
+                sendBtn.setTextSize(13);
+                mission_status.setTextSize(15);
+                diary_status.setTextSize(15);
+                break;
+
+            default:
+                t.setTextSize(30);
+                textPhoneNo.setTextSize(20);
+                textViewPhoneNum.setTextSize(25);
+                sendBtn.setTextSize(18);
+                mission_status.setTextSize(20);
+                diary_status.setTextSize(20);
+                break;
+        }
 
         sendBtn.setOnClickListener(new View.OnClickListener() { // 문자 보내기 버튼
             @Override
