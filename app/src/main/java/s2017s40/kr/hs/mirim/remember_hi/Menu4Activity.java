@@ -65,13 +65,16 @@ public class Menu4Activity extends AppCompatActivity implements View.OnClickList
             case "big":
                 t.setTextSize(35);
                 levelTxt.setTextSize(30);
+                GamePlayLevel.setTextSize(25);
                 break;
             case "small":
+                GamePlayLevel.setTextSize(15);
                 t.setTextSize(25);
                 levelTxt.setTextSize(20);
 
                 break;
             default:
+                GamePlayLevel.setTextSize(20);
                 t.setTextSize(30);
                 levelTxt.setTextSize(25);
 
