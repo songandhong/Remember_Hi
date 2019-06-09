@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.job.JobScheduler;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -39,17 +41,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import s2017s40.kr.hs.mirim.remember_hi.DTO.DiaryDTO;
 import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
+import s2017s40.kr.hs.mirim.remember_hi.service.JobSchedulerStart;
 
 //문자전송 액티비팉
 public class Menu2Activity extends AppCompatActivity {
-    Button buttonSendDiary, buttonSendMission;
-    TextView textPhoneNo, textViewPhoneNum, textViewSMS;
+    TextView textPhoneNo, textViewPhoneNum, diary_status, mission_status;
     LinearLayout diaryChk, missionChk;
-    boolean diary_send = false, misson_send = true;
+    boolean diary_send = false, mission_send = false; // 미션을 보낼지 안보낼지 판단하는 boolean 변수
 
     Button sendBtn;
 
@@ -63,31 +66,10 @@ public class Menu2Activity extends AppCompatActivity {
     String DiarySms = "";
     String MissionSms = "";
 
-
-    BroadcastReceiver testReceiver;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu2);
-
-
-        //자동 메시지
-
-//        testReceiver = new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                // TODO Auto-generated method stub
-//                // 이벤트 처리
-//                sendDiaryMessage();
-//                sendMissionMessage();
-//                //AlarmManager 재 등록
-//                testAlarm();
-//            }
-//        };
-//        registerReceiver(testReceiver, new IntentFilter("AlarmService"));
-
-
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar_layout_withback);
@@ -101,20 +83,21 @@ public class Menu2Activity extends AppCompatActivity {
             }
         });
 
-//        textViewSMS = findViewById(R.id.menu2_btn_title_text);
-//        buttonSendDiary = (Button) findViewById(R.id.menu2_diary_btn);
-//        buttonSendMission = (Button) findViewById(R.id.menu2_mission_btn);
-
-
         textPhoneNo =  findViewById(R.id.menu2_phone_num_text);
         textViewPhoneNum = findViewById(R.id.menu2_phone_title_text);
+        diary_status = findViewById(R.id.todaydiary_status_menu2);
+        mission_status = findViewById(R.id.todaymission_status_menu2);
         sendBtn = findViewById(R.id.send_today_btn);
+
+
         diaryChk = findViewById(R.id.today_diary_check);
         missionChk = findViewById(R.id.today_mission_check);
 
         diaryChk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.e("온클릭 실행", "to");
                 if(diary_send)
                     diary_send = false;
                 else
@@ -131,12 +114,12 @@ public class Menu2Activity extends AppCompatActivity {
         missionChk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(misson_send)
-                    misson_send = false;
+                if(mission_send)
+                    mission_send = false;
                 else
-                    misson_send = true;
+                    mission_send = true;
 
-                if(misson_send){
+                if(mission_send){
                     missionChk.setBackgroundColor(getResources().getColor(R.color.lightMain));
                 }else{
                     missionChk.setBackgroundColor(getResources().getColor(R.color.white));
@@ -151,9 +134,16 @@ public class Menu2Activity extends AppCompatActivity {
         //DB연동
         myRef.child("User").child(Number).child("info/phoneNum").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                PhoneSms = dataSnapshot.getValue().toString();
-                textPhoneNo.setText(PhoneSms);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                try{
+                    PhoneSms = dataSnapshot.getValue().toString(); // null pointer
+                    textPhoneNo.setText(PhoneSms);
+
+                }catch (Exception e){
+                    Log.e("error!", e.getStackTrace().toString());
+                }
+
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -200,68 +190,57 @@ public class Menu2Activity extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError error) {
             }
         });
 
-        //다이어리 보내기 버튼 이벤트
-//        buttonSendDiary.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                sendDiaryMessage();
-//            }
-//        });
-//
-//        //미션 보내기 버튼 이벤트
-//        buttonSendMission.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                sendMissionMessage();
-//            }
-//        });
-
-        //글씨 크기 변동
         pref = getSharedPreferences("pref", MODE_PRIVATE);
 
-//        switch (pref.getString("textsize", "")){
-//            case "big":
-//                t.setTextSize(35);
-//                textViewSMS.setTextSize(30);
-//                textPhoneNo.setTextSize(25);
-//                textViewPhoneNum.setTextSize(30);
-//                buttonSendDiary.setTextSize(23);
-//                buttonSendMission.setTextSize(23);
-//                break;
-//            case "small":
-//                t.setTextSize(25);
-//                textViewSMS.setTextSize(20);
-//                textPhoneNo.setTextSize(15);
-//                textViewPhoneNum.setTextSize(20);
-//                buttonSendDiary.setTextSize(13);
-//                buttonSendMission.setTextSize(13);
-//                break;
-//            default:
-//                t.setTextSize(30);
-//                textViewSMS.setTextSize(25);
-//                textPhoneNo.setTextSize(20);
-//                textViewPhoneNum.setTextSize(25);
-//                buttonSendDiary.setTextSize(18);
-//                buttonSendMission.setTextSize(18);
-//                break;
-//        }
+        switch (pref.getString("textsize", "")){
+            case "big":
+                t.setTextSize(35);
+                textPhoneNo.setTextSize(25);
+                textViewPhoneNum.setTextSize(30);
+                sendBtn.setTextSize(23);
+                mission_status.setTextSize(25);
+                diary_status.setTextSize(25);
+                break;
+
+            case "small":
+                t.setTextSize(25);
+                textPhoneNo.setTextSize(15);
+                textViewPhoneNum.setTextSize(20);
+                sendBtn.setTextSize(13);
+                mission_status.setTextSize(15);
+                diary_status.setTextSize(15);
+                break;
+
+            default:
+                t.setTextSize(30);
+                textPhoneNo.setTextSize(20);
+                textViewPhoneNum.setTextSize(25);
+                sendBtn.setTextSize(18);
+                mission_status.setTextSize(20);
+                diary_status.setTextSize(20);
+                break;
+        }
 
         sendBtn.setOnClickListener(new View.OnClickListener() { // 문자 보내기 버튼
             @Override
             public void onClick(View v) {
-                if(misson_send){ // mission 보내기가 활성화 되어있는 경우
-
+                if(mission_send){ // mission 보내기가 활성화 되어있는 경우
+                    sendMissionMessage();
                 }
                 if(diary_send){ // diary 보내기가 활성화 되어있는 경우
-
+                    sendDiaryMessage();
                 }
             }
         });
+
+        //자동으로 메시지 전송(테스트 필요)
+        JobSchedulerStart.start(this);
 
 
     }//onCreate
@@ -278,25 +257,6 @@ public class Menu2Activity extends AppCompatActivity {
         }
     }
 
-//    public void testAlarm(){
-//        Intent intent = new Intent("AlarmService");
-//        PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
-//        long firstTime = SystemClock.elapsedRealtime();
-//        firstTime += 24 * 60 * 60*1000; //24시간 후 알람 이벤트 발생
-//        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-//        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-//            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//                //API 19 이상 API 23미만
-//                am.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender) ;
-//            } else {
-//                //API 19미만
-//                am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
-//            }
-//        } else {
-//            //API 23 이상
-//            am.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, sender);
-//        }
-//    }
 
     public void sendDiaryMessage(){
         try {

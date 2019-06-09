@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +31,9 @@ public class Menu3Activity extends AppCompatActivity {
     RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<MissionDTO> myDataList;
+    LinearLayout wrapList;
     SharedPreferences pref;
+
 
     Button writeBtn;
 
@@ -61,6 +64,8 @@ public class Menu3Activity extends AppCompatActivity {
 
         arr = new ArrayList<>();
 
+        wrapList = findViewById(R.id.wrap_missionlist);
+
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
         myRef = database.getInstance().getReference("User/"+Number+"/Mission");
@@ -88,6 +93,7 @@ public class Menu3Activity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
+                    wrapList.setVisibility(View.VISIBLE);
                     for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
                         //아이템 추가
                         MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
@@ -95,6 +101,8 @@ public class Menu3Activity extends AppCompatActivity {
                         myDataList.add(missionDTO);
                     }
                     mAdapter.notifyDataSetChanged();
+                }else{
+                    wrapList.setVisibility(View.INVISIBLE);
                 }
             }
             @Override
@@ -122,7 +130,6 @@ public class Menu3Activity extends AppCompatActivity {
                 break;
             case "small":
                 t.setTextSize(25);
-                writeBtn.setTextSize(13);
                 break;
             default:
                 t.setTextSize(30);

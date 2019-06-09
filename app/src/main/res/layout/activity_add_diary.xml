@@ -35,9 +35,8 @@
                 android:id="@+id/writeDiary_weather_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="오늘은 날씨가 "
-                android:textColor="@color/mainDark"
-                android:textSize="23sp" />
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="오늘은 날씨가 " />
 
             <Spinner
                 android:background="@color/white"
@@ -64,9 +63,8 @@
                 android:id="@+id/writeDiary_emotion_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="오늘은 기분이 "
-                android:textColor="@color/mainDark"
-                android:textSize="23sp" />
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="오늘은 기분이 " />
 
             <Spinner
                 android:background="@color/white"
