@@ -104,7 +104,7 @@ public class Menu2Activity extends AppCompatActivity {
                     diary_send = true;
 
                 if(diary_send){
-                    diaryChk.setBackgroundColor(getResources().getColor(R.color.lightMain));
+                    diaryChk.setBackgroundColor(getResources().getColor(R.color.base));
                 }else{
                     diaryChk.setBackgroundColor(getResources().getColor(R.color.white));
                 }
@@ -120,7 +120,7 @@ public class Menu2Activity extends AppCompatActivity {
                     mission_send = true;
 
                 if(mission_send){
-                    missionChk.setBackgroundColor(getResources().getColor(R.color.lightMain));
+                    missionChk.setBackgroundColor(getResources().getColor(R.color.base));
                 }else{
                     missionChk.setBackgroundColor(getResources().getColor(R.color.white));
                 }

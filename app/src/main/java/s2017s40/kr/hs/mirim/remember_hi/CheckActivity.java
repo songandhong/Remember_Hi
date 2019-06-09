@@ -62,6 +62,7 @@ public class CheckActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
             }
         });
+
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

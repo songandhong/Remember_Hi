@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,7 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
     Calendar cal;
     int resultYear, resultMonth, resultDate;
     TextView yearTxt, monthTxt, dateTxt;
-    EditText nameEdit,phoneNumEdit;
+    EditText nameEdit,phoneNumEdit, pnameEidt, pphoneNumEidt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         nameEdit = findViewById(R.id.signup_name_edit);
         phoneNumEdit = findViewById(R.id.signup_phoneNum_edit);
+        pnameEidt = findViewById(R.id.signup_pName_edit);
+        pphoneNumEidt = findViewById(R.id.signup_pPhoneNum_edit);
 
         cal = Calendar.getInstance();
 
@@ -77,11 +80,24 @@ public class SignUpActivity extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserDTO user = new UserDTO(String.valueOf(nameEdit.getText()), (resultYear+"/"+resultMonth+"/"+resultDate),
-                        (Calendar.YEAR -  resultYear+1), null,phoneNumEdit.getText().toString());
+                if(nameEdit.getText().equals("")){
+                    Toast.makeText(SignUpActivity.this,"이름을 입력해 주세요",Toast.LENGTH_LONG).show(); return;
+                }if(phoneNumEdit.getText().equals("")){
+                    Toast.makeText(SignUpActivity.this,"전화번호를 입력해 주세요",Toast.LENGTH_LONG).show();return;
+                }if(pnameEidt.getText().equals("")){
+                    Toast.makeText(SignUpActivity.this,"보호자의 이름을 입력해 주세요",Toast.LENGTH_LONG).show();return;
+                }if(pphoneNumEidt.getText().equals("")){
+                    Toast.makeText(SignUpActivity.this,"보호자의 전화번호를 입력해 주세요",Toast.LENGTH_LONG).show();return;
+                }
 
-                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
-                myRef.child("User").child(auto.getString("Number","defValue")).child("info").setValue(user);
+                UserDTO user = new UserDTO(String.valueOf(nameEdit.getText()),
+                        (resultYear+"/"+resultMonth+"/"+resultDate),
+                        (Calendar.YEAR -  resultYear+1),
+                        phoneNumEdit.getText().toString(),
+                        pnameEidt.getText().toString(),
+                        pphoneNumEidt.getText().toString());
+
+                myRef.child("User").child(phoneNumEdit.getText().toString()).child("info").setValue(user);
 
                 Intent intent = new Intent(SignUpActivity.this, CheckActivity.class);
                 startActivity(intent);
