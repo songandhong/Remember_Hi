@@ -27,6 +27,7 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,6 +53,7 @@ import s2017s40.kr.hs.mirim.remember_hi.service.JobSchedulerStart;
 public class Menu2Activity extends AppCompatActivity {
     TextView textPhoneNo, textViewPhoneNum, diary_status, mission_status;
     LinearLayout diaryChk, missionChk;
+    CheckBox checkAutoMessage;
     boolean diary_send = false, mission_send = false; // 미션을 보낼지 안보낼지 판단하는 boolean 변수
 
     Button sendBtn;
@@ -88,6 +90,7 @@ public class Menu2Activity extends AppCompatActivity {
         diary_status = findViewById(R.id.todaydiary_status_menu2);
         mission_status = findViewById(R.id.todaymission_status_menu2);
         sendBtn = findViewById(R.id.send_today_btn);
+        checkAutoMessage = findViewById(R.id.auto_message);
 
 
         diaryChk = findViewById(R.id.today_diary_check);
@@ -98,15 +101,13 @@ public class Menu2Activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Log.e("온클릭 실행", "to");
-                if(diary_send)
+                if(diary_send) {
                     diary_send = false;
-                else
-                    diary_send = true;
-
-                if(diary_send){
-                    diaryChk.setBackgroundColor(getResources().getColor(R.color.lightMain));
-                }else{
                     diaryChk.setBackgroundColor(getResources().getColor(R.color.white));
+                }
+                else {
+                    diary_send = true;
+                    diaryChk.setBackgroundColor(getResources().getColor(R.color.lightPurple));
                 }
             }
         });
@@ -114,19 +115,17 @@ public class Menu2Activity extends AppCompatActivity {
         missionChk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mission_send)
+                if(mission_send) {
                     mission_send = false;
-                else
-                    mission_send = true;
-
-                if(mission_send){
-                    missionChk.setBackgroundColor(getResources().getColor(R.color.lightMain));
-                }else{
                     missionChk.setBackgroundColor(getResources().getColor(R.color.white));
+                }
+
+                else {
+                    mission_send = true;
+                    missionChk.setBackgroundColor(getResources().getColor(R.color.lightPurple));
                 }
             }
         });
-
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
@@ -159,12 +158,12 @@ public class Menu2Activity extends AppCompatActivity {
                     Date date = new Date(nowTime);
                     SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd");
                     String nowTimeStr = formatTime.format(date);
-                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
-                        DiaryDTO diaryDTO = fileSnapshot.getValue(DiaryDTO.class);
-                        if(nowTimeStr.equals(diaryDTO.getDiaryDate())){
-                            DiarySms = diaryDTO.getDiaryContent();
-                        }
-                    }
+//                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+//                        DiaryDTO diaryDTO = fileSnapshot.getValue(DiaryDTO.class);
+//                        if(nowTimeStr.equals(diaryDTO.getDiaryDate())){
+//                            DiarySms = diaryDTO.getDiaryContent();
+//                        }
+//                    }
                 }
             }
             @Override
@@ -178,16 +177,16 @@ public class Menu2Activity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
-                        MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
-                        String comple = "";
-                        if(missionDTO.getMissionComple()){
-                            comple = "완료";
-                        }else {
-                            comple = "미 완료";
-                        }
-                        MissionSms += missionDTO.getMissionTitle() + "의 미션을" + comple + "하셨습니다";
-                    }
+//                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+//                        MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
+//                        String comple = "";
+//                        if(missionDTO.getMissionComple()){
+//                            comple = "완료";
+//                        }else {
+//                            comple = "미 완료";
+//                        }
+//                        MissionSms += missionDTO.getMissionTitle() + "의 미션을" + comple + "하셨습니다";
+//                    }
                 }
             }
 
@@ -239,8 +238,20 @@ public class Menu2Activity extends AppCompatActivity {
             }
         });
 
-        //자동으로 메시지 전송(테스트 필요)
-        JobSchedulerStart.start(this);
+        Boolean b = pref.getBoolean("autoMessage", false);
+        checkAutoMessage.setChecked(b);
+        if(checkAutoMessage.isChecked()){
+            //자동으로 메시지 전송
+            JobSchedulerStart.start(this);
+        }
+
+        checkAutoMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                autoMessageSet(checkAutoMessage.isChecked());
+            }
+        });
+
 
 
     }//onCreate
@@ -295,4 +306,13 @@ public class Menu2Activity extends AppCompatActivity {
 
     }
 
+    public void autoMessageSet(Boolean isChecked){
+        SharedPreferences.Editor editor = pref.edit();
+        if(isChecked){
+            editor.putBoolean("autoMessage", true);
+        }else{
+            editor.putBoolean("autoMessage", false);
+        }
+        editor.commit();
+    }
 }

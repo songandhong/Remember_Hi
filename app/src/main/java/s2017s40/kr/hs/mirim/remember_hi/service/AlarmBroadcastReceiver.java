@@ -1,11 +1,14 @@
 package s2017s40.kr.hs.mirim.remember_hi.service;
 
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
@@ -13,12 +16,25 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import s2017s40.kr.hs.mirim.remember_hi.R;
 
 public class AlarmBroadcastReceiver extends BroadcastReceiver {
 
+    FirebaseDatabase database  = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getInstance().getReference();
+
     private final static int NOTICATION_ID = 222;
     Context context;
+    String Number;
     String PhoneSms = "";
     String DiarySms = "";
     String MissionSms = "";
@@ -26,11 +42,19 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        // DB 연동(DB 오류나서 일단 연결하지 않음)
+
         this.context = context;
+
+        firebaseConn();// DB 오류 난 부분 주석처리함
         sendDiaryMessage();
         sendMissionMessage();
 
+        SharedPreferences auto = context.getSharedPreferences("auto", Activity.MODE_PRIVATE);
+        Number = auto.getString("Number",null);
+
+
+
+        //푸쉬알람
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notification_channel_id")
                 .setSmallIcon(R.drawable.ic_love_p_64px) //알람 아이콘
                 .setContentTitle("메시지 전송 완료")  //알람 제목
@@ -76,5 +100,56 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
 
     }
 
+    public void firebaseConn(){
+
+        //다이어리 DB연동
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    long nowTime = System.currentTimeMillis();
+                    Date date = new Date(nowTime);
+                    SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd");
+                    String nowTimeStr = formatTime.format(date);
+//                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+//                        DiaryDTO diaryDTO = fileSnapshot.getValue(DiaryDTO.class);
+//                        if(nowTimeStr.equals(diaryDTO.getDiaryDate())){
+//                            DiarySms = diaryDTO.getDiaryContent();
+//                        }
+//                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
+
+        //미션 DB연동
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+//                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+//                        MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
+//                        String comple = "";
+//                        if(missionDTO.getMissionComple()){
+//                            comple = "완료";
+//                        }else {
+//                            comple = "미 완료";
+//                        }
+//                        MissionSms += missionDTO.getMissionTitle() + "의 미션을" + comple + "하셨습니다";
+//                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
+
+
+
+    }
 
 }

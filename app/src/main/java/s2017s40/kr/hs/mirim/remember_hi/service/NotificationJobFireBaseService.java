@@ -28,12 +28,11 @@ public class NotificationJobFireBaseService extends JobService {
          */
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000, pendingIntent);
-            // ☆☆☆☆☆☆ 10초 뒤 알람( 이부분 반드시 바꾸기!) ☆☆☆☆☆☆
+            manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000*60*60*24, pendingIntent);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            manager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000, pendingIntent);
+            manager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000*60*60*24, pendingIntent);
         } else {
-            manager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000, pendingIntent);
+            manager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000*60*60*24, pendingIntent);
         }
         return false;
     }
