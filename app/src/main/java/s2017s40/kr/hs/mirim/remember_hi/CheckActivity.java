@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +29,7 @@ public class CheckActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ListView listview;
     Button nextBtn;
+    int checkCount; // count 개수
 
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
@@ -37,10 +39,13 @@ public class CheckActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
 
+        // 액션바 설정 시작
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar_layout);
         TextView t = findViewById(R.id.actionbar_text);
         t.setText("치매 정도 확인");
+        // 액션바 설정 끝
+
 
         nextBtn = findViewById(R.id.check_next_btn);
         listview = findViewById(R.id.check_list_view);
@@ -63,11 +68,14 @@ public class CheckActivity extends AppCompatActivity {
             }
         });
 
+
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //DB연동
                 //myRef.child("User").child("check").setValue();
+                checkCount = listview.getCheckedItemCount();
+                Toast.makeText(getApplicationContext(), checkCount+"", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CheckActivity.this, MainActivity.class);
                 startActivity(intent);
             }
