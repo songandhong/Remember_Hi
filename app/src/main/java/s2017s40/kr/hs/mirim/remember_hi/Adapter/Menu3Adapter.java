@@ -86,4 +86,8 @@ public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> 
     public interface ClickCallback {
         void onItemClick(int position);
     }
+
+    public String getItem(int position){
+        return mDataset.get(position).getMissionTitle();
+    }
 }
