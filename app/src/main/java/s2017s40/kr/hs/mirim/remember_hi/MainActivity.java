@@ -97,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         Log.e("number",Number);
 
         //DB연동

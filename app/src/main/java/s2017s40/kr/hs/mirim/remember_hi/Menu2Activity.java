@@ -232,13 +232,13 @@ public class Menu2Activity extends AppCompatActivity {
                     DiaryDTO diaryDTO = dataSnapshot.getValue(DiaryDTO.class);
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(PhoneSms, null, diaryDTO.getDiaryDate(), null, null);
+                    Toast.makeText(getApplicationContext(), "오늘의 다이어리 보내기 성공", Toast.LENGTH_LONG).show();
                 }
                 @Override
                 public void onCancelled(DatabaseError error) {
+                    Toast.makeText(getApplicationContext(), "오늘의 다이어리를 먼저 작성해 주세요", Toast.LENGTH_LONG).show();
                 }
             });
-
-            Toast.makeText(getApplicationContext(), "오늘의 다이어리 보내기 성공", Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
@@ -261,14 +261,16 @@ public class Menu2Activity extends AppCompatActivity {
                     }
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(PhoneSms, null, "미션", null, null);
+                    Toast.makeText(getApplicationContext(), "오늘의 미션 보내기 성공", Toast.LENGTH_LONG).show();
                 }
                 @Override
                 public void onCancelled(DatabaseError error) {
+                    Toast.makeText(getApplicationContext(), "미션을 먼저 추가해 주세요", Toast.LENGTH_LONG).show();
                 }
             });
 
 
-            Toast.makeText(getApplicationContext(), "오늘의 미션 보내기 성공", Toast.LENGTH_LONG).show();
+
 
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
