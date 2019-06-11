@@ -101,9 +101,7 @@ public class AddDiaryActivity extends AppCompatActivity {
         SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd");
         nowTimeStr = formatTime.format(date);
 
-        String s =
-                nowTimeStr.substring(5,7) + "월 " +
-                nowTimeStr.substring(nowTimeStr.length()-2, nowTimeStr.length())+ "일" + "의 일기";
+        String s = nowTimeStr.substring(5,7) + "월 " +  nowTimeStr.substring(nowTimeStr.length()-2, nowTimeStr.length())+ "일" + "의 일기";
 
         t.setText(s); // 액션바에 setText
 

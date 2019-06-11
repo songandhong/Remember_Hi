@@ -65,6 +65,7 @@ public class Menu2Activity extends AppCompatActivity {
     String Number = "";
 
     String PhoneSms = "";
+    String nowTimeStr;
     String DiarySms = "";
     String MissionSms = "";
 
@@ -99,7 +100,6 @@ public class Menu2Activity extends AppCompatActivity {
         diaryChk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Log.e("온클릭 실행", "to");
                 if(diary_send) {
                     diary_send = false;
@@ -131,65 +131,17 @@ public class Menu2Activity extends AppCompatActivity {
         Number = auto.getString("Number",null);
 
         //DB연동
-        myRef.child("User").child(Number).child("info/phoneNum").addValueEventListener(new ValueEventListener() {
+        myRef.child("User").child(Number).child("info/pphoneNum").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 try{
                     PhoneSms = dataSnapshot.getValue().toString(); // null pointer
                     textPhoneNo.setText(PhoneSms);
-
                 }catch (Exception e){
                     Log.e("error!", e.getStackTrace().toString());
                 }
 
             }
-            @Override
-            public void onCancelled(DatabaseError error) {
-            }
-        });
-
-        //다이어리 DB연동
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    long nowTime = System.currentTimeMillis();
-                    Date date = new Date(nowTime);
-                    SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd");
-                    String nowTimeStr = formatTime.format(date);
-                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
-                        DiaryDTO diaryDTO = fileSnapshot.getValue(DiaryDTO.class);
-                        if(nowTimeStr.equals(diaryDTO.getDiaryDate())){
-                            DiarySms = diaryDTO.getDiaryContent();
-                        }
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-
-            }
-        });
-
-        //미션 DB연동
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
-                        MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
-                        String comple = "";
-                        if(missionDTO.getMissionComple()){
-                            comple = "완료";
-                        }else {
-                            comple = "미 완료";
-                        }
-                        MissionSms += missionDTO.getMissionTitle() + "의 미션을" + comple + "하셨습니다";
-                    }
-                }
-            }
-
             @Override
             public void onCancelled(DatabaseError error) {
             }
@@ -251,12 +203,7 @@ public class Menu2Activity extends AppCompatActivity {
                 autoMessageSet(checkAutoMessage.isChecked());
             }
         });
-
-
-
     }//onCreate
-
-
 
     @TargetApi(Build.VERSION_CODES.M)
     public void checkVerify()
@@ -268,15 +215,28 @@ public class Menu2Activity extends AppCompatActivity {
         }
     }
 
-
     public void sendDiaryMessage(){
         try {
             if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(Menu2Activity.this, android.Manifest.permission.SEND_SMS )
                     != PackageManager.PERMISSION_GRANTED) {
                 checkVerify();
             }
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(PhoneSms, null, DiarySms, null, null);
+            long nowTime = System.currentTimeMillis();
+            Date date = new Date(nowTime);
+            SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd");
+            nowTimeStr = formatTime.format(date);
+            //DB
+            myRef.child("User").child(Number).child("Diary").child(nowTimeStr).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    DiaryDTO diaryDTO = dataSnapshot.getValue(DiaryDTO.class);
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(PhoneSms, null, diaryDTO.getDiaryDate(), null, null);
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                }
+            });
 
             Toast.makeText(getApplicationContext(), "오늘의 다이어리 보내기 성공", Toast.LENGTH_LONG).show();
 
@@ -293,8 +253,20 @@ public class Menu2Activity extends AppCompatActivity {
                     != PackageManager.PERMISSION_GRANTED) {
                 checkVerify();
             }
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(PhoneSms, null, MissionSms, null, null);
+            myRef.child("User").child(Number).child("Mission").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+                        MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
+                    }
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(PhoneSms, null, "미션", null, null);
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                }
+            });
+
 
             Toast.makeText(getApplicationContext(), "오늘의 미션 보내기 성공", Toast.LENGTH_LONG).show();
 

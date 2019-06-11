@@ -31,11 +31,14 @@ public class SignUpActivity extends AppCompatActivity {
     int resultYear, resultMonth, resultDate;
     TextView yearTxt, monthTxt, dateTxt;
     EditText nameEdit,phoneNumEdit, pnameEidt, pphoneNumEidt;
-
+    String Number;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+        Number = auto.getString("Number",null);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar_layout);
@@ -52,6 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         nameEdit = findViewById(R.id.signup_name_edit);
         phoneNumEdit = findViewById(R.id.signup_phoneNum_edit);
+        phoneNumEdit.setText(Number);
         pnameEidt = findViewById(R.id.signup_pName_edit);
         pphoneNumEidt = findViewById(R.id.signup_pPhoneNum_edit);
 
@@ -97,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity {
                         pnameEidt.getText().toString(),
                         pphoneNumEidt.getText().toString());
 
-                myRef.child("User").child(phoneNumEdit.getText().toString()).child("info").setValue(user);
+                myRef.child("User").child(Number).child("info").setValue(user);
 
                 Intent intent = new Intent(SignUpActivity.this, CheckActivity.class);
                 startActivity(intent);

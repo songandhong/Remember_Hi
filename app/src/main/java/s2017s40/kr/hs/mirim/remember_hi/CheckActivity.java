@@ -42,6 +42,7 @@ public class CheckActivity extends AppCompatActivity {
         TextView t = findViewById(R.id.actionbar_text);
         t.setText("치매 정도 확인");
 
+        nextBtn = findViewById(R.id.check_next_btn);
         listview = findViewById(R.id.check_list_view);
         items = new ArrayList<String>() ;
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, items) ;
