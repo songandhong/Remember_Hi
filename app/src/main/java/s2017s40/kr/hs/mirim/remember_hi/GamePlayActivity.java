@@ -109,7 +109,6 @@ public class GamePlayActivity extends AppCompatActivity {
         }
     } // shuffle
 
-
     public void Dialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("게임 끝!");
@@ -122,6 +121,5 @@ public class GamePlayActivity extends AppCompatActivity {
                 });
         builder.show();
     }
-
 
 }
