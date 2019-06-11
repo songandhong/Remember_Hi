@@ -158,12 +158,12 @@ public class Menu2Activity extends AppCompatActivity {
                     Date date = new Date(nowTime);
                     SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd");
                     String nowTimeStr = formatTime.format(date);
-//                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
-//                        DiaryDTO diaryDTO = fileSnapshot.getValue(DiaryDTO.class);
-//                        if(nowTimeStr.equals(diaryDTO.getDiaryDate())){
-//                            DiarySms = diaryDTO.getDiaryContent();
-//                        }
-//                    }
+                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+                        DiaryDTO diaryDTO = fileSnapshot.getValue(DiaryDTO.class);
+                        if(nowTimeStr.equals(diaryDTO.getDiaryDate())){
+                            DiarySms = diaryDTO.getDiaryContent();
+                        }
+                    }
                 }
             }
             @Override
@@ -177,16 +177,16 @@ public class Menu2Activity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-//                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
-//                        MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
-//                        String comple = "";
-//                        if(missionDTO.getMissionComple()){
-//                            comple = "완료";
-//                        }else {
-//                            comple = "미 완료";
-//                        }
-//                        MissionSms += missionDTO.getMissionTitle() + "의 미션을" + comple + "하셨습니다";
-//                    }
+                    for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+                        MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
+                        String comple = "";
+                        if(missionDTO.getMissionComple()){
+                            comple = "완료";
+                        }else {
+                            comple = "미 완료";
+                        }
+                        MissionSms += missionDTO.getMissionTitle() + "의 미션을" + comple + "하셨습니다";
+                    }
                 }
             }
 
