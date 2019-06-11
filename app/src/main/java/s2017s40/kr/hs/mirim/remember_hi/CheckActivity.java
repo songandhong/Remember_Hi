@@ -30,7 +30,7 @@ public class CheckActivity extends AppCompatActivity {
     ListView listview;
     Button nextBtn;
     int checkCount; // count 개수
-
+    String Number;
     FirebaseDatabase database  = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getInstance().getReference();
 
@@ -38,6 +38,9 @@ public class CheckActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
+
+        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+        Number = auto.getString("Number",null);
 
         // 액션바 설정 시작
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -72,10 +75,22 @@ public class CheckActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DB연동
-                //myRef.child("User").child("check").setValue();
                 checkCount = listview.getCheckedItemCount();
-                Toast.makeText(getApplicationContext(), checkCount+"", Toast.LENGTH_SHORT).show();
+
+                String message = "";
+                if(checkCount < 5){
+                    message = "치매1단계";
+                }else if(checkCount < 10){
+                    message = "치매2단계";
+                }else if(checkCount < 15){
+                    message = "치매3단계";
+                }else{
+                    message = "치매4단계";
+                }
+
+                myRef.child("User").child(Number).child("check").child("checkCount").setValue(checkCount);
+                myRef.child("User").child(Number).child("check").child("checkMessage").setValue(message);
+
                 Intent intent = new Intent(CheckActivity.this, MainActivity.class);
                 startActivity(intent);
             }
