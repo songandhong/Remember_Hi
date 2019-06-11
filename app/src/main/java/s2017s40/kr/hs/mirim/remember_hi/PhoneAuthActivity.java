@@ -347,7 +347,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
             autoLogin.putString("Number", user.getPhoneNumber());
             autoLogin.commit();
 
-            Intent intent = new Intent(PhoneAuthActivity.this, MainActivity.class);
+            Intent intent = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
             startActivity(intent);
         }
     }

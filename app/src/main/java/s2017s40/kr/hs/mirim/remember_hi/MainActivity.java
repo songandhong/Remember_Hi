@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -57,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+        Number = auto.getString("Number",null);
+
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar_layout);
         t = findViewById(R.id.actionbar_text);
@@ -93,8 +97,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
-        Number = auto.getString("Number",null);
+
+
+        Log.e("number",Number);
 
         //DB연동
         myRef.child("User").child(Number).child("info/name").addValueEventListener(new ValueEventListener() {
@@ -105,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(DatabaseError error) {
+
             }
         });
 
