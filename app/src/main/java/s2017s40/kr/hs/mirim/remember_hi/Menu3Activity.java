@@ -97,6 +97,7 @@ public class Menu3Activity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     wrapList.setVisibility(View.VISIBLE);
+                    myDataList.clear();
                     for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
                         //아이템 추가
                         MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
@@ -109,25 +110,30 @@ public class Menu3Activity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onCancelled(DatabaseError error) {
-            }
+            public void onCancelled(DatabaseError error) { }
         });
 
         //어댑터 연결
         mAdapter = new Menu3Adapter(myDataList, new Menu3Adapter.ClickCallback() {
+
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(getApplicationContext(), myDataList.get(position).getMissionTitle(), Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getApplicationContext(), "missionComple : " + myDataList.get(position).getMissionComple().toString(), Toast.LENGTH_SHORT).show();
                 //클릭 이벤트
                 if(myDataList.get(position).getMissionComple()){
                     myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(true);
                 }else{
                     myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(false);
                 }
+//                mAdapter.notifyDataSetChanged();
             }
+
         });
 
         mRecyclerView.setAdapter(mAdapter);
+
+
 
         pref = getSharedPreferences("pref", MODE_PRIVATE);
 
