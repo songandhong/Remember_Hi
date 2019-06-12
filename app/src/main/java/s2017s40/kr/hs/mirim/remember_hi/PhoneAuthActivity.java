@@ -254,6 +254,17 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                             // [START_EXCLUDE]
                             updateUI(STATE_SIGNIN_SUCCESS, user);
                             // [END_EXCLUDE]
+
+                            SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                            SharedPreferences.Editor autoLogin = auto.edit();
+                            autoLogin.putString("Number", user.getPhoneNumber());
+                            autoLogin.commit();
+
+                            myRef.child("User").setValue(user.getPhoneNumber());
+
+                            Intent intent = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
+                            startActivity(intent);
+
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -343,19 +354,11 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         } else {
             // Signed in
             mPhoneNumberViews.setVisibility(View.GONE);
-
             enableViews(mPhoneNumberField, mVerificationField);
             mPhoneNumberField.setText(null);
             mVerificationField.setText(null);
 
-            SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
-            SharedPreferences.Editor autoLogin = auto.edit();
-            autoLogin.putString("Number", user.getPhoneNumber());
-            autoLogin.commit();
-
-            myRef.child("User").setValue(user.getPhoneNumber());
-
-            Intent intent = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
+            Intent intent = new Intent(PhoneAuthActivity.this, MainActivity.class);
             startActivity(intent);
         }
     }
