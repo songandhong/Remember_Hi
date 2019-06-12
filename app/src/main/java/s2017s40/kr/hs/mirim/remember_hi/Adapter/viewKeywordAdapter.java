@@ -1,6 +1,7 @@
 package s2017s40.kr.hs.mirim.remember_hi.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,17 @@ import s2017s40.kr.hs.mirim.remember_hi.R;
 
 public class viewKeywordAdapter extends BaseAdapter {
 
-    ArrayList<String> item;
+    ArrayList<String> item = new ArrayList<>();
 
     public viewKeywordAdapter(){ }
     @Override
     public int getCount() {
-        return 0;
+        return item.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return item.get(position);
     }
 
     @Override
@@ -33,7 +34,6 @@ public class viewKeywordAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         Context context = parent.getContext();
 
         if(convertView == null){
@@ -48,8 +48,7 @@ public class viewKeywordAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void setItem(ArrayList<String> arr){
-        this.item = arr;
-
+    public void setItem(String item){
+       this.item.add(item);
     }
 }

@@ -4,9 +4,8 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:paddingLeft="10dp"
+        android:padding="10dp"
         android:textColor="@color/DarkGray"
-        android:paddingTop="10dp"
         android:text="키워드"
         android:id="@+id/more_keyword_txt"
         android:textSize="22sp"

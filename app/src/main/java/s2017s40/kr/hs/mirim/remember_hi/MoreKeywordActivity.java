@@ -27,12 +27,14 @@ public class MoreKeywordActivity extends AppCompatActivity {
 
         arr = array.wordArr;
 
-        Log.e("arr", arr.get(1));
-
         listView = findViewById(R.id.view_moreKeyword_list);
         viewKeywordAdapter adapter = new viewKeywordAdapter();
         listView.setAdapter(adapter);
-        adapter.setItem(arr);
+
+        for(int i = 0; i < arr.size(); i++){
+            adapter.setItem(arr.get(i));
+            adapter.notifyDataSetChanged();
+        }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
           @Override
