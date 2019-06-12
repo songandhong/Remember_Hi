@@ -36,6 +36,7 @@ public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> 
         Menu3Adapter.ViewHolder vh = new Menu3Adapter.ViewHolder(v);
         return vh;
     }
+
     @Override
     public void onBindViewHolder(final Menu3Adapter.ViewHolder holder, final int position) {
         final MissionDTO model = mDataset.get(position);
