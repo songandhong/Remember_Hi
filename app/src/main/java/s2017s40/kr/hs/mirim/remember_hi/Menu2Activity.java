@@ -230,7 +230,12 @@ public class Menu2Activity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     DiaryDTO diaryDTO = dataSnapshot.getValue(DiaryDTO.class);
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PhoneSms, null, diaryDTO.getDiaryDate(), null, null);
+                    String diaryContent = diaryDTO.getDiaryDate() + "\n오늘의 날씨는 " + diaryDTO.getDiaryWeather() +
+                            "\n오늘의 기분은 " + diaryDTO.getDiaryFeel()+
+                            "\n오늘의 키워드는 " + diaryDTO.getDiaryKey1() + ", "+ diaryDTO.getDiaryKey2() + ", "+ diaryDTO.getDiaryKey3() + "이고 "
+                            + "오늘의 메모는 "+ diaryDTO.getDiaryContent() + "이다.";
+
+                    smsManager.sendTextMessage(PhoneSms, null, diaryContent, null, null);
                     Toast.makeText(getApplicationContext(), "오늘의 다이어리 보내기 성공", Toast.LENGTH_LONG).show();
                 }
                 @Override

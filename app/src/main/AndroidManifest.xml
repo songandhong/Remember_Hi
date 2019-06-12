@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GamePlayActivity"/>
+        <activity android:name=".MoreKeywordActivity"></activity>
+        <activity android:name=".GamePlayActivity" />
         <activity android:name=".Menu4Activity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".AddMissionActivity" />
@@ -28,6 +29,7 @@
         <activity android:name=".PhoneAuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -36,6 +38,7 @@
         <activity android:name=".AddDiaryActivity" />
 
         <receiver android:name=".BroadcastD" />
+
         <service
             android:name=".service.NotificationJobFireBaseService"
             android:enabled="true"
@@ -44,10 +47,11 @@
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
+
         <receiver
             android:name=".service.AlarmBroadcastReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
     </application>
 
 </manifest>

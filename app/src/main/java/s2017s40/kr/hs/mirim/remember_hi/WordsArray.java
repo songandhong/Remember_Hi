@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class WordsArray {
 
-    ArrayList<String> wordArr=new ArrayList<>();
+    public ArrayList<String> wordArr=new ArrayList<>();
 
     public WordsArray(){
         wordArr.add("가족");
@@ -24,11 +24,6 @@ public class WordsArray {
         wordArr.add("손녀");
         wordArr.add("손자"); wordArr.add("아들"); wordArr.add("딸"); wordArr.add("어머니"); wordArr.add("아버지"); wordArr.add("할머니");
         wordArr.add("할아버지");
-
-
-
-
-
 
     }
 
