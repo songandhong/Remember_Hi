@@ -140,7 +140,6 @@ public class Menu2Activity extends AppCompatActivity {
                 }catch (Exception e){
                     Log.e("error!", e.getStackTrace().toString());
                 }
-
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -256,11 +255,18 @@ public class Menu2Activity extends AppCompatActivity {
             myRef.child("User").child(Number).child("Mission").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    int checkCount = 0;
+                    int Count = 0;
                     for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
                         MissionDTO missionDTO = fileSnapshot.getValue(MissionDTO.class);
+                        Count++;
+                        if(missionDTO.getMissionComple()){
+                            checkCount++;
+                        }
                     }
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PhoneSms, null, "미션", null, null);
+                    smsManager.sendTextMessage
+                            (PhoneSms, null, Count + "개의 미션 중 " + checkCount + "의 미션을 완료하셨습니다.", null, null);
                     Toast.makeText(getApplicationContext(), "오늘의 미션 보내기 성공", Toast.LENGTH_LONG).show();
                 }
                 @Override
@@ -268,10 +274,6 @@ public class Menu2Activity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "미션을 먼저 추가해 주세요", Toast.LENGTH_LONG).show();
                 }
             });
-
-
-
-
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
             Log.e("error", String.valueOf(e));

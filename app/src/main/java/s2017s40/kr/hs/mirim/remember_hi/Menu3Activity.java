@@ -70,6 +70,7 @@ public class Menu3Activity extends AppCompatActivity {
 
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         Number = auto.getString("Number",null);
+
         myRef = database.getInstance().getReference("User/"+Number+"/Mission");
 
         writeBtn = findViewById(R.id.menu3_recycler_write_btn);
@@ -118,6 +119,11 @@ public class Menu3Activity extends AppCompatActivity {
             public void onItemClick(int position) {
                 Toast.makeText(getApplicationContext(), myDataList.get(position).getMissionTitle(), Toast.LENGTH_SHORT).show();
                 //클릭 이벤트
+                if(myDataList.get(position).getMissionComple()){
+                    myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(true);
+                }else{
+                    myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(false);
+                }
             }
         });
 
@@ -139,9 +145,5 @@ public class Menu3Activity extends AppCompatActivity {
                 writeBtn.setTextSize(18);
                 break;
         }
-
-
-
     }
-
 }
