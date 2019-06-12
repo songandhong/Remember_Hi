@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -16,7 +17,7 @@ import s2017s40.kr.hs.mirim.remember_hi.Adapter.viewKeywordAdapter;
 
 public class MoreKeywordActivity extends AppCompatActivity {
 
-    ListView listView;
+    GridView listView;
     ArrayList<String> arr;
 
     @Override
@@ -24,6 +25,8 @@ public class MoreKeywordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_keyword);
         WordsArray array = new WordsArray();
+
+        getSupportActionBar().setTitle("키워드 목록");
 
         arr = array.wordArr;
 

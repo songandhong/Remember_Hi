@@ -4,9 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoreKeywordActivity">
+    tools:context=".MoreKeywordActivity"
+    android:background="@color/lightMain"
+    >
 
-    <ListView
+    <GridView
+        android:padding="10dp"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
+        android:numColumns="3"
         android:id="@+id/view_moreKeyword_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
