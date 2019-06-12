@@ -115,16 +115,20 @@ public class Menu3Activity extends AppCompatActivity {
 
         //어댑터 연결
         mAdapter = new Menu3Adapter(myDataList, new Menu3Adapter.ClickCallback() {
+
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(getApplicationContext(), myDataList.get(position).getMissionTitle(), Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getApplicationContext(), "missionComple : " + myDataList.get(position).getMissionComple().toString(), Toast.LENGTH_SHORT).show();
                 //클릭 이벤트
                 if(myDataList.get(position).getMissionComple()){
                     myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(true);
                 }else{
                     myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(false);
                 }
+//                mAdapter.notifyDataSetChanged();
             }
+
         });
 
         mRecyclerView.setAdapter(mAdapter);

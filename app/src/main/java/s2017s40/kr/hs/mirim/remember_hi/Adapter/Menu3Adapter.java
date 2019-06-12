@@ -36,7 +36,6 @@ public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> 
         Menu3Adapter.ViewHolder vh = new Menu3Adapter.ViewHolder(v);
         return vh;
     }
-
     @Override
     public void onBindViewHolder(final Menu3Adapter.ViewHolder holder, final int position) {
         final MissionDTO model = mDataset.get(position);
@@ -49,9 +48,16 @@ public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> 
         holder.TimeText.setTextColor(model.getMissionComple() ? holder.mView.getResources().getColor(R.color.main) :
                 holder.mView.getResources().getColor(R.color.DarkGray));
 
-        holder.TitleText.setOnClickListener(new View.OnClickListener() {
+        holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!model.getMissionComple()) {
+                    model.setMissionComple(false);
+                }
+                else if(model.getMissionComple()){
+                    model.setMissionComple(true);
+                }
+
                 model.setMissionComple(!model.getMissionComple());
                 holder.mView.setBackgroundColor(model.getMissionComple() ? holder.mView.getResources().getColor(R.color.lightMain) :
                         holder.mView.getResources().getColor(R.color.mainGray));
@@ -61,24 +67,19 @@ public class Menu3Adapter extends RecyclerView.Adapter<Menu3Adapter.ViewHolder> 
                 holder.TimeText.setTextColor(model.getMissionComple() ? holder.mView.getResources().getColor(R.color.main) :
                         holder.mView.getResources().getColor(R.color.DarkGray));
 
-                if(!model.getMissionComple()) {
-                    model.setMissionComple(false);
-                }
-                else if(model.getMissionComple()){
-                    model.setMissionComple(true);
-                }
+                callback.onItemClick(position);
             }
         });
 
         holder.TitleText.setText(mDataset.get(position).getMissionTitle());
         holder.TimeText.setText(mDataset.get(position).getMissionAlarm());
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                callback.onItemClick(position);
-            }
-        });
+//        holder.mView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                callback.onItemClick(position);
+//            }
+//        });
     }
     @Override
     public int getItemCount() {
