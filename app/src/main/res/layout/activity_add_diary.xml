@@ -213,6 +213,15 @@
                 android:textOn="keyword9" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/more_keyword"
+            android:layout_margin="12dp"
+            android:textColor="@color/main"
+            android:textSize="20sp"
+            android:text="키워드 더 보기"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -224,7 +233,7 @@
         android:orientation="vertical">
 
         <EditText
-
+            android:padding="5dp"
             android:background="@color/white"
             android:id="@+id/writeDiary_content_edit"
             android:layout_width="match_parent"
@@ -233,8 +242,8 @@
             android:gravity="start"
             android:hint="오늘의 일기를 써보세요"
             android:lines="3"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:textColor="@color/mainDark"
             android:textSize="23sp" />
     </LinearLayout>
