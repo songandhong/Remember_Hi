@@ -120,9 +120,11 @@ public class Menu3Activity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), myDataList.get(position).getMissionTitle(), Toast.LENGTH_SHORT).show();
                 //클릭 이벤트
                 if(myDataList.get(position).getMissionComple()){
+                    //myDataList.get(position).setMissionComple(false);
                     myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(true);
                 }else{
-                    myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(false);
+                    myDataList.get(position).setMissionComple(true);
+                    //myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(false);
                 }
             }
         });
