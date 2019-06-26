@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -31,10 +32,17 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+
+import s2017s40.kr.hs.mirim.remember_hi.DTO.MissionDTO;
+import s2017s40.kr.hs.mirim.remember_hi.DTO.UserDTO;
 
 public class PhoneAuthActivity extends AppCompatActivity implements
         View.OnClickListener {
@@ -66,8 +74,8 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     private Button mStartButton;
     private Button mVerifyButton;
     private Button mResendButton;
-
-
+    private Boolean isUser;
+    private ArrayList<String> userList = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,6 +254,17 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                             // [START_EXCLUDE]
                             updateUI(STATE_SIGNIN_SUCCESS, user);
                             // [END_EXCLUDE]
+
+                            SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                            SharedPreferences.Editor autoLogin = auto.edit();
+                            autoLogin.putString("Number", user.getPhoneNumber());
+                            autoLogin.commit();
+
+                            myRef.child("User").setValue(user.getPhoneNumber());
+
+                            Intent intent = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
+                            startActivity(intent);
+
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -290,7 +309,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         updateUI(uiState, null, cred);
     }
 
-    private void updateUI(int uiState, FirebaseUser user, PhoneAuthCredential cred) {
+    private void updateUI(int uiState, final FirebaseUser user, PhoneAuthCredential cred) {
         switch (uiState) {
             case STATE_INITIALIZED:
                 // Initialized state, show only the phone number field and start button
@@ -335,23 +354,14 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         } else {
             // Signed in
             mPhoneNumberViews.setVisibility(View.GONE);
-
             enableViews(mPhoneNumberField, mVerificationField);
             mPhoneNumberField.setText(null);
             mVerificationField.setText(null);
 
-            myRef.child("User").setValue(user.getPhoneNumber());
-
-            SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
-            SharedPreferences.Editor autoLogin = auto.edit();
-            autoLogin.putString("Number", user.getPhoneNumber());
-            autoLogin.commit();
-
-            Intent intent = new Intent(PhoneAuthActivity.this, SignUpActivity.class);
+            Intent intent = new Intent(PhoneAuthActivity.this, MainActivity.class);
             startActivity(intent);
         }
     }
-
     private boolean validatePhoneNumber() {
         String phoneNumber = mPhoneNumberField.getText().toString();
         if (TextUtils.isEmpty(phoneNumber)) {

@@ -2,6 +2,7 @@ package s2017s40.kr.hs.mirim.remember_hi;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class AddDiaryActivity extends AppCompatActivity {
     String nowTimeStr;
     ToggleButton keyword1, keyword2, keyword3, keyword4, keyword5, keyword6, keyword7, keyword8,keyword9;
     int randomNum[];
+    TextView more_keyword;
 
     //파이어베이스 연결 위한 준비
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -78,6 +80,8 @@ public class AddDiaryActivity extends AppCompatActivity {
         keyword7 = findViewById(R.id.writeDiary_keyword7_toggle);
         keyword8 = findViewById(R.id.writeDiary_keyword8_toggle);
         keyword9 = findViewById(R.id.writeDiary_keyword9_toggle);
+
+        more_keyword = findViewById(R.id.more_keyword);
 
         //일기 맨 상단의 제목
         titleText_wirte = findViewById(R.id.writeDiary_content_edit);
@@ -148,6 +152,15 @@ public class AddDiaryActivity extends AppCompatActivity {
         keyword8.setTextOff(arr.wordArr.get(randomNum[7]));
         keyword9.setTextOn(arr.wordArr.get(randomNum[8]));
         keyword9.setTextOff(arr.wordArr.get(randomNum[8]));
+
+
+        more_keyword.setOnClickListener(new View.OnClickListener() { // 키워드 더 보기
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddDiaryActivity.this, MoreKeywordActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
 
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -273,7 +286,19 @@ public class AddDiaryActivity extends AppCompatActivity {
                 break;
         }
 
+    } // onCreate
 
-
+    @Override
+    public void onActivityResult(int reqCode, int resultCode, Intent data){
+        if(resultCode == RESULT_OK){
+            if(reqCode == 0){
+                String set = writeDiaryEdit.getText() + data.getStringExtra("moreKeyword");
+                writeDiaryEdit.setText(set);
+            }else{
+                Toast.makeText(getApplicationContext(), "오류가 발생했습니다", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
+
+
 }

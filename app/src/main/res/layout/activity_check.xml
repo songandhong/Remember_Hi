@@ -12,10 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_marginBottom="10dp"
         android:choiceMode="multipleChoice" />
     <Button
         android:id="@+id/check_next_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/btnPadding"
+        android:layout_marginLeft="@dimen/btnPadding"
+        android:layout_marginBottom="10dp"
+        android:elevation="7dp"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_style"
         android:text="다음으로"/>
 </LinearLayout>
