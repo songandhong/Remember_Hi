@@ -3,6 +3,7 @@ package s2017s40.kr.hs.mirim.remember_hi;
 import s2017s40.kr.hs.mirim.remember_hi.DTO.UserDTO;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -64,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
         datePickBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog d = new DatePickerDialog(SignUpActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog d = new DatePickerDialog(SignUpActivity.this, AlertDialog.THEME_HOLO_LIGHT, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         resultYear = year;
@@ -108,10 +109,5 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
-    public String phoneChange(){
-        String changeNum = phoneNumEdit.getText().toString();
-        changeNum = changeNum.substring(1);
-        changeNum = "+82" + changeNum;
-        return changeNum;
-    }
+
 }

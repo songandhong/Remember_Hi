@@ -35,7 +35,7 @@ public class Menu3Activity extends AppCompatActivity {
     private ArrayList<MissionDTO> myDataList;
     LinearLayout wrapList;
     SharedPreferences pref;
-
+    AlarmUtil alarmUtil = new AlarmUtil();
 
     Button writeBtn;
 
@@ -123,10 +123,11 @@ public class Menu3Activity extends AppCompatActivity {
                 //클릭 이벤트
                 if(myDataList.get(position).getMissionComple()){
                     //myDataList.get(position).setMissionComple(false);
+                    //alarmUtil.releaseAlarm(Menu3Activity.this, 1234);
                     myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(true);
                 }else{
-                    myDataList.get(position).setMissionComple(true);
-                    //myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(false);
+                    //myDataList.get(position).setMissionComple(true);
+                    myRef.child(myDataList.get(position).getMissionTitle()).child("missionComple").setValue(false);
                 }
 //                mAdapter.notifyDataSetChanged();
             }

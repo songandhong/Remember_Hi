@@ -44,7 +44,7 @@
     <LinearLayout
         android:layout_gravity="center_vertical"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -101,7 +101,7 @@
     <CheckBox
         android:textSize="@dimen/middleContent"
         android:id="@+id/auto_message"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="@dimen/btnPadding"
         android:layout_marginRight="@dimen/btnPadding"
         android:text="자동으로 메시지를 전송합니다"

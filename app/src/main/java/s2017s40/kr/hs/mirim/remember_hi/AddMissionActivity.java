@@ -88,6 +88,7 @@ public class AddMissionActivity extends AppCompatActivity {
 
                 //알람 설정
                 new AlarmHATT(getApplicationContext()).Alarm(Hour, Minute);
+
                 Toast.makeText(AddMissionActivity.this, "미션이 추가되었습니다.", Toast.LENGTH_SHORT).show();
                 finish();
             }

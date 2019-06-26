@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -76,7 +77,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     private Button mResendButton;
     private Boolean isUser;
     private ArrayList<String> userList = new ArrayList();
-
+    String cPhoneNum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,17 +95,13 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         int permissionCheck = ContextCompat.checkSelfPermission(PhoneAuthActivity.this, Manifest.permission.READ_PHONE_STATE);
         String myNumber = null;
         TelephonyManager mgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        try{
-            myNumber = mgr.getLine1Number();
-            myNumber = myNumber.replace("+82", "0");
-        }catch(Exception e){}
+
 
         // Assign views
         mPhoneNumberViews = findViewById(R.id.phoneAuthFields);
 
         mPhoneNumberField = findViewById(R.id.fieldPhoneNumber);
         mVerificationField = findViewById(R.id.fieldVerificationCode);
-        mPhoneNumberField.setText(myNumber);
         mStartButton = findViewById(R.id.buttonStartVerification);
         mVerifyButton = findViewById(R.id.buttonVerifyPhone);
         mResendButton = findViewById(R.id.buttonResend);
@@ -353,18 +350,17 @@ public class PhoneAuthActivity extends AppCompatActivity implements
             mPhoneNumberViews.setVisibility(View.VISIBLE);
         } else {
             // Signed in
-            mPhoneNumberViews.setVisibility(View.GONE);
-            enableViews(mPhoneNumberField, mVerificationField);
-            mPhoneNumberField.setText(null);
-            mVerificationField.setText(null);
+            mAuth.signOut();
+            mPhoneNumberViews.setVisibility(View.VISIBLE);
 
-            Intent intent = new Intent(PhoneAuthActivity.this, MainActivity.class);
-            startActivity(intent);
+            enableViews(mPhoneNumberField, mVerificationField);
+           /* mPhoneNumberField.setText(null);
+            mVerificationField.setText(null);*/
         }
     }
     private boolean validatePhoneNumber() {
-        String phoneNumber = mPhoneNumberField.getText().toString();
-        if (TextUtils.isEmpty(phoneNumber)) {
+        cPhoneNum =  phoneChange(mPhoneNumberField.getText().toString());
+        if (TextUtils.isEmpty(cPhoneNum)) {
             mPhoneNumberField.setError("Invalid phone number.");
             return false;
         }
@@ -386,12 +382,14 @@ public class PhoneAuthActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View view) {
+
         switch (view.getId()) {
             case R.id.buttonStartVerification:
                 if (!validatePhoneNumber()) {
                     return;
                 }
-                startPhoneNumberVerification(mPhoneNumberField.getText().toString());
+                cPhoneNum = phoneChange(mPhoneNumberField.getText().toString());
+                startPhoneNumberVerification(cPhoneNum);
                 break;
             case R.id.buttonVerifyPhone:
                 String code = mVerificationField.getText().toString();
@@ -402,11 +400,18 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                 verifyPhoneNumberWithCode(mVerificationId, code);
                 break;
             case R.id.buttonResend:
-                resendVerificationCode(mPhoneNumberField.getText().toString(), mResendToken);
+                cPhoneNum = phoneChange(mPhoneNumberField.getText().toString());
+                resendVerificationCode(cPhoneNum, mResendToken);
                 break;
            /* case R.id.signOutButton:
                 signOut();
                 break;*/
         }
+    }
+    public String phoneChange(String phone){
+        phone = phone.substring(1);
+        phone = "+82" + phone;
+        Log.e("phone",phone);
+        return phone;
     }
 }
